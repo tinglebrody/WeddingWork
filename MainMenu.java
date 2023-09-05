@@ -3,14 +3,16 @@ import java.awt.*;
 import java.awt.event.*;
 public class MainMenu implements ActionListener{
     
-int count = 0;
 JLabel label;
-    public MainMenu(){
+JPanel panel;
+static JFrame frame;
+JButton button;
 
-        label = new JLabel("How many times you clicked the shit: " + count);
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
-        JButton button = new JButton("Click This Shit");
+    public MainMenu(){
+        label = new JLabel("Hello World");
+        frame = new JFrame();
+        panel = new JPanel();
+        button = new JButton("Go to Budget");
 
         button.addActionListener(this);
         
@@ -18,19 +20,24 @@ JLabel label;
         panel.setLayout(new GridLayout(0, 1));
         panel.add(button);
         panel.add(label);
-        frame.add(panel, BorderLayout.CENTER);
+        frame.add(this.panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("My GUI");
         frame.pack();
         frame.setVisible(true);
     }
     public static void main(String[] args){
-        new MainMenu();
+        MainMenu menu = new MainMenu();
+        Budget budget = new Budget();
+        JPanel budgetPanel = new JPanel();
+        budgetPanel = budget.panel;
+        frame.add(budgetPanel);
+        menu.panel.setVisible(false);
+        budget.panel.setVisible(true);
         System.out.println("Git test");
     }
 
     public void actionPerformed(ActionEvent e){
-        count++;
-        label.setText("How many times you clicked the shit: " + count);
+        label.setText("Hello New World!");
     }
 }
