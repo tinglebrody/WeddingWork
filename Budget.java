@@ -6,11 +6,13 @@ public class Budget implements ActionListener{
 int count = 0;
 JLabel label;
 JPanel panel;
+JButton button;
+
     public Budget(){
 
         label = new JLabel("Dollars: $" + count);
         panel = new JPanel();
-        JButton button = new JButton("Budget");
+        button = new JButton("Budget");
 
         button.addActionListener(this);
         

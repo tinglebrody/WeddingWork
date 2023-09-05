@@ -5,8 +5,8 @@ public class gui{
 
     static String page = "MainMenu";
     JMenuBar menubar;
-    JMenu mainMenu, budget;
-    JMenuItem main, budge;
+    JMenu homeMenu, budget;
+    JMenuItem home, budge;
     static JFrame frame;
     JPanel panel;
 
@@ -17,24 +17,24 @@ public class gui{
         menubar.setOpaque(true);
 
         // menus 
-        mainMenu = new JMenu("Home");
+        homeMenu = new JMenu("Home");
         budget = new JMenu("Budget");
-        mainMenu.setBackground(Color.GREEN);
-        mainMenu.setOpaque(true);
+        homeMenu.setBackground(Color.GREEN);
+        homeMenu.setOpaque(true);
         budget.setBackground(Color.GREEN);
         budget.setOpaque(true);
 
         // items
-        main = new JMenuItem("Main Menu");
+        home = new JMenuItem("Home");
         budge = new JMenuItem("Budget Page");
-        mainMenu.add(main);
+        homeMenu.add(home);
         budget.add(budge);
 
         // add menus to menubar
-        menubar.add(mainMenu);
+        menubar.add(homeMenu);
         menubar.add(budget);
 
-        class mainMenuAction implements ActionListener{
+        class homeAction implements ActionListener{
             public void actionPerformed(ActionEvent e){
                 page = "MainMenu";
             }
@@ -47,7 +47,7 @@ public class gui{
         }
 
         budge.addActionListener(new budgetAction());
-        main.addActionListener(new mainMenuAction());
+        home.addActionListener(new homeAction());
 
         frame = new JFrame();
         panel = new JPanel();
@@ -55,7 +55,7 @@ public class gui{
         panel.setLayout(new GridLayout(0, 1));
         frame.add(this.panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("My GUI");
+        frame.setTitle("WeddingWork");
         frame.setJMenuBar(menubar);
         frame.pack();
         frame.setVisible(true);
@@ -65,8 +65,10 @@ public class gui{
         gui g = new gui();
         Home home = new Home();
         Budget budget = new Budget();
-        frame.add(home.panel);
-        frame.add(budget.panel);
+        JPanel main = new JPanel();
+        main.add(home.panel);
+        main.add(budget.panel);
+        frame.add(main);
         // control loop
         while (1 > 0){
             if (page == "MainMenu"){
@@ -77,7 +79,7 @@ public class gui{
                 home.panel.setVisible(false);
                 budget.panel.setVisible(true);
             }
-            Thread.sleep(1000);
+            Thread.sleep(500);
         }
     }
 }
