@@ -18,10 +18,10 @@ JPanel panel;
         panel.setLayout(new GridLayout(0, 1));
         panel.add(button);
         panel.add(label);
+        panel.setVisible(false);
     }
     public static void main(String[] args){
-        new MainMenu();
-        System.out.println("Git test");
+        
     }
 
     public void actionPerformed(ActionEvent e){
