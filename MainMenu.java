@@ -26,7 +26,7 @@ JLabel label;
     }
     public static void main(String[] args){
         new MainMenu();
-        System.out.println("This is working");
+        System.out.println("Git test");
     }
 
     public void actionPerformed(ActionEvent e){
