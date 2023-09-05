@@ -29,7 +29,6 @@ JLabel label;
         System.out.println("Hello!");
     }
 
-
     public void actionPerformed(ActionEvent e){
         count++;
         label.setText("How many times you clicked the shit: " + count);
