@@ -54,7 +54,7 @@ public class gui{
 
         frame = new JFrame();
         panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(150,150,150,150));
+        panel.setBorder(BorderFactory.createEmptyBorder(300,300,300,300));
         panel.setLayout(new GridLayout(0, 1));
         frame.add(this.panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,8 +69,6 @@ public class gui{
         Home home = new Home();
         Budget budget = new Budget();
         JPanel main = new JPanel();
-        main.setBorder(BorderFactory.createEmptyBorder(150,150,150,150));
-        main.setLayout(new GridLayout(0, 1));
         main.add(home.panel);
         main.add(budget.panel);
         frame.add(main);
