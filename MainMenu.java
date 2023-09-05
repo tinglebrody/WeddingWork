@@ -26,7 +26,7 @@ JLabel label;
     }
     public static void main(String[] args){
         new MainMenu();
-        System.out.println("Hello!");
+        System.out.println("This is working");
     }
 
     public void actionPerformed(ActionEvent e){
