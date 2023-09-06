@@ -14,9 +14,23 @@ public class gui{
     JPanel panel;
 
     public gui(){
+        try{
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        }
+        catch (UnsupportedLookAndFeelException e){
+        }
+        catch (ClassNotFoundException e) {
+        // handle exception
+        }
+        catch (InstantiationException e) {
+        // handle exception
+        }
+        catch (IllegalAccessException e) {
+        // handle exception
+        }
         // menu bar
         menubar = new JMenuBar();
-        menubar.setBackground(Color.RED);
+        menubar.setBackground(Color.GRAY);
         menubar.setOpaque(true);
 
         // menus 
