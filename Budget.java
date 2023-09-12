@@ -14,11 +14,13 @@ JButton button;
     public Budget(){
 
         label = new JLabel("Dollars: $" + count);
-        panel = new JPanel();
         button = new JButton("Budget");
 
         button.addActionListener(this);
-        
+        Color buttonColor = new Color(248, 209, 224);
+        button.setBackground(buttonColor);
+        panel = new JPanel();
+        panel.setBackground(buttonColor);
         panel.setBorder(BorderFactory.createEmptyBorder(150,150,150,150));
         panel.setLayout(new GridLayout(0, 1));
         panel.add(button);

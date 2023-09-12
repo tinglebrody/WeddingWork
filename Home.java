@@ -19,12 +19,15 @@ JButton button;
         welcomeLabel = new JLabel("Welcome to WeddingWork!");
         homeLabel = new JLabel("Home");
         button = new JButton("Click to accomplish (almost) nothing");
+        Color buttonColor = new Color(248, 209, 224);
+        button.setBackground(buttonColor);
         panel = new JPanel();
+        panel.setBackground(buttonColor);
 
         button.addActionListener(this);
 
         panel.setBorder(BorderFactory.createEmptyBorder(150,150,150,150));
-        panel.setLayout(new GridLayout(0, 1));
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.add(photo);
         panel.add(homeLabel);
         panel.add(welcomeLabel);
