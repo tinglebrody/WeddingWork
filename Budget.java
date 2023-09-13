@@ -25,7 +25,7 @@ JButton button;
         }
 
         panel = new JPanel();
-        Color backGroundColor = new Color(255,255,245);
+        Color backGroundColor = new Color(255,255,243);
         panel.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         panel.setBackground(backGroundColor);
@@ -35,25 +35,22 @@ JButton button;
 
         topPanel = new JPanel();
         topPanel.setLayout(new GridLayout(1,3));
+        topPanel.setBackground(backGroundColor);
 
         middlePanel = new JPanel();
         middlePanel.setLayout(new GridLayout(2,1));
+        middlePanel.setBackground(backGroundColor);
 
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridLayout(10,3));
+        bottomPanel.setBackground(backGroundColor);
 
         totalBudgetLabel = new JLabel("Total Budget: $" + totalBudget);
         totalBudgetLabel.setPreferredSize(new Dimension(160,40));
-        //constraints.weighty = 1;
-        constraints.gridx = 0;
-        constraints.gridy = 0;
         topPanel.add(totalBudgetLabel);
 
         totalBudgetInput = new JTextField();
         totalBudgetInput.setPreferredSize(new Dimension(80,40));
-        //constraints.weighty = 0;
-        constraints.gridx = 1;
-        constraints.gridy = 0;
         topPanel.add(totalBudgetInput);
 
         button = new JButton("Enter");
@@ -61,35 +58,22 @@ JButton button;
         button.addActionListener(this);
         button.setBackground(buttonColor);
         button.setPreferredSize(new Dimension(80,40));
-        //constraints.weighty = 0;
-        constraints.gridx = 2;
-        constraints.gridy = 0;
         topPanel.add(button, constraints);
 
         totalExpensesLabel = new JLabel("Total Expenses: $" + totalExpenses);
         totalExpensesLabel.setPreferredSize(new Dimension(160,40));
-        constraints.gridx = 0;
-        constraints.gridy = 1;
         middlePanel.add(totalExpensesLabel);
 
         currentBudgetLabel = new JLabel("Current Budget: $" + currentBudget);
         currentBudgetLabel.setPreferredSize(new Dimension(160,40));
-        //constraints.weightx = .25;
-        constraints.gridx = 0;
-        constraints.gridy = 2;
         middlePanel.add(currentBudgetLabel);
 
         plannerLabel = new JLabel("Planner price: $" + plannerPrice);
         plannerLabel.setPreferredSize(new Dimension(160,40));
-        //constraints.weighty = .25;
-        constraints.gridx = 0;
-        constraints.gridy = 3;
         bottomPanel.add(plannerLabel, constraints);
 
         venueLabel = new JLabel("venue price: $" + venuePrice);
         venueLabel.setPreferredSize(new Dimension(160,40));
-        constraints.gridx = 0;
-        constraints.gridy = 3;
         bottomPanel.add(venueLabel, constraints);
 
         constraints.gridx = 0;
@@ -107,7 +91,10 @@ JButton button;
     }
 
     public void actionPerformed(ActionEvent e){
+        topPanel.remove(totalBudgetInput);
+        topPanel.remove(button);
         totalBudgetLabel.setText("Total Budget: " + totalBudgetInput.getText());
+        totalBudgetInput.setVisible(false);
         button.setVisible(false);
     }
 }
