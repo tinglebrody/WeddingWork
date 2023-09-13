@@ -17,22 +17,31 @@ public class gui{
     static CardLayout manager;
 
     public gui() throws IOException{
+        try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            } catch (ClassNotFoundException ex) {
+            } catch (InstantiationException ex) {
+            } catch (IllegalAccessException ex) {
+            } catch (UnsupportedLookAndFeelException ex) {
+            }
+            Color menuBarBackgroundColor = new Color(229,237,226);
+            Color menuBackgroundColor = new Color(96,107,99);
+            Color menuItemBackgroundColor = new Color(96,107,99);
+            UIManager.put("MenuBar.background", menuBarBackgroundColor);
+            UIManager.put("Menu.background", menuBackgroundColor);
+            UIManager.put("MenuItem.background", menuItemBackgroundColor);
 
         // menu bar
         menubar = new JMenuBar();
+        /*
         Color menuBarColor = new Color(190,215,209);
         menubar.setBackground(menuBarColor);
         menubar.setOpaque(false);
+        */
 
         // menus 
         homeMenu = new JMenu("Home");
         budget = new JMenu("Budget");
-        Color homeMenuColor = new Color(247, 235, 195);
-        homeMenu.setBackground(homeMenuColor);
-        homeMenu.setOpaque(true);
-        Color budgetColor = new Color(248, 225, 231);
-        budget.setBackground(budgetColor);
-        budget.setOpaque(true);
 
         // items
         home = new JMenuItem("Home");

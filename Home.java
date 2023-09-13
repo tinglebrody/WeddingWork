@@ -19,7 +19,7 @@ JButton button;
         welcomeLabel = new JLabel("Welcome to WeddingWork!");
         homeLabel = new JLabel("Home");
         button = new JButton("Click to accomplish (almost) nothing");
-        Color buttonColor = new Color(248, 209, 224);
+        Color buttonColor = new Color(255,255,245);
         button.setBackground(buttonColor);
         panel = new JPanel();
         panel.setBackground(buttonColor);
