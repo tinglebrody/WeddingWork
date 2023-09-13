@@ -18,18 +18,18 @@ public class gui{
 
     public gui() throws IOException{
         try {
-            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-            } catch (ClassNotFoundException ex) {
-            } catch (InstantiationException ex) {
-            } catch (IllegalAccessException ex) {
-            } catch (UnsupportedLookAndFeelException ex) {
-            }
-            Color menuBarBackgroundColor = new Color(229,237,226);
-            Color menuBackgroundColor = new Color(96,107,99);
-            Color menuItemBackgroundColor = new Color(96,107,99);
-            UIManager.put("MenuBar.background", menuBarBackgroundColor);
-            UIManager.put("Menu.background", menuBackgroundColor);
-            UIManager.put("MenuItem.background", menuItemBackgroundColor);
+        UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (ClassNotFoundException ex) {
+        } catch (InstantiationException ex) {
+        } catch (IllegalAccessException ex) {
+        } catch (UnsupportedLookAndFeelException ex) {
+        }
+        Color menuBarBackgroundColor = new Color(229,237,226);
+        Color menuBackgroundColor = new Color(96,107,99);
+        Color menuItemBackgroundColor = new Color(96,107,99);
+        UIManager.put("MenuBar.background", menuBarBackgroundColor);
+        UIManager.put("Menu.background", menuBackgroundColor);
+        UIManager.put("MenuItem.background", menuItemBackgroundColor);
 
         // menu bar
         menubar = new JMenuBar();
