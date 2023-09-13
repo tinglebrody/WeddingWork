@@ -7,32 +7,36 @@ import java.awt.image.BufferedImage;
 public class Budget implements ActionListener{
     
 int count = 0;
-JLabel label;
+int totalBudget;
+JLabel totalBudgetLabel;
 JPanel panel;
+JTextField totalBudgetInput;
 JButton button;
 
     public Budget(){
 
-        label = new JLabel("Dollars: $" + count);
-        button = new JButton("Budget");
+        totalBudgetLabel = new JLabel("Total Budget: $" + totalBudget);
+        button = new JButton("Enter");
+        totalBudgetInput = new JTextField();
+        totalBudgetInput.setPreferredSize(new Dimension(80,40));
 
         button.addActionListener(this);
         Color buttonColor = new Color(248, 209, 224);
         button.setBackground(buttonColor);
+        button.setPreferredSize(new Dimension(80,40));
         panel = new JPanel();
         panel.setBackground(buttonColor);
-        panel.setBorder(BorderFactory.createEmptyBorder(150,150,150,150));
-        panel.setLayout(new GridLayout(0, 1));
+        panel.setBorder(BorderFactory.createEmptyBorder(300,300,300,300));
+        panel.setLayout(new FlowLayout());
+        panel.add(totalBudgetLabel);
+        panel.add(totalBudgetInput);
         panel.add(button);
-        panel.add(label);
         panel.setVisible(false);
     }
     public static void main(String[] args){
-        
     }
 
     public void actionPerformed(ActionEvent e){
-        count++;
-        label.setText("Dollars: $" + count);
+        totalBudgetLabel.setText("Total Budget: " + totalBudgetInput.getText());
     }
 }

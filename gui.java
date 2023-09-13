@@ -59,7 +59,7 @@ public class gui{
         home.addActionListener(new homeAction());
 
         // initializing variables
-        frame = new JFrame();
+        frame = new JFrame("Wedding Work");
         homePage = new Home();
         budgetPage = new Budget();
         homePanel = new JPanel(new CardLayout());
