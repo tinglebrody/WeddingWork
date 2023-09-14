@@ -112,8 +112,6 @@ JButton totalBudgetButton, plannerButton, venueButton;
         public void actionPerformed(ActionEvent e){
             totalBudget = Integer.parseInt(totalBudgetInput.getText());
             totalBudgetLabel.setText("Total Budget: $" + totalBudget);
-            totalBudgetInput.setVisible(false);
-            totalBudgetButton.setVisible(false);
         }
     }
 
@@ -134,5 +132,6 @@ JButton totalBudgetButton, plannerButton, venueButton;
             totalBudgetLabel.setText("Total Budget: $" + totalBudget);
         }
     }
-    public static void main(String[] args){}
+    public static void main(String[] args){
+}
 }
