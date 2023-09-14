@@ -4,7 +4,7 @@ import java.awt.event.*;
 import javax.imageio.ImageIO;
 import java.io.*;
 import java.awt.image.BufferedImage;
-public class Budget implements ActionListener{
+public class Budget{
     
 int count = 0;
 int totalBudget, totalExpenses, currentBudget, plannerPrice, venuePrice, cateringPrice, floralsPrice, photographerPrice,
@@ -12,8 +12,8 @@ int totalBudget, totalExpenses, currentBudget, plannerPrice, venuePrice, caterin
 JLabel totalBudgetLabel, totalExpensesLabel, currentBudgetLabel, plannerLabel, venueLabel, cateringLabel, 
     floralsLabel, photographerLabel, videographerLabel, cosmeticsLabel, dressLabel, entertainmentLabel, decorationsLabel;
 JPanel panel, topPanel, middlePanel, bottomPanel;
-JTextField totalBudgetInput;
-JButton button;
+JTextField totalBudgetInput, plannerPriceInput, venuePriceInput;
+JButton totalBudgetButton, plannerButton, venueButton;
 
     public Budget(){
         try {
@@ -42,7 +42,7 @@ JButton button;
         middlePanel.setBackground(backGroundColor);
 
         bottomPanel = new JPanel();
-        bottomPanel.setLayout(new GridLayout(10,3));
+        bottomPanel.setLayout(new GridLayout(2,3));
         bottomPanel.setBackground(backGroundColor);
 
         totalBudgetLabel = new JLabel("Total Budget: $" + totalBudget);
@@ -53,12 +53,12 @@ JButton button;
         totalBudgetInput.setPreferredSize(new Dimension(80,40));
         topPanel.add(totalBudgetInput);
 
-        button = new JButton("Enter");
+        totalBudgetButton = new JButton("Enter");
         Color buttonColor = new Color(229,237,226);
-        button.addActionListener(this);
-        button.setBackground(buttonColor);
-        button.setPreferredSize(new Dimension(80,40));
-        topPanel.add(button, constraints);
+        totalBudgetButton.addActionListener(new totalBudgetButtonAction());
+        totalBudgetButton.setBackground(buttonColor);
+        totalBudgetButton.setPreferredSize(new Dimension(80,40));
+        topPanel.add(totalBudgetButton);
 
         totalExpensesLabel = new JLabel("Total Expenses: $" + totalExpenses);
         totalExpensesLabel.setPreferredSize(new Dimension(160,40));
@@ -68,13 +68,33 @@ JButton button;
         currentBudgetLabel.setPreferredSize(new Dimension(160,40));
         middlePanel.add(currentBudgetLabel);
 
-        plannerLabel = new JLabel("Planner price: $" + plannerPrice);
+        plannerLabel = new JLabel("Planner: $" + plannerPrice);
         plannerLabel.setPreferredSize(new Dimension(160,40));
-        bottomPanel.add(plannerLabel, constraints);
+        bottomPanel.add(plannerLabel);
 
-        venueLabel = new JLabel("venue price: $" + venuePrice);
+        plannerPriceInput = new JTextField();
+        plannerPriceInput.setPreferredSize(new Dimension(80,40));
+        bottomPanel.add(plannerPriceInput);
+
+        plannerButton = new JButton("Enter");
+        plannerButton.addActionListener(new plannerButtonAction());
+        plannerButton.setBackground(buttonColor);
+        plannerButton.setPreferredSize(new Dimension(80,40));
+        bottomPanel.add(plannerButton);
+
+        venueLabel = new JLabel("Venue: $" + venuePrice);
         venueLabel.setPreferredSize(new Dimension(160,40));
-        bottomPanel.add(venueLabel, constraints);
+        bottomPanel.add(venueLabel);
+
+        venuePriceInput = new JTextField();
+        venuePriceInput.setPreferredSize(new Dimension(80,40));
+        bottomPanel.add(venuePriceInput);
+
+        venueButton = new JButton("Enter");
+        venueButton.addActionListener(new venueButtonAction());
+        venueButton.setBackground(buttonColor);
+        venueButton.setPreferredSize(new Dimension(80,40));
+        bottomPanel.add(venueButton);
 
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -87,14 +107,35 @@ JButton button;
         panel.add(bottomPanel, constraints);
         panel.setVisible(false);
     }
-    public static void main(String[] args){
+
+class totalBudgetButtonAction implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            topPanel.remove(totalBudgetInput);
+            topPanel.remove(totalBudgetButton);
+            totalBudget = Integer.parseInt(totalBudgetInput.getText());
+            totalBudgetLabel.setText("Total Budget: $" + totalBudget);
+            totalBudgetInput.setVisible(false);
+            totalBudgetButton.setVisible(false);
+        }
     }
 
-    public void actionPerformed(ActionEvent e){
-        topPanel.remove(totalBudgetInput);
-        topPanel.remove(button);
-        totalBudgetLabel.setText("Total Budget: " + totalBudgetInput.getText());
-        totalBudgetInput.setVisible(false);
-        button.setVisible(false);
+    class plannerButtonAction implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            plannerPrice = Integer.parseInt(plannerPriceInput.getText());
+            plannerLabel.setText("Planner: $" + plannerPrice);
+            totalBudget = totalBudget - plannerPrice;
+            totalBudgetLabel.setText("Total Budget: $" + totalBudget);
+        }
+    }
+
+    class venueButtonAction implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            venuePrice = Integer.parseInt(venuePriceInput.getText());
+            venueLabel.setText("Venue: $" + venuePrice);
+            totalBudget = totalBudget - venuePrice;
+            totalBudgetLabel.setText("Total Budget: $" + totalBudget);
+        }
+    }
+    public static void main(String[] args){
     }
 }
