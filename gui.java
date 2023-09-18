@@ -31,13 +31,17 @@ public class gui{
         UIManager.put("Menu.background", menuBackgroundColor);
         UIManager.put("MenuItem.background", menuItemBackgroundColor);
 
+        // initializing variables
+        frame = new JFrame("Wedding Work");
+        homePage = new Home();
+        budgetPage = new Budget();
+        homePanel = new JPanel(new CardLayout());
+
         // menu bar
         menubar = new JMenuBar();
-        /*
         Color menuBarColor = new Color(190,215,209);
         menubar.setBackground(menuBarColor);
         menubar.setOpaque(false);
-        */
 
         // menus 
         homeMenu = new JMenu("Home");
@@ -56,22 +60,18 @@ public class gui{
         // actions for buttons
         class homeAction implements ActionListener{
             public void actionPerformed(ActionEvent e){
-                page = "Home";
+                homePage.panel.setVisible(true);
+                budgetPage.panel.setVisible(false);
             }
         }
         class budgetAction implements ActionListener{
             public void actionPerformed(ActionEvent e){
-                page = "Budget";
+                homePage.panel.setVisible(false);
+                budgetPage.panel.setVisible(true);
             }
         }
         budge.addActionListener(new budgetAction());
         home.addActionListener(new homeAction());
-
-        // initializing variables
-        frame = new JFrame("Wedding Work");
-        homePage = new Home();
-        budgetPage = new Budget();
-        homePanel = new JPanel(new CardLayout());
 
 
         homePanel.add(homePage.panel);
@@ -85,17 +85,5 @@ public class gui{
     }
     public static void main(String[] args) throws InterruptedException, IOException{
         gui g = new gui();
-        // control loop
-        while (1 > 0){
-            if (page == "Home"){
-                homePage.panel.setVisible(true);
-                budgetPage.panel.setVisible(false);
-            }
-            if (page == "Budget"){
-                homePage.panel.setVisible(false);
-                budgetPage.panel.setVisible(true);
-            }
-            Thread.sleep(500);
-        }   
     }
 }
