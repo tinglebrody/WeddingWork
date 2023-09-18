@@ -10,8 +10,8 @@ int count = 0;
 int totalBudget, totalExpenses, currentBudget, plannerPrice, venuePrice, cateringPrice, floralsPrice, photographerPrice,
     videographerPrice, cosmeticsPrice, dressPrice, entertainmentPrice, decorationsPrice;
 JLabel totalBudgetLabel, totalExpensesLabel, currentBudgetLabel, plannerLabel, venueLabel, cateringLabel, 
-    floralsLabel, photographerLabel, videographerLabel, cosmeticsLabel, dressLabel, entertainmentLabel, decorationsLabel;
-JPanel panel, topPanel, middlePanel, bottomPanel;
+    floralsLabel, photographerLabel, videographerLabel, cosmeticsLabel, dressLabel, entertainmentLabel, decorationsLabel, spacerLine;
+JPanel panel, topPanel, middlePanel, bottomPanel, spacerPanel;
 JTextField totalBudgetInput, plannerPriceInput, venuePriceInput;
 JButton totalBudgetButton, plannerButton, venueButton;
 
@@ -45,55 +45,51 @@ JButton totalBudgetButton, plannerButton, venueButton;
         bottomPanel.setLayout(new GridLayout(2,3));
         bottomPanel.setBackground(backGroundColor);
 
+        spacerPanel = new JPanel();
+        spacerPanel.setLayout(new GridLayout(1,1));
+        spacerPanel.setBackground(backGroundColor);
+
         totalBudgetLabel = new JLabel("Total Budget: $" + totalBudget);
-        totalBudgetLabel.setPreferredSize(new Dimension(160,40));
         topPanel.add(totalBudgetLabel);
 
         totalBudgetInput = new JTextField();
-        totalBudgetInput.setPreferredSize(new Dimension(160,40));
         topPanel.add(totalBudgetInput);
 
         totalBudgetButton = new JButton("+");
         Color buttonColor = new Color(229,237,226);
         totalBudgetButton.addActionListener(new totalBudgetButtonAction());
         totalBudgetButton.setBackground(buttonColor);
-        totalBudgetButton.setPreferredSize(new Dimension(80,40));
         topPanel.add(totalBudgetButton);
 
         totalExpensesLabel = new JLabel("Total Expenses: $" + totalExpenses);
-        totalExpensesLabel.setPreferredSize(new Dimension(160,40));
         middlePanel.add(totalExpensesLabel);
 
         currentBudgetLabel = new JLabel("Current Budget: $" + currentBudget);
-        currentBudgetLabel.setPreferredSize(new Dimension(160,40));
         middlePanel.add(currentBudgetLabel);
 
+        spacerLine = new JLabel("--------------------------------------------------------");
+        spacerPanel.add(spacerLine);
+
         plannerLabel = new JLabel("Planner: $" + plannerPrice);
-        plannerLabel.setPreferredSize(new Dimension(160,40));
         bottomPanel.add(plannerLabel);
 
         plannerPriceInput = new JTextField();
-        plannerPriceInput.setPreferredSize(new Dimension(80,40));
         bottomPanel.add(plannerPriceInput);
 
         plannerButton = new JButton("+");
         plannerButton.addActionListener(new plannerButtonAction());
         plannerButton.setBackground(buttonColor);
-        plannerButton.setMaximumSize(new Dimension(40,40));
         bottomPanel.add(plannerButton);
 
         venueLabel = new JLabel("Venue: $" + venuePrice);
-        venueLabel.setPreferredSize(new Dimension(160,40));
         bottomPanel.add(venueLabel);
 
         venuePriceInput = new JTextField();
-        venuePriceInput.setPreferredSize(new Dimension(80,40));
         bottomPanel.add(venuePriceInput);
 
         venueButton = new JButton("+");
         venueButton.addActionListener(new venueButtonAction());
         venueButton.setBackground(buttonColor);
-        venueButton.setPreferredSize(new Dimension(20,20));
         bottomPanel.add(venueButton);
 
         constraints.gridx = 0;
@@ -101,9 +97,15 @@ JButton totalBudgetButton, plannerButton, venueButton;
         panel.add(topPanel, constraints);
         constraints.gridx = 0;
         constraints.gridy = 1;
-        panel.add(middlePanel, constraints);
+        panel.add(spacerPanel, constraints);
         constraints.gridx = 0;
         constraints.gridy = 2;
+        panel.add(middlePanel, constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        panel.add(spacerPanel, constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 4;
         panel.add(bottomPanel, constraints);
         panel.setVisible(false);
     }
@@ -111,16 +113,22 @@ JButton totalBudgetButton, plannerButton, venueButton;
     class totalBudgetButtonAction implements ActionListener{
         public void actionPerformed(ActionEvent e){
             totalBudget = Integer.parseInt(totalBudgetInput.getText());
+            currentBudget = totalBudget - totalExpenses;
             totalBudgetLabel.setText("Total Budget: $" + totalBudget);
+            currentBudgetLabel.setText("Current Budget : $" + currentBudget);
         }
     }
 
     class plannerButtonAction implements ActionListener{
         public void actionPerformed(ActionEvent e){
             plannerPrice = Integer.parseInt(plannerPriceInput.getText());
+            currentBudget = totalBudget - plannerPrice;
             plannerLabel.setText("Planner: $" + plannerPrice);
-            totalBudget = totalBudget - plannerPrice;
-            totalBudgetLabel.setText("Total Budget: $" + totalBudget);
+            totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
+                videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
+            totalExpensesLabel.setText("Total Expenses: $" + totalExpenses);
+            currentBudget = totalBudget - totalExpenses;
+            currentBudgetLabel.setText("Current Budget: $" + currentBudget);
         }
     }
 
@@ -128,8 +136,11 @@ JButton totalBudgetButton, plannerButton, venueButton;
         public void actionPerformed(ActionEvent e){
             venuePrice = Integer.parseInt(venuePriceInput.getText());
             venueLabel.setText("Venue: $" + venuePrice);
-            totalBudget = totalBudget - venuePrice;
-            totalBudgetLabel.setText("Total Budget: $" + totalBudget);
+            totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
+                videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
+            totalExpensesLabel.setText("Total Expenses: $" + totalExpenses);
+            currentBudget = totalBudget - totalExpenses;
+            currentBudgetLabel.setText("Current Budget: $" + currentBudget);
         }
     }
     public static void main(String[] args){
