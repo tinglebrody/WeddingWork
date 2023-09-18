@@ -209,63 +209,129 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         currentBudgetLabel.setText("Current Budget: $" + currentBudget);
     }
     void totalBudgetButtonAction(){
-        totalBudget = Integer.parseInt(totalBudgetInput.getText());
+        try {
+            totalBudget = Integer.parseInt(totalBudgetInput.getText());
+        }
+        catch (NumberFormatException e) {
+            totalBudget = 0;
+            totalBudgetInput.setText("");
+        }
         currentBudget = totalBudget - totalExpenses;
         totalBudgetInput.setText("");
         totalBudgetLabel.setText("Total Budget: $" + totalBudget);
         currentBudgetLabel.setText("Current Budget : $" + currentBudget);
     }
     void plannerButtonAction(){
-        plannerPrice = Integer.parseInt(plannerPriceInput.getText());
+        try {
+            plannerPrice = Integer.parseInt(plannerPriceInput.getText());
+        }
+        catch (NumberFormatException e) {
+            plannerPrice = 0;
+            plannerPriceInput.setText("");
+        }
         currentBudget = totalBudget - plannerPrice;
         plannerLabel.setText("Planner: $" + plannerPrice);
         updateBudget();
     }
     void venueButtonAction()
     {
-        venuePrice = Integer.parseInt(venuePriceInput.getText());
+        try {
+            venuePrice = Integer.parseInt(venuePriceInput.getText());
+        }
+        catch (NumberFormatException e) {
+            venuePrice = 0;
+            venuePriceInput.setText("");
+        }
         venueLabel.setText("Venue: $" + venuePrice);
         updateBudget();
     }
     void cateringButtonAction(){
-        cateringPrice = Integer.parseInt(cateringPriceInput.getText());
+        try {
+            cateringPrice = Integer.parseInt(cateringPriceInput.getText());
+        }
+        catch (NumberFormatException e) {
+            cateringPrice = 0;
+            cateringPriceInput.setText("");
+        }
         cateringLabel.setText("Catering: $" + cateringPrice);
         updateBudget();
     }
     void floralsButtonAction(){
-        floralsPrice = Integer.parseInt(floralsPriceInput.getText());
+        try {
+            floralsPrice = Integer.parseInt(floralsPriceInput.getText());
+        }
+        catch (NumberFormatException e) {
+            floralsPrice = 0;
+            floralsPriceInput.setText("");
+        }
         floralsLabel.setText("Florals: $" + floralsPrice);
         updateBudget();
     }
     void photographerButtonAction(){
-        photographerPrice = Integer.parseInt(photographerPriceInput.getText());
+        try {
+            photographerPrice = Integer.parseInt(photographerPriceInput.getText());
+        }
+        catch (NumberFormatException e) {
+            photographerPrice = 0;
+            photographerPriceInput.setText("");
+        }
         photographerLabel.setText("Photographer: $" + photographerPrice);
         updateBudget();
     }
     void videographerButtonAction(){
-        videographerPrice = Integer.parseInt(videographerPriceInput.getText());
+        try {
+            videographerPrice = Integer.parseInt(videographerPriceInput.getText());
+        }
+        catch (NumberFormatException e) {
+            videographerPrice = 0;
+            videographerPriceInput.setText("");
+        }
         videographerLabel.setText("Videographer: $" + videographerPrice);
         updateBudget();
     }
     void cosmeticsButtonAction(){
-        cosmeticsPrice = Integer.parseInt(cosmeticsPriceInput.getText());
+        try {
+            cosmeticsPrice = Integer.parseInt(cosmeticsPriceInput.getText());
+        }
+        catch (NumberFormatException e) {
+            cosmeticsPrice = 0;
+            cosmeticsPriceInput.setText("");
+        }
         cosmeticsLabel.setText("Cosmetics: $" + cosmeticsPrice);
         updateBudget();
     }
     void dressButtonAction(){
-        dressPrice = Integer.parseInt(dressPriceInput.getText());
+        try {
+            dressPrice = Integer.parseInt(dressPriceInput.getText());
+        }
+        catch (NumberFormatException e) {
+            dressPrice = 0;
+            dressPriceInput.setText("");
+        }
         dressLabel.setText("Dress: $" + dressPrice);
         updateBudget();
     }
 
     void entertainmentButtonAction(){
-        entertainmentPrice = Integer.parseInt(entertainmentPriceInput.getText());
+        try {
+            entertainmentPrice = Integer.parseInt(entertainmentPriceInput.getText());
+        }
+        catch (NumberFormatException e) {
+            entertainmentPrice = 0;
+            entertainmentPriceInput.setText("");
+        }
         entertainmentLabel.setText("Entertainment: $" + entertainmentPrice);
         updateBudget();
     }
 
     void decorationsButtonAction(){
-        decorationsPrice = Integer.parseInt(decorationsPriceInput.getText());
+        try {
+            decorationsPrice = Integer.parseInt(decorationsPriceInput.getText());
+        }
+        catch (NumberFormatException e) {
+            decorationsPrice = 0;
+            decorationsPriceInput.setText("");
+        }
         decorationsLabel.setText("Decorations: $" + decorationsPrice);
         updateBudget();
     }
