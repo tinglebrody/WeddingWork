@@ -12,8 +12,10 @@ int totalBudget, totalExpenses, currentBudget, plannerPrice, venuePrice, caterin
 JLabel totalBudgetLabel, totalExpensesLabel, currentBudgetLabel, plannerLabel, venueLabel, cateringLabel, 
     floralsLabel, photographerLabel, videographerLabel, cosmeticsLabel, dressLabel, entertainmentLabel, decorationsLabel, spacerLine;
 JPanel panel, topPanel, middlePanel, bottomPanel, spacerPanel;
-JTextField totalBudgetInput, plannerPriceInput, venuePriceInput;
-JButton totalBudgetButton, plannerButton, venueButton;
+JTextField totalBudgetInput, plannerPriceInput, venuePriceInput, cateringPriceInput, floralsPriceInput, photographerPriceInput,
+    videographerPriceInput, cosmeticsPriceInput, dressPriceInput, entertainmentPriceInput, decorationsPriceInput;
+JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsButton, photographerButton,
+    videographerButton, cosmeticsButton, dressButton, entertainmentButton, decorationsButton;
 
     public Budget(){
         try {
@@ -42,7 +44,7 @@ JButton totalBudgetButton, plannerButton, venueButton;
         middlePanel.setBackground(backGroundColor);
 
         bottomPanel = new JPanel();
-        bottomPanel.setLayout(new GridLayout(2,3));
+        bottomPanel.setLayout(new GridLayout(4,3));
         bottomPanel.setBackground(backGroundColor);
 
         spacerPanel = new JPanel();
@@ -92,6 +94,28 @@ JButton totalBudgetButton, plannerButton, venueButton;
         venueButton.setBackground(buttonColor);
         bottomPanel.add(venueButton);
 
+        cateringLabel = new JLabel("Catering: $" + cateringPrice);
+        bottomPanel.add(cateringLabel);
+
+        cateringPriceInput = new JTextField();
+        bottomPanel.add(cateringPriceInput);
+
+        cateringButton = new JButton("+");
+        cateringButton.addActionListener(new cateringButtonAction());
+        cateringButton.setBackground(buttonColor);
+        bottomPanel.add(cateringButton);
+
+        floralsLabel = new JLabel("Florals: $" + floralsPrice);
+        bottomPanel.add(floralsLabel);
+
+        floralsPriceInput = new JTextField();
+        bottomPanel.add(floralsPriceInput);
+
+        floralsButton = new JButton("+");
+        floralsButton.addActionListener(new floralsButtonAction());
+        floralsButton.setBackground(buttonColor);
+        bottomPanel.add(floralsButton);
+
         constraints.gridx = 0;
         constraints.gridy = 0;
         panel.add(topPanel, constraints);
@@ -136,6 +160,30 @@ JButton totalBudgetButton, plannerButton, venueButton;
         public void actionPerformed(ActionEvent e){
             venuePrice = Integer.parseInt(venuePriceInput.getText());
             venueLabel.setText("Venue: $" + venuePrice);
+            totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
+                videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
+            totalExpensesLabel.setText("Total Expenses: $" + totalExpenses);
+            currentBudget = totalBudget - totalExpenses;
+            currentBudgetLabel.setText("Current Budget: $" + currentBudget);
+        }
+    }
+
+    class cateringButtonAction implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            cateringPrice = Integer.parseInt(cateringPriceInput.getText());
+            cateringLabel.setText("Catering: $" + cateringPrice);
+            totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
+                videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
+            totalExpensesLabel.setText("Total Expenses: $" + totalExpenses);
+            currentBudget = totalBudget - totalExpenses;
+            currentBudgetLabel.setText("Current Budget: $" + currentBudget);
+        }
+    }
+
+    class floralsButtonAction implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            floralsPrice = Integer.parseInt(floralsPriceInput.getText());
+            floralsLabel.setText("Florals: $" + floralsPrice);
             totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
                 videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
             totalExpensesLabel.setText("Total Expenses: $" + totalExpenses);
