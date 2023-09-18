@@ -4,7 +4,7 @@ import java.awt.event.*;
 import javax.imageio.ImageIO;
 import java.io.*;
 import java.awt.image.BufferedImage;
-public class gui{
+public class gui implements ActionListener{
 
     static String page = "Home";
     JMenuBar menubar;
@@ -56,22 +56,9 @@ public class gui{
         // add menus to menubar
         menubar.add(homeMenu);
         menubar.add(budget);
-
-        // actions for buttons
-        class homeAction implements ActionListener{
-            public void actionPerformed(ActionEvent e){
-                homePage.panel.setVisible(true);
-                budgetPage.panel.setVisible(false);
-            }
-        }
-        class budgetAction implements ActionListener{
-            public void actionPerformed(ActionEvent e){
-                homePage.panel.setVisible(false);
-                budgetPage.panel.setVisible(true);
-            }
-        }
-        budge.addActionListener(new budgetAction());
-        home.addActionListener(new homeAction());
+        
+        budge.addActionListener(this);
+        home.addActionListener(this);
 
 
         homePanel.add(homePage.panel);
@@ -82,6 +69,17 @@ public class gui{
         frame.setJMenuBar(menubar);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent event){
+        if (event.getSource() == home){
+            homePage.panel.setVisible(true);
+            budgetPage.panel.setVisible(false);
+        }
+        if (event.getSource() == budge){
+            homePage.panel.setVisible(false);
+            budgetPage.panel.setVisible(true);
+        }
     }
     public static void main(String[] args) throws InterruptedException, IOException{
         gui g = new gui();
