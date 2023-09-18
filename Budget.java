@@ -44,7 +44,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         middlePanel.setBackground(backGroundColor);
 
         bottomPanel = new JPanel();
-        bottomPanel.setLayout(new GridLayout(6,3));
+        bottomPanel.setLayout(new GridLayout(10,3));
         bottomPanel.setBackground(backGroundColor);
 
         spacerPanel = new JPanel();
@@ -138,6 +138,50 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         videographerButton.setBackground(buttonColor);
         bottomPanel.add(videographerButton);
 
+        cosmeticsLabel = new JLabel("Cosmetics: $" + cosmeticsPrice);
+        bottomPanel.add(cosmeticsLabel);
+
+        cosmeticsPriceInput = new JTextField();
+        bottomPanel.add(cosmeticsPriceInput);
+
+        cosmeticsButton = new JButton("+");
+        cosmeticsButton.addActionListener(this);
+        cosmeticsButton.setBackground(buttonColor);
+        bottomPanel.add(cosmeticsButton);
+
+        dressLabel = new JLabel("Dress: $" + dressPrice);
+        bottomPanel.add(dressLabel);
+
+        dressPriceInput = new JTextField();
+        bottomPanel.add(dressPriceInput);
+
+        dressButton = new JButton("+");
+        dressButton.addActionListener(this);
+        dressButton.setBackground(buttonColor);
+        bottomPanel.add(dressButton);
+
+        entertainmentLabel = new JLabel("Entertainment: $" + entertainmentPrice);
+        bottomPanel.add(entertainmentLabel);
+
+        entertainmentPriceInput = new JTextField();
+        bottomPanel.add(entertainmentPriceInput);
+
+        entertainmentButton = new JButton("+");
+        entertainmentButton.addActionListener(this);
+        entertainmentButton.setBackground(buttonColor);
+        bottomPanel.add(entertainmentButton);
+
+        decorationsLabel = new JLabel("Decorations: $" + decorationsPrice);
+        bottomPanel.add(decorationsLabel);
+
+        decorationsPriceInput = new JTextField();
+        bottomPanel.add(decorationsPriceInput);
+
+        decorationsButton = new JButton("+");
+        decorationsButton.addActionListener(this);
+        decorationsButton.setBackground(buttonColor);
+        bottomPanel.add(decorationsButton);
+
         constraints.gridx = 0;
         constraints.gridy = 0;
         panel.add(topPanel, constraints);
@@ -156,9 +200,18 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         panel.setVisible(false);
     }
 
+    void updateBudget()
+    {
+        totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
+            videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
+        totalExpensesLabel.setText("Total Expenses: $" + totalExpenses);
+        currentBudget = totalBudget - totalExpenses;
+        currentBudgetLabel.setText("Current Budget: $" + currentBudget);
+    }
     void totalBudgetButtonAction(){
         totalBudget = Integer.parseInt(totalBudgetInput.getText());
         currentBudget = totalBudget - totalExpenses;
+        totalBudgetInput.setText("");
         totalBudgetLabel.setText("Total Budget: $" + totalBudget);
         currentBudgetLabel.setText("Current Budget : $" + currentBudget);
     }
@@ -166,30 +219,55 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         plannerPrice = Integer.parseInt(plannerPriceInput.getText());
         currentBudget = totalBudget - plannerPrice;
         plannerLabel.setText("Planner: $" + plannerPrice);
-        totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
-            videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
-        totalExpensesLabel.setText("Total Expenses: $" + totalExpenses);
-        currentBudget = totalBudget - totalExpenses;
-        currentBudgetLabel.setText("Current Budget: $" + currentBudget);
+        updateBudget();
     }
     void venueButtonAction()
     {
         venuePrice = Integer.parseInt(venuePriceInput.getText());
         venueLabel.setText("Venue: $" + venuePrice);
-        totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
-            videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
-        totalExpensesLabel.setText("Total Expenses: $" + totalExpenses);
-        currentBudget = totalBudget - totalExpenses;
-        currentBudgetLabel.setText("Current Budget: $" + currentBudget);
+        updateBudget();
     }
     void cateringButtonAction(){
         cateringPrice = Integer.parseInt(cateringPriceInput.getText());
         cateringLabel.setText("Catering: $" + cateringPrice);
-        totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
-            videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
-        totalExpensesLabel.setText("Total Expenses: $" + totalExpenses);
-        currentBudget = totalBudget - totalExpenses;
-        currentBudgetLabel.setText("Current Budget: $" + currentBudget);
+        updateBudget();
+    }
+    void floralsButtonAction(){
+        floralsPrice = Integer.parseInt(floralsPriceInput.getText());
+        floralsLabel.setText("Florals: $" + floralsPrice);
+        updateBudget();
+    }
+    void photographerButtonAction(){
+        photographerPrice = Integer.parseInt(photographerPriceInput.getText());
+        photographerLabel.setText("Photographer: $" + photographerPrice);
+        updateBudget();
+    }
+    void videographerButtonAction(){
+        videographerPrice = Integer.parseInt(videographerPriceInput.getText());
+        videographerLabel.setText("Videographer: $" + videographerPrice);
+        updateBudget();
+    }
+    void cosmeticsButtonAction(){
+        cosmeticsPrice = Integer.parseInt(cosmeticsPriceInput.getText());
+        cosmeticsLabel.setText("Cosmetics: $" + cosmeticsPrice);
+        updateBudget();
+    }
+    void dressButtonAction(){
+        dressPrice = Integer.parseInt(dressPriceInput.getText());
+        dressLabel.setText("Dress: $" + dressPrice);
+        updateBudget();
+    }
+
+    void entertainmentButtonAction(){
+        entertainmentPrice = Integer.parseInt(entertainmentPriceInput.getText());
+        entertainmentLabel.setText("Entertainment: $" + entertainmentPrice);
+        updateBudget();
+    }
+
+    void decorationsButtonAction(){
+        decorationsPrice = Integer.parseInt(decorationsPriceInput.getText());
+        decorationsLabel.setText("Decorations: $" + decorationsPrice);
+        updateBudget();
     }
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == totalBudgetButton) {
@@ -204,37 +282,28 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         else if (event.getSource() == cateringButton) {
             cateringButtonAction();
         }
-        else if (event.getSource() == floralsButton)
-        {
-            floralsPrice = Integer.parseInt(floralsPriceInput.getText());
-            floralsLabel.setText("Florals: $" + floralsPrice);
-            totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
-                videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
-            totalExpensesLabel.setText("Total Expenses: $" + totalExpenses);
-            currentBudget = totalBudget - totalExpenses;
-            currentBudgetLabel.setText("Current Budget: $" + currentBudget);
+        else if (event.getSource() == floralsButton){
+            floralsButtonAction();
         }
         else if (event.getSource() == photographerButton){
-            photographerPrice = Integer.parseInt(photographerPriceInput.getText());
-            photographerLabel.setText("Photographer: $" + photographerPrice);
-            totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
-                videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
-            totalExpensesLabel.setText("Total Expenses: $" + totalExpenses);
-            currentBudget = totalBudget - totalExpenses;
-            currentBudgetLabel.setText("Current Budget: $" + currentBudget);
+            photographerButtonAction();
         }
         else if (event.getSource() == videographerButton){
-            videographerPrice = Integer.parseInt(videographerPriceInput.getText());
-            videographerLabel.setText("Videographer: $" + videographerPrice);
-            totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
-                videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
-            totalExpensesLabel.setText("Total Expenses: $" + totalExpenses);
-            currentBudget = totalBudget - totalExpenses;
-            currentBudgetLabel.setText("Current Budget: $" + currentBudget);
+            videographerButtonAction();
+        }
+        else if (event.getSource() == cosmeticsButton){
+            cosmeticsButtonAction();
+        }
+        else if (event.getSource() == dressButton){
+            dressButtonAction();
+        }
+        else if (event.getSource() == entertainmentButton){
+            entertainmentButtonAction();
+        }
+        else if (event.getSource() == decorationsButton){
+            decorationsButtonAction();
         }
     }
 
-
-    public static void main(String[] args){
-}
+    public static void main(String[] args){}
 }
