@@ -8,11 +8,12 @@ import java.util.ArrayList;
 
 public class Guests implements ActionListener{
     JPanel panel, topPanel, bottomPanel;
-    JLabel guestNameLabel, testLabel, temp;
-    JTextField guestNameInput;
-    JButton guestNameButton;
+    JLabel guestNameLabel, guestCountLabel;
+    JTextField guestNameInput, guestCountInput;
+    JButton guestNameButton, guestCountButton;
     GridBagConstraints constraints;
     ArrayList<JLabel> list;
+    int guestCount = 300, count;
 
     public Guests()
     {
@@ -29,35 +30,53 @@ public class Guests implements ActionListener{
         panel.setLayout(new GridBagLayout());
         constraints = new GridBagConstraints();
         panel.setBackground(backGroundColor);
-        panel.setBorder(BorderFactory.createEmptyBorder(300,300,300,300));
+        panel.setBorder(BorderFactory.createEmptyBorder(500,500,500,500));
         panel.setMinimumSize(new Dimension(600,600));
         panel.setPreferredSize(new Dimension(600,600));
 
         topPanel = new JPanel();
-        topPanel.setLayout(new GridLayout(1,3));
+        topPanel.setLayout(new GridLayout(2,3));
         topPanel.setBackground(backGroundColor);
 
         bottomPanel = new JPanel();
-        bottomPanel.setLayout(new GridLayout(10,1));
+        bottomPanel.setLayout(new GridLayout(30,30));
         bottomPanel.setBackground(backGroundColor);
 
         list = new ArrayList<JLabel>();
 
         guestNameLabel = new JLabel("Guest Name: ");
+        guestNameLabel.setVisible(false);
 
         guestNameInput = new JTextField();
+        guestNameInput.setVisible(false);
 
         guestNameButton = new JButton("+");
         Color buttonColor = new Color(229,237,226);
         guestNameButton.setBackground(buttonColor);
+        guestNameButton.addActionListener(this);
+        guestNameButton.setVisible(false);
 
+        guestCountLabel = new JLabel("Guest Count: ");
+
+        guestCountInput = new JTextField();
+
+        guestCountButton = new JButton("+");
+        guestCountButton.setBackground(buttonColor);
+        guestCountButton.addActionListener(this);
+
+        topPanel.add(guestCountLabel);
+        topPanel.add(guestCountInput);
+        topPanel.add(guestCountButton);
         topPanel.add(guestNameLabel);
         topPanel.add(guestNameInput);
         topPanel.add(guestNameButton);
 
-        testLabel = new JLabel("test label");
+        for (int i = 0; i < guestCount; i++)
+        {
+            list.add(new JLabel());
+            bottomPanel.add(list.get(i));
+        }
 
-        bottomPanel.add(testLabel);
         constraints.gridx = 0;
         constraints.gridy = 0;
         panel.add(topPanel, constraints);
@@ -67,10 +86,21 @@ public class Guests implements ActionListener{
     }
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == guestNameButton) {
-            temp = new JLabel(guestNameInput.getText());
-            list.add(temp);
-            bottomPanel.add(temp);
-            panel.add(bottomPanel, constraints);
+            list.get(count).setText("| " + guestNameInput.getText() + " |");
+            guestNameInput.setText("Testing Name");
+            count++;
+        }
+        if (event.getSource() == guestCountButton){
+            try{
+                guestCount = Integer.parseInt(guestCountInput.getText());
+            }
+            catch(NumberFormatException e){
+                guestCount = 100;
+                guestCountInput.setText("");
+            }
+            guestNameLabel.setVisible(true);
+            guestNameInput.setVisible(true);
+            guestNameButton.setVisible(true);
         }
     }
     public static void main(String[] args){}

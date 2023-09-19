@@ -30,7 +30,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         panel.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         panel.setBackground(backGroundColor);
-        panel.setBorder(BorderFactory.createEmptyBorder(300,300,300,300));
+        panel.setBorder(BorderFactory.createEmptyBorder(500,500,500,500));
         panel.setMinimumSize(new Dimension(600,600));
         panel.setPreferredSize(new Dimension(600,600));
 
