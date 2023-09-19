@@ -4,15 +4,18 @@ import java.awt.event.*;
 import javax.imageio.ImageIO;
 import java.io.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 public class gui implements ActionListener{
 
     static String page = "Home";
     JMenuBar menubar;
-    JMenu homeMenu, budget;
-    JMenuItem home, budge;
+    JMenu homeMenu, budgetMenu, guestsMenu;
+    JMenuItem home, budget, guests;
     static JFrame frame;
     static Budget budgetPage;
     static Home homePage;
+    static Guests guestsPage;
     static JPanel homePanel;
     static CardLayout manager;
     JTabbedPane tabs;
@@ -37,6 +40,7 @@ public class gui implements ActionListener{
         frame = new JFrame("Wedding Work");
         homePage = new Home();
         budgetPage = new Budget();
+        guestsPage = new Guests();
         homePanel = new JPanel(new CardLayout());
 
 
@@ -48,25 +52,29 @@ public class gui implements ActionListener{
 
         // menus 
         homeMenu = new JMenu("Home");
-        budget = new JMenu("Budget");
-
-        homeMenu.addActionListener(this);
+        budgetMenu = new JMenu("Budget");
+        guestsMenu = new JMenu("Guests");
 
         // items
         home = new JMenuItem("Home");
-        budge = new JMenuItem("Budget Page");
+        budget = new JMenuItem("Budget");
+        guests = new JMenuItem("Guests");
         homeMenu.add(home);
-        budget.add(budge);
+        budgetMenu.add(budget);
+        guestsMenu.add(guests);
 
         // add menus to menubar
         menubar.add(homeMenu);
-        menubar.add(budget);
+        menubar.add(budgetMenu);
+        menubar.add(guestsMenu);
 
-        budge.addActionListener(this);
+        budget.addActionListener(this);
         home.addActionListener(this);
+        guests.addActionListener(this);
 
         homePanel.add(homePage.panel);
         homePanel.add(budgetPage.panel);
+        homePanel.add(guestsPage.panel);
         frame.add(homePanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("WeddingWork");
@@ -79,10 +87,17 @@ public class gui implements ActionListener{
         if (event.getSource() == home){
             homePage.panel.setVisible(true);
             budgetPage.panel.setVisible(false);
+            guestsPage.panel.setVisible(false);
         }
-        if (event.getSource() == budge){
+        if (event.getSource() == budget){
             homePage.panel.setVisible(false);
             budgetPage.panel.setVisible(true);
+            guestsPage.panel.setVisible(false);
+        }
+        if (event.getSource() == guests){
+            homePage.panel.setVisible(false);
+            budgetPage.panel.setVisible(false);
+            guestsPage.panel.setVisible(true);
         }
     }
     public static void main(String[] args) throws InterruptedException, IOException{

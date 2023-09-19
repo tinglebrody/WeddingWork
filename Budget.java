@@ -5,8 +5,7 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.awt.image.BufferedImage;
 public class Budget implements ActionListener{
-    
-int count = 0;
+
 int totalBudget, totalExpenses, currentBudget, plannerPrice, venuePrice, cateringPrice, floralsPrice, photographerPrice,
     videographerPrice, cosmeticsPrice, dressPrice, entertainmentPrice, decorationsPrice;
 JLabel totalBudgetLabel, totalExpensesLabel, currentBudgetLabel, plannerLabel, venueLabel, cateringLabel, 
