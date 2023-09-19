@@ -15,6 +15,8 @@ public class gui implements ActionListener{
     static Home homePage;
     static JPanel homePanel;
     static CardLayout manager;
+    JTabbedPane tabs;
+
 
     public gui() throws IOException{
         try {
@@ -37,6 +39,7 @@ public class gui implements ActionListener{
         budgetPage = new Budget();
         homePanel = new JPanel(new CardLayout());
 
+
         // menu bar
         menubar = new JMenuBar();
         Color menuBarColor = new Color(190,215,209);
@@ -47,6 +50,8 @@ public class gui implements ActionListener{
         homeMenu = new JMenu("Home");
         budget = new JMenu("Budget");
 
+        homeMenu.addActionListener(this);
+
         // items
         home = new JMenuItem("Home");
         budge = new JMenuItem("Budget Page");
@@ -56,10 +61,9 @@ public class gui implements ActionListener{
         // add menus to menubar
         menubar.add(homeMenu);
         menubar.add(budget);
-        
+
         budge.addActionListener(this);
         home.addActionListener(this);
-
 
         homePanel.add(homePage.panel);
         homePanel.add(budgetPage.panel);
