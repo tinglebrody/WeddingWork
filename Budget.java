@@ -4,19 +4,20 @@ import java.awt.event.*;
 import javax.imageio.ImageIO;
 import java.io.*;
 import java.awt.image.BufferedImage;
+import java.util.Scanner;
 public class Budget implements ActionListener{
 
 int totalBudget, totalExpenses, currentBudget, plannerPrice, venuePrice, cateringPrice, floralsPrice, photographerPrice,
     videographerPrice, cosmeticsPrice, dressPrice, entertainmentPrice, decorationsPrice;
 JLabel totalBudgetLabel, totalExpensesLabel, currentBudgetLabel, plannerLabel, venueLabel, cateringLabel, 
     floralsLabel, photographerLabel, videographerLabel, cosmeticsLabel, dressLabel, entertainmentLabel, decorationsLabel, spacerLine;
-JPanel panel, topPanel, middlePanel, bottomPanel, spacerPanel;
+JPanel panel, topPanel, middlePanel, bottomPanel, spacerPanel, savePanel;
 JTextField totalBudgetInput, plannerPriceInput, venuePriceInput, cateringPriceInput, floralsPriceInput, photographerPriceInput,
     videographerPriceInput, cosmeticsPriceInput, dressPriceInput, entertainmentPriceInput, decorationsPriceInput;
 JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsButton, photographerButton,
-    videographerButton, cosmeticsButton, dressButton, entertainmentButton, decorationsButton;
+    videographerButton, cosmeticsButton, dressButton, entertainmentButton, decorationsButton, save;
 
-    public Budget(){
+    public Budget() throws IOException{
         try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
@@ -24,6 +25,22 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         } catch (IllegalAccessException ex) {
         } catch (UnsupportedLookAndFeelException ex) {
         }
+
+        File inputFile = new File("budgetData.txt");
+        Scanner scan = new Scanner(inputFile);
+        totalBudget = Integer.parseInt(scan.nextLine());
+        totalExpenses = Integer.parseInt(scan.nextLine());
+        currentBudget = Integer.parseInt(scan.nextLine());
+        plannerPrice = Integer.parseInt(scan.nextLine());
+        venuePrice = Integer.parseInt(scan.nextLine());
+        cateringPrice = Integer.parseInt(scan.nextLine());
+        floralsPrice = Integer.parseInt(scan.nextLine());
+        photographerPrice = Integer.parseInt(scan.nextLine());
+        videographerPrice = Integer.parseInt(scan.nextLine());
+        cosmeticsPrice = Integer.parseInt(scan.nextLine());
+        dressPrice = Integer.parseInt(scan.nextLine());
+        entertainmentPrice = Integer.parseInt(scan.nextLine());
+        decorationsPrice = Integer.parseInt(scan.nextLine());
 
         panel = new JPanel();
         Color backGroundColor = new Color(255,255,243);
@@ -35,7 +52,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         panel.setPreferredSize(new Dimension(600,600));
 
         topPanel = new JPanel();
-        topPanel.setLayout(new GridLayout(1,3));
+        topPanel.setLayout(new GridLayout(1,4));
         topPanel.setBackground(backGroundColor);
 
         middlePanel = new JPanel();
@@ -49,6 +66,10 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         spacerPanel = new JPanel();
         spacerPanel.setLayout(new GridLayout(1,1));
         spacerPanel.setBackground(backGroundColor);
+
+        savePanel = new JPanel();
+        savePanel.setLayout(new GridLayout(1,1));
+        savePanel.setBackground(backGroundColor);
 
         totalBudgetLabel = new JLabel("Total Budget: $" + totalBudget);
         topPanel.add(totalBudgetLabel);
@@ -181,6 +202,11 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         decorationsButton.setBackground(buttonColor);
         bottomPanel.add(decorationsButton);
 
+        save = new JButton("Save");
+        save.addActionListener(this);
+        save.setBackground(buttonColor);
+        savePanel.add(save);
+
         constraints.gridx = 0;
         constraints.gridy = 0;
         panel.add(topPanel, constraints);
@@ -196,6 +222,9 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         constraints.gridx = 0;
         constraints.gridy = 4;
         panel.add(bottomPanel, constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 5;
+        panel.add(savePanel, constraints);
         panel.setVisible(false);
     }
 
@@ -334,6 +363,15 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         decorationsLabel.setText("Decorations: $" + decorationsPrice);
         updateBudget();
     }
+
+    void saveAction() throws IOException{
+        Filer filer = new Filer("budgetData.txt");
+        filer.toFile(String.valueOf(totalBudget) + "\n" + String.valueOf(totalExpenses) + "\n" + String.valueOf(currentBudget)
+         + "\n" + String.valueOf(plannerPrice) + "\n" + String.valueOf(venuePrice) + "\n" + String.valueOf(cateringPrice)
+          + "\n" + String.valueOf(floralsPrice) + "\n" + String.valueOf(photographerPrice) + "\n" + String.valueOf(videographerPrice)
+           + "\n" + String.valueOf(cosmeticsPrice)+ "\n" + String.valueOf(dressPrice) + "\n" + String.valueOf(entertainmentPrice)
+            + "\n" + String.valueOf(decorationsPrice));
+    }
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == totalBudgetButton) {
             totalBudgetButtonAction();
@@ -367,6 +405,12 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         }
         else if (event.getSource() == decorationsButton){
             decorationsButtonAction();
+        }
+        else if (event.getSource() == save){
+            try{
+                saveAction();
+            }
+            catch(IOException e){}
         }
     }
 

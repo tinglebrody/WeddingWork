@@ -101,6 +101,8 @@ public class gui implements ActionListener{
         }
     }
     public static void main(String[] args) throws InterruptedException, IOException{
+        Filer filer = new Filer("data.txt");
+        filer.toFile("Completed Data!");
         gui g = new gui();
     }
 }
