@@ -9,9 +9,9 @@ public class Budget implements ActionListener{
 
 int totalBudget, totalExpenses, currentBudget, plannerPrice, venuePrice, cateringPrice, floralsPrice, photographerPrice,
     videographerPrice, cosmeticsPrice, dressPrice, entertainmentPrice, decorationsPrice;
-JLabel totalBudgetLabel, totalExpensesLabel, currentBudgetLabel, plannerLabel, venueLabel, cateringLabel, 
+JLabel title, totalBudgetLabel, totalExpensesLabel, currentBudgetLabel, plannerLabel, venueLabel, cateringLabel, 
     floralsLabel, photographerLabel, videographerLabel, cosmeticsLabel, dressLabel, entertainmentLabel, decorationsLabel, spacerLine;
-JPanel panel, topPanel, middlePanel, bottomPanel, spacerPanel, savePanel;
+JPanel panel, titlePanel, topPanel, middlePanel, bottomPanel, spacerPanel, savePanel;
 JTextField totalBudgetInput, plannerPriceInput, venuePriceInput, cateringPriceInput, floralsPriceInput, photographerPriceInput,
     videographerPriceInput, cosmeticsPriceInput, dressPriceInput, entertainmentPriceInput, decorationsPriceInput;
 JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsButton, photographerButton,
@@ -43,33 +43,42 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         decorationsPrice = Integer.parseInt(scan.nextLine());
 
         panel = new JPanel();
-        Color backGroundColor = new Color(255,255,243);
+        Color backgroundColor = new Color(255,255,243);
+        Color buttonColor = new Color(229,237,226);
         panel.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        panel.setBackground(backGroundColor);
+        panel.setBackground(backgroundColor);
         panel.setBorder(BorderFactory.createEmptyBorder(500,500,500,500));
         panel.setMinimumSize(new Dimension(600,600));
         panel.setPreferredSize(new Dimension(600,600));
 
+        titlePanel = new JPanel();
+        titlePanel.setLayout(new GridLayout(1,1));
+        titlePanel.setBackground(backgroundColor);
+
         topPanel = new JPanel();
         topPanel.setLayout(new GridLayout(1,4));
-        topPanel.setBackground(backGroundColor);
+        topPanel.setBackground(backgroundColor);
 
         middlePanel = new JPanel();
         middlePanel.setLayout(new GridLayout(2,1));
-        middlePanel.setBackground(backGroundColor);
+        middlePanel.setBackground(backgroundColor);
 
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridLayout(10,3));
-        bottomPanel.setBackground(backGroundColor);
+        bottomPanel.setBackground(backgroundColor);
 
         spacerPanel = new JPanel();
         spacerPanel.setLayout(new GridLayout(1,1));
-        spacerPanel.setBackground(backGroundColor);
+        spacerPanel.setBackground(backgroundColor);
 
         savePanel = new JPanel();
         savePanel.setLayout(new GridLayout(1,1));
-        savePanel.setBackground(backGroundColor);
+        savePanel.setBackground(backgroundColor);
+
+        title = new JLabel("Budget Page");
+        title.setBackground(backgroundColor);
+        titlePanel.add(title);
 
         totalBudgetLabel = new JLabel("Total Budget: $" + totalBudget);
         topPanel.add(totalBudgetLabel);
@@ -78,7 +87,6 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         topPanel.add(totalBudgetInput);
 
         totalBudgetButton = new JButton("+");
-        Color buttonColor = new Color(229,237,226);
         totalBudgetButton.addActionListener(this);
         totalBudgetButton.setBackground(buttonColor);
         topPanel.add(totalBudgetButton);
@@ -209,21 +217,24 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
 
         constraints.gridx = 0;
         constraints.gridy = 0;
-        panel.add(topPanel, constraints);
+        panel.add(titlePanel, constraints);
         constraints.gridx = 0;
         constraints.gridy = 1;
-        panel.add(spacerPanel, constraints);
+        panel.add(topPanel, constraints);
         constraints.gridx = 0;
         constraints.gridy = 2;
-        panel.add(middlePanel, constraints);
-        constraints.gridx = 0;
-        constraints.gridy = 3;
         panel.add(spacerPanel, constraints);
         constraints.gridx = 0;
+        constraints.gridy = 3;
+        panel.add(middlePanel, constraints);
+        constraints.gridx = 0;
         constraints.gridy = 4;
-        panel.add(bottomPanel, constraints);
+        panel.add(spacerPanel, constraints);
         constraints.gridx = 0;
         constraints.gridy = 5;
+        panel.add(bottomPanel, constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 6;
         panel.add(savePanel, constraints);
         panel.setVisible(false);
     }

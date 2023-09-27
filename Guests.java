@@ -7,13 +7,15 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Guests implements ActionListener{
-    JPanel panel, topPanel, bottomPanel;
-    JLabel guestNameLabel, guestCountLabel;
+    JPanel panel, inputPanel, groomFamilyPanel, brideFamilyPanel, groomFriendsPanel, brideFriendsPanel, sharedFriendsPanel,
+        otherPanel;
+    JLabel guestNameLabel, groomFamilyLabel;
     JTextField guestNameInput, guestCountInput;
     JButton guestNameButton, guestCountButton;
     GridBagConstraints constraints;
-    ArrayList<JLabel> list;
-    int guestCount = 300, count;
+    ArrayList<JLabel> groomFamilyList, brideFamilyList, groomFriendsList, brideFriendsList, sharedFriendsList,
+        otherList;
+    int guestCount = 55, count;
 
     public Guests()
     {
@@ -26,81 +28,58 @@ public class Guests implements ActionListener{
         }
 
         panel = new JPanel();
-        Color backGroundColor = new Color(255,255,243);
+        Color backgroundColor = new Color(255,255,243);
+        Color buttonColor = new Color(229,237,226);
         panel.setLayout(new GridBagLayout());
         constraints = new GridBagConstraints();
-        panel.setBackground(backGroundColor);
+        panel.setBackground(backgroundColor);
         panel.setBorder(BorderFactory.createEmptyBorder(500,500,500,500));
         panel.setMinimumSize(new Dimension(600,600));
         panel.setPreferredSize(new Dimension(600,600));
 
-        topPanel = new JPanel();
-        topPanel.setLayout(new GridLayout(2,3));
-        topPanel.setBackground(backGroundColor);
+        inputPanel = new JPanel();
+        inputPanel.setLayout(new GridLayout(3,2));
+        inputPanel.setBackground(backgroundColor);
 
-        bottomPanel = new JPanel();
-        bottomPanel.setLayout(new GridLayout(30,30));
-        bottomPanel.setBackground(backGroundColor);
+        groomFamilyPanel = new JPanel();
+        groomFamilyPanel.setLayout(new GridLayout(56,1));
+        groomFamilyPanel.setBackground(backgroundColor);
 
-        list = new ArrayList<JLabel>();
+        groomFamilyList = new ArrayList<JLabel>();
 
         guestNameLabel = new JLabel("Guest Name: ");
-        guestNameLabel.setVisible(false);
+        inputPanel.add(guestNameLabel);
 
         guestNameInput = new JTextField();
-        guestNameInput.setVisible(false);
+        inputPanel.add(guestNameInput);
 
         guestNameButton = new JButton("+");
-        Color buttonColor = new Color(229,237,226);
         guestNameButton.setBackground(buttonColor);
         guestNameButton.addActionListener(this);
-        guestNameButton.setVisible(false);
+        inputPanel.add(guestNameButton);
 
-        guestCountLabel = new JLabel("Guest Count: ");
-
-        guestCountInput = new JTextField();
-
-        guestCountButton = new JButton("+");
-        guestCountButton.setBackground(buttonColor);
-        guestCountButton.addActionListener(this);
-
-        topPanel.add(guestCountLabel);
-        topPanel.add(guestCountInput);
-        topPanel.add(guestCountButton);
-        topPanel.add(guestNameLabel);
-        topPanel.add(guestNameInput);
-        topPanel.add(guestNameButton);
+        groomFamilyLabel = new JLabel("Groom Family");
+        groomFamilyLabel.setBackground(backgroundColor);
+        groomFamilyPanel.add(groomFamilyLabel);
 
         for (int i = 0; i < guestCount; i++)
         {
-            list.add(new JLabel());
-            bottomPanel.add(list.get(i));
+            groomfamilylist.add(new JLabel("|                         |"));
+            groomFamilyPanel.add(groomFamilyList.get(i));
         }
 
         constraints.gridx = 0;
         constraints.gridy = 0;
-        panel.add(topPanel, constraints);
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        panel.add(bottomPanel, constraints);
+        panel.add(inputPanel, constraints);
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        panel.add(groomFamilyPanel, constraints);
     }
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == guestNameButton) {
-            list.get(count).setText("| " + guestNameInput.getText() + " |");
+            groomfamilylist.get(count).setText("| " + guestNameInput.getText() + " |");
             guestNameInput.setText("Testing Name");
             count++;
-        }
-        if (event.getSource() == guestCountButton){
-            try{
-                guestCount = Integer.parseInt(guestCountInput.getText());
-            }
-            catch(NumberFormatException e){
-                guestCount = 100;
-                guestCountInput.setText("");
-            }
-            guestNameLabel.setVisible(true);
-            guestNameInput.setVisible(true);
-            guestNameButton.setVisible(true);
         }
     }
     public static void main(String[] args){}
