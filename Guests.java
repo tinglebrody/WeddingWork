@@ -231,9 +231,21 @@ public class Guests implements ActionListener{
         panel.add(otherPanel, constraints);
     }
 
+    public boolean labelContains(String name, ArrayList<JLabel> list){
+        for (JLabel element : list){
+            if (element.getText() == ("| " + name + " |")){
+                return true;
+            }
+        }
+        return false;
+    }
     public void remove(String name){
-        if (groomFamilyList.contains(name)){
+        int index;
+        System.out.println(labelContains(name, groomFamilyList));
+        if (labelContains(name, groomFamilyList)){
+            index = groomFamilyList.indexOf(name);
             groomFamilyList.remove(name);
+            groomFamilyList.get(index).setText("");
         }
     }
     public void actionPerformed(ActionEvent event){
