@@ -26,7 +26,7 @@ JButton button;
 
         button.addActionListener(this);
 
-        panel.setBorder(BorderFactory.createEmptyBorder(500,500,500,500));
+        panel.setBorder(BorderFactory.createEmptyBorder(600,600,500,500));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.add(photo);
         panel.add(homeLabel);
