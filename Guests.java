@@ -90,13 +90,13 @@ public class Guests implements ActionListener{
         spacer6.setLayout(new GridLayout(56,1));
         spacer6.setBackground(backgroundColor);
 
-        groomFamilyList = new ArrayList<JLabel>();
+        groomFamilyList = new ArrayList<JLabel>(50);
         brideFamilyList = new ArrayList<JLabel>();
         groomFriendsList = new ArrayList<JLabel>();
         brideFriendsList = new ArrayList<JLabel>();
         sharedFriendsList = new ArrayList<JLabel>();
         otherList = new ArrayList<JLabel>();
-
+        
         guestNameLabel = new JLabel("Guest Name: ");
         inputPanel.add(guestNameLabel);
 
@@ -232,21 +232,40 @@ public class Guests implements ActionListener{
     }
 
     public boolean labelContains(String name, ArrayList<JLabel> list){
-        for (JLabel element : list){
-            if (element.getText() == ("| " + name + " |")){
+        for (JLabel element : groomFamilyList){
+            if (element.getText().equals("| " + name + " |")){
                 return true;
             }
         }
         return false;
     }
-    public void remove(String name){
-        int index;
-        System.out.println(labelContains(name, groomFamilyList));
-        if (labelContains(name, groomFamilyList)){
-            index = groomFamilyList.indexOf(name);
-            groomFamilyList.remove(name);
-            groomFamilyList.get(index).setText("");
+    public int indexOf(String name, ArrayList<JLabel> list){
+        int index = 0;
+        for (JLabel element: groomFamilyList){
+            if (element.getText().equals("| " + name + " |")){
+                return index;
+            }
+            index++;
         }
+        return index;
+    }
+    public String remove(String name){
+        int index;
+        if (labelContains(name, groomFamilyList)){
+            index = indexOf(name, groomFamilyList);
+            if (groomFamilyList.get(index+1) != null)
+            {
+                groomFamilyList.get(index).setText(groomFamilyList.get(index+1).getText());
+                groomFamilyList.get(index+1).setText("");
+                return "groomFamily";
+            }
+            else
+            {
+                groomFamilyList.get(index).setText("");
+                return "groomFamily";
+            }
+        }
+        return "";
     }
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == groomFamilyButton) {
@@ -298,7 +317,10 @@ public class Guests implements ActionListener{
             otherCount++;
         }
         if (event.getSource() == removeButton) {
-            remove(guestNameInput.getText());
+            String removedFrom = remove(guestNameInput.getText());
+            if (removedFrom == "groomFamily"){
+                groomFamilyCount--;
+            }
         }
     }
     public static void main(String[] args){}
