@@ -255,8 +255,8 @@ public class Guests implements ActionListener{
             index = indexOf(name, groomFamilyList);
             if (groomFamilyList.get(index+1) != null)
             {
-                groomFamilyList.get(index).setText(groomFamilyList.get(index+1).getText());
-                groomFamilyList.get(index+1).setText("");
+                for (int i = index; i < groomFamilyCount; i++)
+                    groomFamilyList.get(i).setText(groomFamilyList.get(i+1).getText());
                 return "groomFamily";
             }
             else
