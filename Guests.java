@@ -231,6 +231,7 @@ public class Guests implements ActionListener{
         panel.add(otherPanel, constraints);
     }
 
+
     public boolean labelContains(String name, ArrayList<JLabel> list){
         for (JLabel element : groomFamilyList){
             if (element.getText().equals("| " + name + " |")){
