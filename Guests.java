@@ -12,7 +12,7 @@ public class Guests implements ActionListener{
     JLabel guestNameLabel, groomFamilyLabel, brideFamilyLabel, groomFriendsLabel, brideFriendsLabel, sharedFriendsLabel, otherLabel;
     JTextField guestNameInput, guestCountInput;
     JButton groomFamilyButton, brideFamilyButton, groomFriendsButton, brideFriendsButton, sharedFriendsButton, 
-        otherButton, removeButton;
+        otherButton, removeButton, save;
     GridBagConstraints constraints;
     ArrayList<JLabel> groomFamilyList, brideFamilyList, groomFriendsList, brideFriendsList, sharedFriendsList,
         otherList;
@@ -39,7 +39,7 @@ public class Guests implements ActionListener{
         panel.setPreferredSize(new Dimension(600,600));
 
         inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(9,2));
+        inputPanel.setLayout(new GridLayout(10,2));
         inputPanel.setBackground(backgroundColor);
 
         groomFamilyPanel = new JPanel();
@@ -162,6 +162,11 @@ public class Guests implements ActionListener{
         otherLabel.setBackground(backgroundColor);
         otherPanel.add(otherLabel);
 
+        save = new JButton("Save");
+        save.addActionListener(this);
+        save.setBackground(buttonColor);
+        inputPanel.add(save);
+
         for (int i = 0; i < guestCount; i++)
         {
             groomFamilyList.add(new JLabel("                    "));
@@ -231,6 +236,34 @@ public class Guests implements ActionListener{
         panel.add(otherPanel, constraints);
     }
 
+    void saveAction() throws IOException{
+        Filer filer = new Filer("data.txt");
+        filer.toFile(String.valueOf(groomFamilyList.get(0).getText()));
+        for (int i = 0; i < groomFamilyCount; i++){
+            filer.toFile(groomFamilyList.get(i).getText());
+        }
+        filer.toFile("\n");
+        for (int i = 0; i < brideFamilyCount; i++){
+            filer.toFile(brideFamilyList.get(i).getText());
+        }
+        filer.toFile("\n");
+        for (int i = 0; i < groomFriendsCount; i++){
+            filer.toFile(groomFriendsList.get(i).getText());
+        }
+        filer.toFile("\n");
+        for (int i = 0; i < brideFriendsCount; i++){
+            filer.toFile(brideFriendsList.get(i).getText());
+        }
+        filer.toFile("\n");
+        for (int i = 0; i < sharedFriendsCount; i++){
+            filer.toFile(sharedFriendsList.get(i).getText());
+        }
+        filer.toFile("\n");
+        for (int i = 0; i < otherCount; i++){
+            filer.toFile(otherList.get(i).getText());
+        }
+        filer.toFile("\n");
+    }
 
     public boolean labelContains(String name, ArrayList<JLabel> list){
         for (JLabel element : groomFamilyList){
@@ -322,6 +355,12 @@ public class Guests implements ActionListener{
             if (removedFrom == "groomFamily"){
                 groomFamilyCount--;
             }
+        }
+        if (event.getSource() == save) {
+            try{
+                saveAction();
+            }
+            catch (IOException e){}
         }
     }
     public static void main(String[] args){}
