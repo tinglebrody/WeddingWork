@@ -4,6 +4,7 @@ import java.awt.event.*;
 import javax.imageio.ImageIO;
 import java.io.*;
 import java.awt.image.BufferedImage;
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Guests implements ActionListener{
@@ -18,7 +19,7 @@ public class Guests implements ActionListener{
         otherList;
     int guestCount = 50, groomFamilyCount, brideFamilyCount, groomFriendsCount, brideFriendsCount, sharedFriendsCount, otherCount;
 
-    public Guests()
+    public Guests() throws FileNotFoundException
     {
         try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -27,6 +28,22 @@ public class Guests implements ActionListener{
         } catch (IllegalAccessException ex) {
         } catch (UnsupportedLookAndFeelException ex) {
         }
+
+        groomFamilyList = new ArrayList<JLabel>();
+        brideFamilyList = new ArrayList<JLabel>();
+        groomFriendsList = new ArrayList<JLabel>();
+        brideFriendsList = new ArrayList<JLabel>();
+        sharedFriendsList = new ArrayList<JLabel>();
+        otherList = new ArrayList<JLabel>();
+
+        File inputFile = new File("guestsData.txt");
+        Scanner scan = new Scanner(inputFile);
+        groomFamilyCount = loadData(groomFamilyList, scan);
+        brideFamilyCount = loadData(brideFamilyList, scan);
+        groomFriendsCount = loadData(groomFriendsList, scan);
+        brideFriendsCount = loadData(brideFriendsList, scan);
+        sharedFriendsCount = loadData(sharedFriendsList, scan);
+        otherCount = loadData(otherList, scan);
 
         panel = new JPanel();
         Color backgroundColor = new Color(255,255,243);
@@ -89,13 +106,6 @@ public class Guests implements ActionListener{
         spacer6 = new JPanel();
         spacer6.setLayout(new GridLayout(56,1));
         spacer6.setBackground(backgroundColor);
-
-        groomFamilyList = new ArrayList<JLabel>(50);
-        brideFamilyList = new ArrayList<JLabel>();
-        groomFriendsList = new ArrayList<JLabel>();
-        brideFriendsList = new ArrayList<JLabel>();
-        sharedFriendsList = new ArrayList<JLabel>();
-        otherList = new ArrayList<JLabel>();
         
         guestNameLabel = new JLabel("Guest Name: ");
         inputPanel.add(guestNameLabel);
@@ -237,36 +247,54 @@ public class Guests implements ActionListener{
     }
 
     void saveAction() throws IOException{
-        Filer filer = new Filer("data.txt");
-        filer.toFile(String.valueOf(groomFamilyList.get(0).getText()));
+        Filer filer = new Filer("guestsData.txt");
+        String addToFile = "";
+        
         for (int i = 0; i < groomFamilyCount; i++){
-            filer.toFile(groomFamilyList.get(i).getText());
+            addToFile = addToFile + groomFamilyList.get(i).getText() + "\n";
         }
-        filer.toFile("\n");
+        addToFile = addToFile + "Break\n";
         for (int i = 0; i < brideFamilyCount; i++){
-            filer.toFile(brideFamilyList.get(i).getText());
+            addToFile = addToFile + brideFamilyList.get(i).getText() + "\n";
         }
-        filer.toFile("\n");
+        addToFile = addToFile + "Break\n";
         for (int i = 0; i < groomFriendsCount; i++){
-            filer.toFile(groomFriendsList.get(i).getText());
+            addToFile = addToFile + groomFriendsList.get(i).getText() + "\n";
         }
-        filer.toFile("\n");
+        addToFile = addToFile + "Break\n";
         for (int i = 0; i < brideFriendsCount; i++){
-            filer.toFile(brideFriendsList.get(i).getText());
+            addToFile = addToFile + brideFriendsList.get(i).getText() + "\n";
         }
-        filer.toFile("\n");
+        addToFile = addToFile + "Break\n";
         for (int i = 0; i < sharedFriendsCount; i++){
-            filer.toFile(sharedFriendsList.get(i).getText());
+            addToFile = addToFile + sharedFriendsList.get(i).getText() + "\n";
         }
-        filer.toFile("\n");
+        addToFile = addToFile + "Break\n";
         for (int i = 0; i < otherCount; i++){
-            filer.toFile(otherList.get(i).getText());
+            addToFile = addToFile + otherList.get(i).getText() + "\n";
         }
-        filer.toFile("\n");
+        addToFile = addToFile + "Break\n";
+        filer.toFile(addToFile);
+    }
+
+    int loadData(ArrayList<JLabel> list, Scanner scan){
+        String input = "";
+        int numGuests = 0;
+        while (true){
+            input = scan.nextLine();
+            if (input.compareTo("Break") == 0){
+                break;
+            }
+            else{
+                list.add(new JLabel(input));
+                numGuests++;
+            }
+        }
+        return numGuests;
     }
 
     public boolean labelContains(String name, ArrayList<JLabel> list){
-        for (JLabel element : groomFamilyList){
+        for (JLabel element : list){
             if (element.getText().equals("| " + name + " |")){
                 return true;
             }
@@ -275,7 +303,7 @@ public class Guests implements ActionListener{
     }
     public int indexOf(String name, ArrayList<JLabel> list){
         int index = 0;
-        for (JLabel element: groomFamilyList){
+        for (JLabel element: list){
             if (element.getText().equals("| " + name + " |")){
                 return index;
             }
@@ -283,21 +311,43 @@ public class Guests implements ActionListener{
         }
         return index;
     }
-    public String remove(String name){
-        int index;
-        if (labelContains(name, groomFamilyList)){
-            index = indexOf(name, groomFamilyList);
-            if (groomFamilyList.get(index+1) != null)
+
+    public void removeFromList(String name, ArrayList<JLabel> list, int count){
+        int index = indexOf(name, list);
+            if (list.get(index+1) != null)
             {
-                for (int i = index; i < groomFamilyCount; i++)
-                    groomFamilyList.get(i).setText(groomFamilyList.get(i+1).getText());
-                return "groomFamily";
+                for (int i = index; i < count; i++)
+                    list.get(i).setText(list.get(i+1).getText());
             }
             else
             {
-                groomFamilyList.get(index).setText("");
-                return "groomFamily";
+                list.get(index).setText("");
             }
+    }
+    public String remove(String name){
+        if (labelContains(name, groomFamilyList)){
+            removeFromList(name, groomFamilyList, groomFamilyCount);
+            return "groomFamily";
+        }
+        if (labelContains(name, brideFamilyList)){
+            removeFromList(name, brideFamilyList, brideFamilyCount);
+            return "brideFamily";
+        }
+        if (labelContains(name, groomFriendsList)){
+            removeFromList(name, groomFriendsList, groomFriendsCount);
+            return "groomFriends";
+        }
+        if (labelContains(name, brideFriendsList)){
+            removeFromList(name, brideFriendsList, brideFriendsCount);
+            return "brideFriends";
+        }
+        if (labelContains(name, sharedFriendsList)){
+            removeFromList(name, sharedFriendsList, sharedFriendsCount);
+            return "sharedFriends";
+        }
+        if (labelContains(name, otherList)){
+            removeFromList(name, otherList, otherCount);
+            return "other";
         }
         return "";
     }
@@ -354,6 +404,21 @@ public class Guests implements ActionListener{
             String removedFrom = remove(guestNameInput.getText());
             if (removedFrom == "groomFamily"){
                 groomFamilyCount--;
+            }
+            if (removedFrom == "brideFamily"){
+                brideFamilyCount--;
+            }
+            if (removedFrom == "groomFriends"){
+                groomFriendsCount--;
+            }
+            if (removedFrom == "brideFriends"){
+                brideFriendsCount--;
+            }
+            if (removedFrom == "sharedFriends"){
+                sharedFriendsCount--;
+            }
+            if (removedFrom == "other"){
+                otherCount--;
             }
         }
         if (event.getSource() == save) {
