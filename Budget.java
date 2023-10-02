@@ -12,7 +12,7 @@ int totalBudget, totalExpenses, currentBudget, plannerPrice, venuePrice, caterin
     videographerPrice, cosmeticsPrice, dressPrice, entertainmentPrice, decorationsPrice;
 JLabel title, totalBudgetLabel, totalExpensesLabel, currentBudgetLabel, plannerLabel, venueLabel, cateringLabel, 
     floralsLabel, photographerLabel, videographerLabel, cosmeticsLabel, dressLabel, entertainmentLabel, decorationsLabel, spacerLine;
-JPanel panel, titlePanel, topPanel, middlePanel, bottomPanel, spacerPanel, savePanel;
+JPanel titlePanel, topPanel, middlePanel, bottomPanel, spacerPanel, savePanel;
 JTextField totalBudgetInput, plannerPriceInput, venuePriceInput, cateringPriceInput, floralsPriceInput, photographerPriceInput,
     videographerPriceInput, cosmeticsPriceInput, dressPriceInput, entertainmentPriceInput, decorationsPriceInput;
 JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsButton, photographerButton,
@@ -46,6 +46,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
 
         panel = new JPanel();
         implementPanel(panel);
+        constraints = new GridBagConstraints();
 
         titlePanel = new JPanel();
         titlePanel.setLayout(new GridLayout(1,1));

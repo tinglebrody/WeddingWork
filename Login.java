@@ -4,19 +4,21 @@ import java.awt.event.*;
 import javax.imageio.ImageIO;
 import java.io.*;
 import java.awt.image.BufferedImage;
-import java.util.Scanner;
-public class Login implements ActionListener{
+import java.util.*;
+public class Login extends Page implements ActionListener{
 
-    JFrame loginFrame;
-    JPanel panel, inputPanel;
-    JLabel loginLabel, joinLabel, usernameLabel, passwordLabel;
-    JTextField usernameInput, passwordInput;
+    JFrame frame;
+    JPanel loginPanel, joinPanel, loginInputPanel, joinInputPanel;
+    JLabel loginLabel, joinLabel, loginUsernameLabel, loginPasswordLabel, joinUsernameLabel, joinPasswordLabel;
+    JTextField loginUsernameInput, loginPasswordInput, joinUsernameInput, joinPasswordInput;
     JButton loginButton, joinButton;
     String username, password;
     MainGUI main;
     Join join;
     File data;
+    Filer filer;
     Scanner scan;
+    JSplitPane pane;
 
     public Login() throws FileNotFoundException{
         try {
@@ -33,89 +35,119 @@ public class Login implements ActionListener{
         catch(IOException e){System.out.println("Error!");}
 
         data = new File("data/loginData.txt");
+        filer = new Filer("data/loginData.txt");
 
-        loginFrame = new JFrame("Login");
-        panel = new JPanel();
-        Color backgroundColor = new Color(255,255,243);
-        Color buttonColor = new Color(229,237,226);
-        panel.setLayout(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
-        panel.setBackground(backgroundColor);
-        panel.setBorder(BorderFactory.createEmptyBorder(500,500,500,500));
-        panel.setMinimumSize(new Dimension(600,600));
-        panel.setPreferredSize(new Dimension(600,600));
+        pane = new JSplitPane();
+        frame = new JFrame("Login");
 
-        inputPanel = new JPanel(new GridLayout(2,2));
-        inputPanel.setBackground(backgroundColor);
+        loginPanel = new JPanel();
+        joinPanel = new JPanel();
+        implementPanel(loginPanel);
+        implementPanel(joinPanel);
+        constraints = new GridBagConstraints();
+
+        loginLabel = new JLabel("LOGIN");
+        loginLabel.setBackground(backgroundColor);
+
+        loginInputPanel = new JPanel(new GridLayout(2,2));
+        loginInputPanel.setBackground(backgroundColor);
 
         loginButton = new JButton("Login");
         loginButton.setBackground(buttonColor);
         loginButton.addActionListener(this);
 
+        loginUsernameLabel = new JLabel("Username");
+        loginUsernameInput = new JTextField("");
+        loginPasswordLabel = new JLabel("Password");
+        loginPasswordInput = new JTextField("");
+
+        loginInputPanel.add(loginUsernameLabel);
+        loginInputPanel.add(loginUsernameInput);
+        loginInputPanel.add(loginPasswordLabel);
+        loginInputPanel.add(loginPasswordInput);
+
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        loginPanel.add(loginLabel, constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        loginPanel.add(loginInputPanel, constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        loginPanel.add(loginButton, constraints);
+
+        joinLabel = new JLabel("JOIN");
+        joinLabel.setBackground(backgroundColor);
+
+        joinInputPanel = new JPanel(new GridLayout(2,2));
+        joinInputPanel.setBackground(backgroundColor);
+
         joinButton = new JButton("Join");
         joinButton.setBackground(buttonColor);
         joinButton.addActionListener(this);
 
-        usernameLabel = new JLabel("Username");
-        usernameInput = new JTextField("");
-        passwordLabel = new JLabel("Password");
-        passwordInput = new JTextField("");
+        joinUsernameLabel = new JLabel("Username");
+        joinUsernameInput = new JTextField("");
+        joinPasswordLabel = new JLabel("Password");
+        joinPasswordInput = new JTextField("");
 
-        inputPanel.add(usernameLabel);
-        inputPanel.add(usernameInput);
-        inputPanel.add(passwordLabel);
-        inputPanel.add(passwordInput);
+        joinInputPanel.add(joinUsernameLabel);
+        joinInputPanel.add(joinUsernameInput);
+        joinInputPanel.add(joinPasswordLabel);
+        joinInputPanel.add(joinPasswordInput);
 
         constraints.gridx = 0;
         constraints.gridy = 0;
-        panel.add(inputPanel, constraints);
+        joinPanel.add(joinLabel, constraints);
         constraints.gridx = 0;
         constraints.gridy = 1;
-        panel.add(loginButton, constraints);
+        joinPanel.add(joinInputPanel, constraints);
         constraints.gridx = 0;
         constraints.gridy = 2;
-        panel.add(joinButton, constraints);
+        joinPanel.add(joinButton, constraints);
 
-        loginFrame.add(panel);
-        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        loginFrame.pack();
-        loginFrame.setVisible(true);
+        pane.setLeftComponent(loginPanel);
+        pane.setRightComponent(joinPanel);
+        frame.add(pane);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     public boolean validate(String username, String password) throws FileNotFoundException{
-        String testUsername, testPassword;
+        String testUsername;
         scan = new Scanner(data);
-        while (true){
-            testUsername = scan.nextLine();
-            if (testUsername.compareTo("Break") == 0){
-                break;
-            }
-            if (username.compareTo(testUsername) == 0){
-                if (password.compareTo(scan.nextLine()) == 0){
-                    return true;
+        while (true)
+            try{
+                testUsername = scan.nextLine();
+                if (username.compareTo(testUsername) == 0){
+                    if (password.compareTo(scan.nextLine()) == 0){
+                        return true;
+                    }
                 }
             }
-        }
+            catch(NoSuchElementException e){
+                break;
+            }
         return false;
     }
 
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == loginButton){
             try{
-                boolean checkInput = validate("Username " + usernameInput.getText(), "Password " + passwordInput.getText());
+                boolean checkInput = validate("Username " + loginUsernameInput.getText(), "Password " + loginPasswordInput.getText());
                 if (checkInput == true){
                     main.frame.setVisible(true);
-                    loginFrame.setVisible(false);
+                    frame.setVisible(false);
                 }
             }
             catch(FileNotFoundException e){}
         }
         if (event.getSource() == joinButton){
-            try{join = new Join();}
-            catch(FileNotFoundException e){}
-
-            join.frame.setVisible(true);
-            loginFrame.setVisible(false);
+            try{
+                filer.toFile("\nUsername " + joinUsernameInput.getText() + "\nPassword " + joinPasswordInput.getText(), true);
+            }
+            catch (IOException e){}
         }
     }
 

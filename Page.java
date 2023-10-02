@@ -9,7 +9,8 @@ public class Page{
     Color backgroundColor = new Color(255,255,243);
     Color buttonColor = new Color(229,237,226);
     Color darkButtonColor = new Color(34,68,34);
-    GridBagConstraints constraints = new GridBagConstraints();
+    GridBagConstraints constraints;
+    JPanel panel;
 
     public void implementPanel(JPanel panel){
         panel.setLayout(new GridBagLayout());
