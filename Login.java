@@ -164,7 +164,7 @@ public class Login extends Page implements ActionListener{
         return false;
     }
 
-    public void deleteUser(String username, String password) throws FileNotFoundException{
+    public boolean deleteUser(String username, String password) throws FileNotFoundException{
         String fileContents = "", test;
         int count = 0;
         scan = new Scanner(data);
@@ -182,6 +182,10 @@ public class Login extends Page implements ActionListener{
             }
             try{filer.toFile(fileContents);}
             catch(IOException e){}
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
@@ -209,7 +213,16 @@ public class Login extends Page implements ActionListener{
             catch (IOException e){}
         }
         if (event.getSource() == deleteButton){
-            try{deleteUser("Username " + joinUsernameInput.getText(), "Password " + joinPasswordInput.getText());}
+            boolean worked;
+            try{
+                worked = deleteUser("Username " + joinUsernameInput.getText(), "Password " + joinPasswordInput.getText());
+                if (worked){
+                    joinMessage.setText("Account Deleted");
+                }
+                else{
+                    joinMessage.setText("Incorrect username/password");
+                }
+            }
             catch(FileNotFoundException e){}
         }
     }
