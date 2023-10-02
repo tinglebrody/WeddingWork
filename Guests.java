@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Guests implements ActionListener{
+public class Guests extends Page implements ActionListener{
     JPanel panel, inputPanel, groomFamilyPanel, brideFamilyPanel, groomFriendsPanel, brideFriendsPanel, sharedFriendsPanel,
         otherPanel, spacer1, spacer2, spacer3, spacer4, spacer5, spacer6;
     JLabel guestNameLabel, groomFamilyLabel, brideFamilyLabel, groomFriendsLabel, brideFriendsLabel, sharedFriendsLabel, otherLabel;
@@ -46,16 +46,9 @@ public class Guests implements ActionListener{
         otherCount = loadData(otherList, scan);
 
         panel = new JPanel();
-        Color backgroundColor = new Color(255,255,243);
-        Color buttonColor = new Color(229,237,226);
-        Color darkButtonColor = new Color(34,68,34);
-        panel.setLayout(new GridBagLayout());
+        implementPanel(panel);
         constraints = new GridBagConstraints();
-        panel.setBackground(backgroundColor);
-        panel.setBorder(BorderFactory.createEmptyBorder(500,500,500,500));
-        panel.setMinimumSize(new Dimension(600,600));
-        panel.setPreferredSize(new Dimension(600,600));
-
+        
         inputPanel = new JPanel();
         inputPanel.setLayout(new GridLayout(10,2));
         inputPanel.setBackground(backgroundColor);

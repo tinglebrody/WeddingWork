@@ -5,7 +5,8 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.awt.image.BufferedImage;
 import java.util.Scanner;
-public class Budget implements ActionListener{
+
+public class Budget extends Page implements ActionListener{
 
 int totalBudget, totalExpenses, currentBudget, plannerPrice, venuePrice, cateringPrice, floralsPrice, photographerPrice,
     videographerPrice, cosmeticsPrice, dressPrice, entertainmentPrice, decorationsPrice;
@@ -28,6 +29,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
 
         File inputFile = new File("data/budgetData.txt");
         Scanner scan = new Scanner(inputFile);
+
         totalBudget = Integer.parseInt(scan.nextLine());
         totalExpenses = Integer.parseInt(scan.nextLine());
         currentBudget = Integer.parseInt(scan.nextLine());
@@ -43,14 +45,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         decorationsPrice = Integer.parseInt(scan.nextLine());
 
         panel = new JPanel();
-        Color backgroundColor = new Color(255,255,243);
-        Color buttonColor = new Color(229,237,226);
-        panel.setLayout(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
-        panel.setBackground(backgroundColor);
-        panel.setBorder(BorderFactory.createEmptyBorder(500,500,500,500));
-        panel.setMinimumSize(new Dimension(600,600));
-        panel.setPreferredSize(new Dimension(600,600));
+        implementPanel(panel);
 
         titlePanel = new JPanel();
         titlePanel.setLayout(new GridLayout(1,1));
