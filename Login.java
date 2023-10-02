@@ -205,6 +205,14 @@ public class Login extends Page implements ActionListener{
         try{filer.toFile(guestsString);}
         catch(IOException e){System.out.println("Error!");}
     }
+
+    public void deleteFiles(String username){
+        String command = "rm -r data/"+username+"Data";
+        try{
+            Runtime.getRuntime().exec(command);
+        }
+        catch(IOException e){System.out.println("Error!");}
+    }
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == loginButton){
             try{
@@ -240,6 +248,7 @@ public class Login extends Page implements ActionListener{
                 worked = deleteUser("Username " + joinUsernameInput.getText(), "Password " + joinPasswordInput.getText());
                 if (worked){
                     joinMessage.setText("Account Deleted");
+                    deleteFiles(joinUsernameInput.getText());
                 }
                 else{
                     joinMessage.setText("Incorrect username/password");
