@@ -11,9 +11,10 @@ public class Join implements ActionListener{
     JPanel panel, inputPanel;
     JLabel loginLabel, joinLabel, usernameLabel, passwordOneLabel, passwordTwoLabel;
     JTextField usernameInput, passwordOneInput, passwordTwoInput;
-    JButton joinButton;
+    JButton joinButton, loginButton;
     String username, passwordOne, passwordTwo;
     File data;
+    Filer filer;
 
     public Join() throws FileNotFoundException{
         try {
@@ -24,7 +25,7 @@ public class Join implements ActionListener{
         } catch (UnsupportedLookAndFeelException ex) {
         }
 
-        Filer filer = new Filer("loginData.txt");
+        filer = new Filer("data/loginData.txt");
 
         frame = new JFrame("Login");
         panel = new JPanel();
@@ -47,9 +48,13 @@ public class Join implements ActionListener{
         passwordTwoLabel = new JLabel("Password");
         passwordTwoInput = new JTextField("");
 
-        joinButton = new JButton("Login");
+        joinButton = new JButton("Join");
         joinButton.setBackground(buttonColor);
         joinButton.addActionListener(this);
+
+        loginButton = new JButton("Back to Login");
+        loginButton.setBackground(buttonColor);
+        loginButton.addActionListener(this);
 
         inputPanel.add(usernameLabel);
         inputPanel.add(usernameInput);
@@ -64,11 +69,14 @@ public class Join implements ActionListener{
         constraints.gridx = 0;
         constraints.gridy = 1;
         panel.add(joinButton, constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        panel.add(loginButton, constraints);
 
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setVisible(true);
+        frame.setVisible(false);
     }
 
 
@@ -76,7 +84,9 @@ public class Join implements ActionListener{
         if (event.getSource() == joinButton){
             if (passwordOneInput.getText() == passwordTwoInput.getText()){
                 String addToFile = usernameInput.getText() + "\n" + passwordOneInput.getText();
+                try{filer.toFile(addToFile, true);}
+                catch(IOException e){}
             }
-        }   
+        } 
     }
 }

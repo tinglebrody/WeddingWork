@@ -6,7 +6,7 @@ import java.io.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class Gui implements ActionListener{
+public class MainGUI implements ActionListener{
 
     static String page = "Home";
     JMenuBar menubar;
@@ -21,7 +21,7 @@ public class Gui implements ActionListener{
     JTabbedPane tabs;
 
 
-    public Gui() throws IOException{
+    public MainGUI() throws IOException{
         try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
@@ -101,6 +101,5 @@ public class Gui implements ActionListener{
         }
     }
     public static void main(String[] args) throws InterruptedException, IOException{
-        //gui g = new gui();
     }
 }

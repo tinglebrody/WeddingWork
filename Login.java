@@ -13,7 +13,7 @@ public class Login implements ActionListener{
     JTextField usernameInput, passwordInput;
     JButton loginButton, joinButton;
     String username, password;
-    Gui main;
+    MainGUI main;
     Join join;
     File data;
     Scanner scan;
@@ -28,13 +28,11 @@ public class Login implements ActionListener{
         }
 
         try{
-            main = new Gui();
+            main = new MainGUI();
         }
         catch(IOException e){System.out.println("Error!");}
 
-        join = new Join();
-
-        data = new File("loginData.txt");
+        data = new File("data/loginData.txt");
 
         loginFrame = new JFrame("Login");
         panel = new JPanel();
@@ -54,6 +52,10 @@ public class Login implements ActionListener{
         loginButton.setBackground(buttonColor);
         loginButton.addActionListener(this);
 
+        joinButton = new JButton("Join");
+        joinButton.setBackground(buttonColor);
+        joinButton.addActionListener(this);
+
         usernameLabel = new JLabel("Username");
         usernameInput = new JTextField("");
         passwordLabel = new JLabel("Password");
@@ -70,6 +72,9 @@ public class Login implements ActionListener{
         constraints.gridx = 0;
         constraints.gridy = 1;
         panel.add(loginButton, constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        panel.add(joinButton, constraints);
 
         loginFrame.add(panel);
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,6 +109,13 @@ public class Login implements ActionListener{
                 }
             }
             catch(FileNotFoundException e){}
+        }
+        if (event.getSource() == joinButton){
+            try{join = new Join();}
+            catch(FileNotFoundException e){}
+
+            join.frame.setVisible(true);
+            loginFrame.setVisible(false);
         }
     }
 

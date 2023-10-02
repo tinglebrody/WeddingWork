@@ -36,7 +36,7 @@ public class Guests implements ActionListener{
         sharedFriendsList = new ArrayList<JLabel>();
         otherList = new ArrayList<JLabel>();
 
-        File inputFile = new File("guestsData.txt");
+        File inputFile = new File("data/guestsData.txt");
         Scanner scan = new Scanner(inputFile);
         groomFamilyCount = loadData(groomFamilyList, scan);
         brideFamilyCount = loadData(brideFamilyList, scan);
@@ -248,7 +248,7 @@ public class Guests implements ActionListener{
     }
 
     void saveAction() throws IOException{
-        Filer filer = new Filer("guestsData.txt");
+        Filer filer = new Filer("data/guestsData.txt");
         String addToFile = "";
         
         for (int i = 0; i < groomFamilyCount; i++){
