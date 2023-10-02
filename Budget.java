@@ -26,8 +26,8 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         } catch (IllegalAccessException ex) {
         } catch (UnsupportedLookAndFeelException ex) {
         }
-
-        File inputFile = new File("data/budgetData.txt");
+        
+        File inputFile = new File("data/"+super.username+"Data/"+super.username+"BudgetData.txt");
         Scanner scan = new Scanner(inputFile);
 
         totalBudget = Integer.parseInt(scan.nextLine());
@@ -372,7 +372,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
     }
 
     void saveAction() throws IOException{
-        Filer filer = new Filer("data/budgetData.txt");
+        Filer filer = new Filer("data/"+super.username+"Data/"+super.username+"BudgetData.txt");
         filer.toFile(String.valueOf(totalBudget) + "\n" + String.valueOf(totalExpenses) + "\n" + String.valueOf(currentBudget)
          + "\n" + String.valueOf(plannerPrice) + "\n" + String.valueOf(venuePrice) + "\n" + String.valueOf(cateringPrice)
           + "\n" + String.valueOf(floralsPrice) + "\n" + String.valueOf(photographerPrice) + "\n" + String.valueOf(videographerPrice)

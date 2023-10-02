@@ -36,8 +36,9 @@ public class Guests extends Page implements ActionListener{
         sharedFriendsList = new ArrayList<JLabel>();
         otherList = new ArrayList<JLabel>();
 
-        File inputFile = new File("data/guestsData.txt");
+        File inputFile = new File("data/"+super.username+"Data/"+super.username+"GuestsData.txt");
         Scanner scan = new Scanner(inputFile);
+
         groomFamilyCount = loadData(groomFamilyList, scan);
         brideFamilyCount = loadData(brideFamilyList, scan);
         groomFriendsCount = loadData(groomFriendsList, scan);
@@ -242,7 +243,7 @@ public class Guests extends Page implements ActionListener{
     }
 
     void saveAction() throws IOException{
-        Filer filer = new Filer("data/guestsData.txt");
+        Filer filer = new Filer("data/"+super.username+"Data/"+super.username+"GuestsData.txt");
         String addToFile = "";
         
         for (int i = 0; i < groomFamilyCount; i++){

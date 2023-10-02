@@ -15,13 +15,12 @@ public class Login extends Page implements ActionListener{
     JButton loginButton, joinButton, deleteButton;
     String username, password;
     MainGUI main;
-    Join join;
     File data;
     Filer filer;
     Scanner scan;
     JSplitPane pane;
     ArrayList<String> fileContents;
-    
+
     public Login() throws FileNotFoundException{
         try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -30,11 +29,6 @@ public class Login extends Page implements ActionListener{
         } catch (IllegalAccessException ex) {
         } catch (UnsupportedLookAndFeelException ex) {
         }
-
-        try{
-            main = new MainGUI();
-        }
-        catch(IOException e){System.out.println("Error!");}
 
         data = new File("data/loginData.txt");
         filer = new Filer("data/loginData.txt");
@@ -190,10 +184,25 @@ public class Login extends Page implements ActionListener{
     }
 
     public void createFiles(String username){
-        String command = "cd data && mkdir newfolder";
-        //String command = "cd data && mkdir " + username + "Data " + "&& cd " + username + "Data && touch " + username + "BudgetData.txt " +
-            //"&& touch " + username + "GuestsData.txt";
-        try{Process process = Runtime.getRuntime().exec(command);}
+        String command = "";
+        try{
+            command = "mkdir data/" + username + "Data";
+            Runtime.getRuntime().exec(command);
+            command = "touch data/" + username + "Data/" + username + "BudgetData.txt";
+            Runtime.getRuntime().exec(command);
+            command = "touch data/" + username + "Data/" + username + "GuestsData.txt";
+            Runtime.getRuntime().exec(command);
+        }
+        catch(IOException e){System.out.println("Error!");}
+        Filer filer;
+        String budgetString = "0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0";
+        filer = new Filer("data/"+username+"Data/"+username+"BudgetData.txt");
+        try{filer.toFile(budgetString);}
+        catch(IOException e){System.out.println("Error!");}
+
+        String guestsString = "Break\nBreak\nBreak\nBreak\nBreak\nBreak\n";
+        filer = new Filer("data/"+username+"Data/"+username+"GuestsData.txt");
+        try{filer.toFile(guestsString);}
         catch(IOException e){System.out.println("Error!");}
     }
     public void actionPerformed(ActionEvent event){
@@ -201,6 +210,11 @@ public class Login extends Page implements ActionListener{
             try{
                 boolean checkInput = validate("Username " + loginUsernameInput.getText(), "Password " + loginPasswordInput.getText());
                 if (checkInput == true){
+                    super.username = loginUsernameInput.getText();
+                    try{
+                        main = new MainGUI();
+                    }
+                    catch(IOException e){System.out.println("Error from login line 208!");}
                     main.frame.setVisible(true);
                     frame.setVisible(false);
                 }
