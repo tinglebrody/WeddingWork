@@ -12,7 +12,6 @@ JButton button;
 
     public Home() throws IOException{
 
-
         welcomeLabel = new JLabel("Welcome to WeddingWork!");
         homeLabel = new JLabel("Home");
         button = new JButton("Click to accomplish (almost) nothing");

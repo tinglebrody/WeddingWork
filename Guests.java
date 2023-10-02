@@ -48,7 +48,7 @@ public class Guests implements ActionListener{
         panel = new JPanel();
         Color backgroundColor = new Color(255,255,243);
         Color buttonColor = new Color(229,237,226);
-        Color pinkButtonColor = new Color(224,197,207);
+        Color darkButtonColor = new Color(34,68,34);
         panel.setLayout(new GridBagLayout());
         constraints = new GridBagConstraints();
         panel.setBackground(backgroundColor);
@@ -145,7 +145,8 @@ public class Guests implements ActionListener{
         inputPanel.add(otherButton);
 
         removeButton = new JButton("Remove");
-        removeButton.setBackground(pinkButtonColor);
+        removeButton.setForeground(Color.white);
+        removeButton.setBackground(darkButtonColor);
         removeButton.addActionListener(this);
         inputPanel.add(removeButton);
 
