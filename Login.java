@@ -21,7 +21,7 @@ public class Login extends Page implements ActionListener{
     Scanner scan;
     JSplitPane pane;
     ArrayList<String> fileContents;
-
+    
     public Login() throws FileNotFoundException{
         try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -130,7 +130,6 @@ public class Login extends Page implements ActionListener{
         frame.pack();
         frame.setVisible(true);
     }
-
     public boolean exists(String username) throws FileNotFoundException{
         String testUsername;
         scan = new Scanner(data);
@@ -164,6 +163,7 @@ public class Login extends Page implements ActionListener{
         return false;
     }
 
+
     public boolean deleteUser(String username, String password) throws FileNotFoundException{
         String fileContents = "", test;
         int count = 0;
@@ -189,6 +189,13 @@ public class Login extends Page implements ActionListener{
         }
     }
 
+    public void createFiles(String username){
+        String command = "cd data && mkdir newfolder";
+        //String command = "cd data && mkdir " + username + "Data " + "&& cd " + username + "Data && touch " + username + "BudgetData.txt " +
+            //"&& touch " + username + "GuestsData.txt";
+        try{Process process = Runtime.getRuntime().exec(command);}
+        catch(IOException e){System.out.println("Error!");}
+    }
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == loginButton){
             try{
@@ -207,6 +214,7 @@ public class Login extends Page implements ActionListener{
                 }
                 else{
                     filer.toFile("\nUsername " + joinUsernameInput.getText() + "\nPassword " + joinPasswordInput.getText(), true);
+                    createFiles(joinUsernameInput.getText());
                     joinMessage.setText("User added!");
                 }
             }
