@@ -11,7 +11,7 @@ public class Login extends Page implements ActionListener{
     JPanel loginPanel, joinPanel, loginInputPanel, joinInputPanel;
     JLabel loginLabel, joinLabel, loginUsernameLabel, loginPasswordLabel, joinUsernameLabel, joinPasswordLabel;
     JTextField loginUsernameInput, loginPasswordInput, joinUsernameInput, joinPasswordInput;
-    JButton loginButton, joinButton;
+    JButton loginButton, joinButton, deleteButton;
     String username, password;
     MainGUI main;
     Join join;
@@ -86,6 +86,11 @@ public class Login extends Page implements ActionListener{
         joinButton.setBackground(buttonColor);
         joinButton.addActionListener(this);
 
+        deleteButton = new JButton("Delete Account");
+        deleteButton.setBackground(darkButtonColor);
+        deleteButton.setForeground(Color.white);
+        deleteButton.addActionListener(this);
+
         joinUsernameLabel = new JLabel("Username");
         joinUsernameInput = new JTextField("");
         joinPasswordLabel = new JLabel("Password");
@@ -105,6 +110,10 @@ public class Login extends Page implements ActionListener{
         constraints.gridx = 0;
         constraints.gridy = 2;
         joinPanel.add(joinButton, constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        joinPanel.add(deleteButton, constraints);
+
 
         pane.setLeftComponent(loginPanel);
         pane.setRightComponent(joinPanel);
@@ -148,6 +157,9 @@ public class Login extends Page implements ActionListener{
                 filer.toFile("\nUsername " + joinUsernameInput.getText() + "\nPassword " + joinPasswordInput.getText(), true);
             }
             catch (IOException e){}
+        }
+        if (event.getSource() == deleteButton){
+            System.out.println("delete!");
         }
     }
 
