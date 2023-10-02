@@ -1,8 +1,6 @@
-Username b
-Password p
-Username btingle1@uncc.edu
-Password Blt1121!
+Username user
+Password pass
 Username brody
 Password tingle
-Username myname
-Password isbrody
+Username these
+Password arewords

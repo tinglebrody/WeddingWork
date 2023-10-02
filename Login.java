@@ -9,7 +9,8 @@ public class Login extends Page implements ActionListener{
 
     JFrame frame;
     JPanel loginPanel, joinPanel, loginInputPanel, joinInputPanel;
-    JLabel loginLabel, joinLabel, loginUsernameLabel, loginPasswordLabel, joinUsernameLabel, joinPasswordLabel;
+    JLabel loginLabel, joinLabel, loginUsernameLabel, loginPasswordLabel, joinUsernameLabel, joinPasswordLabel, passwordMessage,
+        joinMessage;
     JTextField loginUsernameInput, loginPasswordInput, joinUsernameInput, joinPasswordInput;
     JButton loginButton, joinButton, deleteButton;
     String username, password;
@@ -19,6 +20,7 @@ public class Login extends Page implements ActionListener{
     Filer filer;
     Scanner scan;
     JSplitPane pane;
+    ArrayList<String> fileContents;
 
     public Login() throws FileNotFoundException{
         try {
@@ -82,6 +84,11 @@ public class Login extends Page implements ActionListener{
         joinInputPanel = new JPanel(new GridLayout(2,2));
         joinInputPanel.setBackground(backgroundColor);
 
+        joinUsernameLabel = new JLabel("Username");
+        joinUsernameInput = new JTextField("");
+        joinPasswordLabel = new JLabel("Password");
+        joinPasswordInput = new JTextField("");
+
         joinButton = new JButton("Join");
         joinButton.setBackground(buttonColor);
         joinButton.addActionListener(this);
@@ -91,10 +98,9 @@ public class Login extends Page implements ActionListener{
         deleteButton.setForeground(Color.white);
         deleteButton.addActionListener(this);
 
-        joinUsernameLabel = new JLabel("Username");
-        joinUsernameInput = new JTextField("");
-        joinPasswordLabel = new JLabel("Password");
-        joinPasswordInput = new JTextField("");
+        joinMessage = new JLabel("");
+        joinMessage.setBackground(backgroundColor);
+        joinMessage.setVisible(true);
 
         joinInputPanel.add(joinUsernameLabel);
         joinInputPanel.add(joinUsernameInput);
@@ -113,7 +119,9 @@ public class Login extends Page implements ActionListener{
         constraints.gridx = 0;
         constraints.gridy = 3;
         joinPanel.add(deleteButton, constraints);
-
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        joinPanel.add(joinMessage, constraints);
 
         pane.setLeftComponent(loginPanel);
         pane.setRightComponent(joinPanel);
@@ -123,6 +131,21 @@ public class Login extends Page implements ActionListener{
         frame.setVisible(true);
     }
 
+    public boolean exists(String username) throws FileNotFoundException{
+        String testUsername;
+        scan = new Scanner(data);
+        while (true)
+            try{
+                testUsername = scan.nextLine();
+                if (username.compareTo(testUsername) == 0){
+                    return true;
+                }
+            }
+            catch(NoSuchElementException e){
+                break;
+            }
+        return false;
+    }
     public boolean validate(String username, String password) throws FileNotFoundException{
         String testUsername;
         scan = new Scanner(data);
@@ -141,6 +164,27 @@ public class Login extends Page implements ActionListener{
         return false;
     }
 
+    public void deleteUser(String username, String password) throws FileNotFoundException{
+        String fileContents = "", test;
+        int count = 0;
+        scan = new Scanner(data);
+        if (validate("Username " + joinUsernameInput.getText(), "Password " + joinPasswordInput.getText())){
+            while (true){
+                try{
+                    test = scan.nextLine();
+                    if (test.compareTo(username) != 0 && test.compareTo(password) != 0){
+                        fileContents = fileContents + test + "\n";
+                    }
+                }
+                catch(NoSuchElementException e){
+                    break;
+                }
+            }
+            try{filer.toFile(fileContents);}
+            catch(IOException e){}
+        }
+    }
+
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == loginButton){
             try{
@@ -154,12 +198,19 @@ public class Login extends Page implements ActionListener{
         }
         if (event.getSource() == joinButton){
             try{
-                filer.toFile("\nUsername " + joinUsernameInput.getText() + "\nPassword " + joinPasswordInput.getText(), true);
+                if (exists("Username " + joinUsernameInput.getText())){
+                    joinMessage.setText("Username already exists!");
+                }
+                else{
+                    filer.toFile("\nUsername " + joinUsernameInput.getText() + "\nPassword " + joinPasswordInput.getText(), true);
+                    joinMessage.setText("User added!");
+                }
             }
             catch (IOException e){}
         }
         if (event.getSource() == deleteButton){
-            System.out.println("delete!");
+            try{deleteUser("Username " + joinUsernameInput.getText(), "Password " + joinPasswordInput.getText());}
+            catch(FileNotFoundException e){}
         }
     }
 
