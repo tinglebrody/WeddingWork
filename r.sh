@@ -1,3 +1,3 @@
 #!/bin/bash
 javac *.j*
-java gui
+java Login

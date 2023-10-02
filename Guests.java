@@ -48,6 +48,7 @@ public class Guests implements ActionListener{
         panel = new JPanel();
         Color backgroundColor = new Color(255,255,243);
         Color buttonColor = new Color(229,237,226);
+        Color pinkButtonColor = new Color(224,197,207);
         panel.setLayout(new GridBagLayout());
         constraints = new GridBagConstraints();
         panel.setBackground(backgroundColor);
@@ -144,9 +145,14 @@ public class Guests implements ActionListener{
         inputPanel.add(otherButton);
 
         removeButton = new JButton("Remove");
-        removeButton.setBackground(new Color(229,237,226));
+        removeButton.setBackground(pinkButtonColor);
         removeButton.addActionListener(this);
         inputPanel.add(removeButton);
+
+        save = new JButton("Save");
+        save.addActionListener(this);
+        save.setBackground(buttonColor);
+        inputPanel.add(save);
 
         groomFamilyLabel = new JLabel("Groom Family");
         groomFamilyLabel.setBackground(backgroundColor);
@@ -171,11 +177,6 @@ public class Guests implements ActionListener{
         otherLabel = new JLabel("Other");
         otherLabel.setBackground(backgroundColor);
         otherPanel.add(otherLabel);
-
-        save = new JButton("Save");
-        save.addActionListener(this);
-        save.setBackground(buttonColor);
-        inputPanel.add(save);
 
         for (int i = 0; i < guestCount; i++)
         {

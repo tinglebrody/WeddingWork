@@ -14,4 +14,10 @@ public void toFile(String text) throws IOException{
         writer.write(text);
         writer.close();
     }
+
+public void toFile(String text, boolean t) throws IOException{
+        FileWriter writer = new FileWriter(filePath, true);
+        writer.write(text);
+        writer.close();
+    }
 }

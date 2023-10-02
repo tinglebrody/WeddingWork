@@ -6,7 +6,7 @@ import java.io.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class gui implements ActionListener{
+public class Gui implements ActionListener{
 
     static String page = "Home";
     JMenuBar menubar;
@@ -21,7 +21,7 @@ public class gui implements ActionListener{
     JTabbedPane tabs;
 
 
-    public gui() throws IOException{
+    public Gui() throws IOException{
         try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
@@ -80,7 +80,7 @@ public class gui implements ActionListener{
         frame.setTitle("WeddingWork");
         frame.setJMenuBar(menubar);
         frame.pack();
-        frame.setVisible(true);
+        frame.setVisible(false);
     }
 
     public void actionPerformed(ActionEvent event){
@@ -101,8 +101,6 @@ public class gui implements ActionListener{
         }
     }
     public static void main(String[] args) throws InterruptedException, IOException{
-        Filer filer = new Filer("data.txt");
-        filer.toFile("Completed Data!");
-        gui g = new gui();
+        //gui g = new gui();
     }
 }
