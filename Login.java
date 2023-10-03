@@ -5,11 +5,11 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
-public class Login extends Page implements ActionListener{
+public class Login extends Page implements ActionListener,WindowListener{
 
     JFrame frame;
     JPanel loginPanel, joinPanel, loginInputPanel, joinInputPanel;
-    JLabel loginLabel, joinLabel, loginUsernameLabel, loginPasswordLabel, joinUsernameLabel, joinPasswordLabel, passwordMessage,
+    JLabel loginLabel, joinLabel, loginUsernameLabel, loginPasswordLabel, joinUsernameLabel, joinPasswordLabel, loginMessage,
         joinMessage;
     JTextField loginUsernameInput, loginPasswordInput, joinUsernameInput, joinPasswordInput;
     JButton loginButton, joinButton, deleteButton;
@@ -19,7 +19,7 @@ public class Login extends Page implements ActionListener{
     Filer filer;
     Scanner scan;
     JSplitPane pane;
-    ArrayList<String> fileContents;
+    ArrayList<String> database;
 
     public Login() throws FileNotFoundException{
         try {
@@ -32,9 +32,13 @@ public class Login extends Page implements ActionListener{
 
         data = new File("data/loginData.txt");
         filer = new Filer("data/loginData.txt");
+        scan = new Scanner(data);
+        database = new ArrayList<String>();
+        loadData(database, scan);
 
         pane = new JSplitPane();
         frame = new JFrame("Login");
+        frame.addWindowListener(this);
 
         loginPanel = new JPanel();
         joinPanel = new JPanel();
@@ -57,6 +61,9 @@ public class Login extends Page implements ActionListener{
         loginPasswordLabel = new JLabel("Password");
         loginPasswordInput = new JTextField("");
 
+        loginMessage = new JLabel("");
+        loginMessage.setBackground(backgroundColor);
+
         loginInputPanel.add(loginUsernameLabel);
         loginInputPanel.add(loginUsernameInput);
         loginInputPanel.add(loginPasswordLabel);
@@ -71,6 +78,9 @@ public class Login extends Page implements ActionListener{
         constraints.gridx = 0;
         constraints.gridy = 2;
         loginPanel.add(loginButton, constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        loginPanel.add(loginMessage, constraints);
 
         joinLabel = new JLabel("JOIN");
         joinLabel.setBackground(backgroundColor);
@@ -124,63 +134,59 @@ public class Login extends Page implements ActionListener{
         frame.pack();
         frame.setVisible(true);
     }
-    public boolean exists(String username) throws FileNotFoundException{
-        String testUsername;
-        scan = new Scanner(data);
-        while (true)
+
+    public void loadData(ArrayList<String> list, Scanner scan){
+        while (true){
             try{
-                testUsername = scan.nextLine();
-                if (username.compareTo(testUsername) == 0){
-                    return true;
-                }
+                list.add(scan.nextLine());
             }
             catch(NoSuchElementException e){
                 break;
             }
+        }
+    }
+
+    public void writeData(ArrayList<String> list){
+        String addToFile = "";
+        for (String element : list){
+            addToFile = addToFile + element + "\n";
+        }
+        try{
+            filer.toFile(addToFile);
+        }
+        catch(IOException e){}
+    }
+    public boolean exists(String username) throws FileNotFoundException{
+        String testUsername;
+        scan = new Scanner(data);
+        for (String element : database){
+            if (element.compareTo(username) == 0){
+                return true;
+            }
+        }
         return false;
     }
     public boolean validate(String username, String password) throws FileNotFoundException{
         String testUsername;
         scan = new Scanner(data);
-        while (true)
-            try{
-                testUsername = scan.nextLine();
-                if (username.compareTo(testUsername) == 0){
-                    if (password.compareTo(scan.nextLine()) == 0){
-                        return true;
-                    }
+        for (int i = 0; i < database.size(); i++){
+            if (database.get(i).compareTo(username) == 0){
+                if (database.get(i+1).compareTo(password) == 0){
+                    return true;
                 }
             }
-            catch(NoSuchElementException e){
-                break;
-            }
+        }
         return false;
     }
 
-
     public boolean deleteUser(String username, String password) throws FileNotFoundException{
-        String fileContents = "", test;
-        int count = 0;
-        scan = new Scanner(data);
-        if (validate("Username " + joinUsernameInput.getText(), "Password " + joinPasswordInput.getText())){
-            while (true){
-                try{
-                    test = scan.nextLine();
-                    if (test.compareTo(username) != 0 && test.compareTo(password) != 0){
-                        fileContents = fileContents + test + "\n";
-                    }
-                }
-                catch(NoSuchElementException e){
-                    break;
-                }
-            }
-            try{filer.toFile(fileContents);}
-            catch(IOException e){}
+        if (validate(username, password)){
+            int index = database.indexOf(username);
+            database.remove(username);
+            database.remove(index);
             return true;
         }
-        else{
-            return false;
-        }
+        return false;
     }
 
     public void createFiles(String username){
@@ -213,18 +219,32 @@ public class Login extends Page implements ActionListener{
         }
         catch(IOException e){System.out.println("Error!");}
     }
+    public void windowClosing(WindowEvent e) {
+        writeData(database);
+    }
+    public void windowClosed(WindowEvent e) {}
+    public void windowOpened(WindowEvent e) {}
+    public void windowIconified(WindowEvent e) {}
+    public void windowDeiconified(WindowEvent e) {}
+    public void windowActivated(WindowEvent e) {}
+    public void windowDeactivated(WindowEvent e) {}
+
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == loginButton){
             try{
                 boolean checkInput = validate("Username " + loginUsernameInput.getText(), "Password " + loginPasswordInput.getText());
                 if (checkInput == true){
                     super.username = loginUsernameInput.getText();
+                    writeData(database);
                     try{
                         main = new MainGUI();
                     }
                     catch(IOException e){System.out.println("Error from login line 208!");}
                     main.frame.setVisible(true);
                     frame.setVisible(false);
+                }
+                else{
+                    loginMessage.setText("Invalid username/password");
                 }
             }
             catch(FileNotFoundException e){}
@@ -235,7 +255,8 @@ public class Login extends Page implements ActionListener{
                     joinMessage.setText("Username already exists!");
                 }
                 else{
-                    filer.toFile("\nUsername " + joinUsernameInput.getText() + "\nPassword " + joinPasswordInput.getText(), true);
+                    database.add("Username " + joinUsernameInput.getText());
+                    database.add("Password " + joinPasswordInput.getText());
                     createFiles(joinUsernameInput.getText());
                     joinMessage.setText("User added!");
                 }
@@ -251,7 +272,7 @@ public class Login extends Page implements ActionListener{
                     deleteFiles(joinUsernameInput.getText());
                 }
                 else{
-                    joinMessage.setText("Incorrect username/password");
+                    joinMessage.setText("Invalid username/password");
                 }
             }
             catch(FileNotFoundException e){}
