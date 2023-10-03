@@ -1,2 +1,4 @@
-Username user
-Password pass
+Username u
+Password p
+Username Jane123
+Password JanelovesBrody

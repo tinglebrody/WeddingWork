@@ -6,11 +6,11 @@ import java.io.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class MainGUI implements ActionListener{
+public class MainGUI extends Page implements ActionListener, WindowListener{
 
     static String page = "Home";
     JMenuBar menubar;
-    JMenu homeMenu, budgetMenu, guestsMenu;
+    JMenu navigate;
     JMenuItem home, budget, guests;
     static JFrame frame;
     static Budget budgetPage;
@@ -24,17 +24,15 @@ public class MainGUI implements ActionListener{
     public MainGUI() throws IOException{
         try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        UIManager.put("MenuItem.selectionBackground", darkButtonColor);
+        UIManager.put("MenuItem.selectionForeground", Color.WHITE);
+        UIManager.put("Menu.selectionBackground", darkButtonColor);
+        UIManager.put("Menu.selectionForeground", Color.WHITE);
         } catch (ClassNotFoundException ex) {
         } catch (InstantiationException ex) {
         } catch (IllegalAccessException ex) {
         } catch (UnsupportedLookAndFeelException ex) {
         }
-        Color menuBarBackgroundColor = new Color(229,237,226);
-        Color menuBackgroundColor = new Color(96,107,99);
-        Color menuItemBackgroundColor = new Color(96,107,99);
-        UIManager.put("MenuBar.background", menuBarBackgroundColor);
-        UIManager.put("Menu.background", menuBackgroundColor);
-        UIManager.put("MenuItem.background", menuItemBackgroundColor);
 
         // initializing variables
         frame = new JFrame("Wedding Work");
@@ -43,30 +41,34 @@ public class MainGUI implements ActionListener{
         guestsPage = new Guests();
         homePanel = new JPanel(new CardLayout());
 
+        frame.addWindowListener(this);
 
         // menu bar
         menubar = new JMenuBar();
-        Color menuBarColor = new Color(190,215,209);
-        menubar.setBackground(menuBarColor);
-        menubar.setOpaque(false);
+        menubar.setBackground(buttonColor);
+        menubar.setOpaque(true);
 
         // menus 
-        homeMenu = new JMenu("Home");
-        budgetMenu = new JMenu("Budget");
-        guestsMenu = new JMenu("Guests");
+        navigate = new JMenu("Navigate");
 
         // items
         home = new JMenuItem("Home");
         budget = new JMenuItem("Budget");
         guests = new JMenuItem("Guests");
-        homeMenu.add(home);
-        budgetMenu.add(budget);
-        guestsMenu.add(guests);
+        navigate.add(home);
+        navigate.add(budget);
+        navigate.add(guests);
+
+        home.setBackground(buttonColor);
+        home.setForeground(Color.black);
+        home.setOpaque(true);
+        budget.setBackground(buttonColor);
+        budget.setOpaque(true);
+        guests.setBackground(buttonColor);
+        guests.setOpaque(true);
 
         // add menus to menubar
-        menubar.add(homeMenu);
-        menubar.add(budgetMenu);
-        menubar.add(guestsMenu);
+        menubar.add(navigate);
 
         budget.addActionListener(this);
         home.addActionListener(this);
@@ -83,6 +85,20 @@ public class MainGUI implements ActionListener{
         frame.setVisible(false);
     }
 
+    public void windowClosing(WindowEvent event) {
+        try{
+            System.out.println("Autosaved!");
+            guestsPage.saveAction();
+            budgetPage.saveAction();
+        }
+        catch (IOException e){}
+    }
+    public void windowClosed(WindowEvent e) {}
+    public void windowOpened(WindowEvent e) {}
+    public void windowIconified(WindowEvent e) {}
+    public void windowDeiconified(WindowEvent e) {}
+    public void windowActivated(WindowEvent e) {}
+    public void windowDeactivated(WindowEvent e) {}
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == home){
             homePage.panel.setVisible(true);

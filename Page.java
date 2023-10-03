@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Page{
     Color backgroundColor = new Color(255,255,243);
     Color buttonColor = new Color(229,237,226);
-    Color darkButtonColor = new Color(34,68,34);
+    Color darkButtonColor = new Color(115,118,97);
     GridBagConstraints constraints;
     JPanel panel;
     static String username;

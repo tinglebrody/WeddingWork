@@ -5,7 +5,7 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
-public class Login extends Page implements ActionListener,WindowListener{
+public class Login extends Page implements ActionListener, WindowListener{
 
     JFrame frame;
     JPanel loginPanel, joinPanel, loginInputPanel, joinInputPanel;

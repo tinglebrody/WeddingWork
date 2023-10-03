@@ -13,7 +13,7 @@ public class Guests extends Page implements ActionListener{
     JLabel guestNameLabel, groomFamilyLabel, brideFamilyLabel, groomFriendsLabel, brideFriendsLabel, sharedFriendsLabel, otherLabel;
     JTextField guestNameInput, guestCountInput;
     JButton groomFamilyButton, brideFamilyButton, groomFriendsButton, brideFriendsButton, sharedFriendsButton, 
-        otherButton, removeButton, save;
+        otherButton, removeButton;
     GridBagConstraints constraints;
     ArrayList<JLabel> groomFamilyList, brideFamilyList, groomFriendsList, brideFriendsList, sharedFriendsList,
         otherList;
@@ -143,11 +143,6 @@ public class Guests extends Page implements ActionListener{
         removeButton.setBackground(darkButtonColor);
         removeButton.addActionListener(this);
         inputPanel.add(removeButton);
-
-        save = new JButton("Save");
-        save.addActionListener(this);
-        save.setBackground(buttonColor);
-        inputPanel.add(save);
 
         groomFamilyLabel = new JLabel("Groom Family");
         groomFamilyLabel.setBackground(backgroundColor);
@@ -347,6 +342,7 @@ public class Guests extends Page implements ActionListener{
         }
         return "";
     }
+
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == groomFamilyButton) {
             try{
@@ -416,12 +412,6 @@ public class Guests extends Page implements ActionListener{
             if (removedFrom == "other"){
                 otherCount--;
             }
-        }
-        if (event.getSource() == save) {
-            try{
-                saveAction();
-            }
-            catch (IOException e){}
         }
     }
     public static void main(String[] args){}

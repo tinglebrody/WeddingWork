@@ -12,11 +12,11 @@ int totalBudget, totalExpenses, currentBudget, plannerPrice, venuePrice, caterin
     videographerPrice, cosmeticsPrice, dressPrice, entertainmentPrice, decorationsPrice;
 JLabel title, totalBudgetLabel, totalExpensesLabel, currentBudgetLabel, plannerLabel, venueLabel, cateringLabel, 
     floralsLabel, photographerLabel, videographerLabel, cosmeticsLabel, dressLabel, entertainmentLabel, decorationsLabel, spacerLine;
-JPanel titlePanel, topPanel, middlePanel, bottomPanel, spacerPanel, savePanel;
+JPanel titlePanel, topPanel, middlePanel, bottomPanel, spacerPanel;
 JTextField totalBudgetInput, plannerPriceInput, venuePriceInput, cateringPriceInput, floralsPriceInput, photographerPriceInput,
     videographerPriceInput, cosmeticsPriceInput, dressPriceInput, entertainmentPriceInput, decorationsPriceInput;
 JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsButton, photographerButton,
-    videographerButton, cosmeticsButton, dressButton, entertainmentButton, decorationsButton, save;
+    videographerButton, cosmeticsButton, dressButton, entertainmentButton, decorationsButton;
 
     public Budget() throws IOException{
         try {
@@ -67,10 +67,6 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         spacerPanel = new JPanel();
         spacerPanel.setLayout(new GridLayout(1,1));
         spacerPanel.setBackground(backgroundColor);
-
-        savePanel = new JPanel();
-        savePanel.setLayout(new GridLayout(1,1));
-        savePanel.setBackground(backgroundColor);
 
         title = new JLabel("Budget Page");
         title.setBackground(backgroundColor);
@@ -206,11 +202,6 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         decorationsButton.setBackground(buttonColor);
         bottomPanel.add(decorationsButton);
 
-        save = new JButton("Save");
-        save.addActionListener(this);
-        save.setBackground(buttonColor);
-        savePanel.add(save);
-
         constraints.gridx = 0;
         constraints.gridy = 0;
         panel.add(titlePanel, constraints);
@@ -229,9 +220,6 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         constraints.gridx = 0;
         constraints.gridy = 5;
         panel.add(bottomPanel, constraints);
-        constraints.gridx = 0;
-        constraints.gridy = 6;
-        panel.add(savePanel, constraints);
         panel.setVisible(false);
     }
 
@@ -379,6 +367,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
            + "\n" + String.valueOf(cosmeticsPrice)+ "\n" + String.valueOf(dressPrice) + "\n" + String.valueOf(entertainmentPrice)
             + "\n" + String.valueOf(decorationsPrice));
     }
+
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == totalBudgetButton) {
             totalBudgetButtonAction();
@@ -412,12 +401,6 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         }
         else if (event.getSource() == decorationsButton){
             decorationsButtonAction();
-        }
-        else if (event.getSource() == save){
-            try{
-                saveAction();
-            }
-            catch(IOException e){}
         }
     }
 
