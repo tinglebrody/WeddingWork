@@ -44,6 +44,8 @@ public class Login extends Page implements ActionListener,WindowListener{
         joinPanel = new JPanel();
         implementPanel(loginPanel);
         implementPanel(joinPanel);
+        loginPanel.setPreferredSize(new Dimension(200,200));
+        joinPanel.setPreferredSize(new Dimension(200,200));
         constraints = new GridBagConstraints();
 
         loginLabel = new JLabel("LOGIN");

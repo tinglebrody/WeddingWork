@@ -1,4 +1,2 @@
-Username brodytingle
-Password btingle1121
-Username jane
-Password humphrey
+Username user
+Password pass

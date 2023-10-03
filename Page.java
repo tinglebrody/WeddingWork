@@ -16,8 +16,5 @@ public class Page{
     public void implementPanel(JPanel panel){
         panel.setLayout(new GridBagLayout());
         panel.setBackground(backgroundColor);
-        panel.setBorder(BorderFactory.createEmptyBorder(500,500,500,500));
-        panel.setMinimumSize(new Dimension(600,600));
-        panel.setPreferredSize(new Dimension(600,600));
     }
 }

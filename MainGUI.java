@@ -79,7 +79,7 @@ public class MainGUI implements ActionListener{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("WeddingWork");
         frame.setJMenuBar(menubar);
-        frame.pack();
+        frame.setSize(new Dimension(1300,1000));
         frame.setVisible(false);
     }
 
