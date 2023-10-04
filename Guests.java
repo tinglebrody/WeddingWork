@@ -268,7 +268,7 @@ public class Guests extends Page implements ActionListener{
         filer.toFile(addToFile);
     }
 
-    int loadData(ArrayList<JLabel> list, Scanner scan){
+    public int loadData(ArrayList<JLabel> list, Scanner scan){
         String input = "";
         int numGuests = 0;
         while (true){

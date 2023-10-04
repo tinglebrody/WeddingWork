@@ -98,6 +98,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
             System.out.println("Autosaved!");
             guestsPage.saveAction();
             budgetPage.saveAction();
+            contactsPage.saveAction();
         }
         catch (IOException e){}
     }

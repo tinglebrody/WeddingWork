@@ -14,6 +14,8 @@ public class Contacts extends Page implements ActionListener{
     JButton addButton, removeButton;
     ArrayList<JLabel> vendorLabels;
     int count;
+    Filer filer;
+    File data;
 
     public Contacts(){
         try {
@@ -23,6 +25,15 @@ public class Contacts extends Page implements ActionListener{
         } catch (IllegalAccessException ex) {
         } catch (UnsupportedLookAndFeelException ex) {
         }
+        vendorLabels = new ArrayList<JLabel>();
+        File inputFile = new File("data/"+super.username+"Data/"+super.username+"ContactsData.txt");
+        
+        try{
+            Scanner scan = new Scanner(inputFile);
+            count = loadData(vendorLabels, scan);
+        }
+        catch(FileNotFoundException e){}
+        
 
         panel = new JPanel();
         implementPanel(panel);
@@ -86,8 +97,6 @@ public class Contacts extends Page implements ActionListener{
         listPanel.setBackground(backgroundColor);
         listPanel.setLayout(new GridLayout(40,1));
 
-        vendorLabels = new ArrayList<JLabel>();
-
 
         for (int i = 0; i < 40; i++){
             vendorLabels.add(new JLabel(" "));
@@ -105,6 +114,32 @@ public class Contacts extends Page implements ActionListener{
         panel.add(listPanel, constraints);
     }
 
+    public int loadData(ArrayList<JLabel> list, Scanner scan){
+        String input = "";
+        int numGuests = 0;
+        while (true){
+            input = scan.nextLine();
+            if (input.compareTo("Break") == 0){
+                break;
+            }
+            else{
+                list.add(new JLabel(input));
+                numGuests++;
+            }
+        }
+        return numGuests;
+    }
+
+    public void saveAction() throws IOException{
+        Filer filer = new Filer("data/"+super.username+"Data/"+super.username+"ContactsData.txt");
+        String addToFile = "";
+        
+        for (int i = 0; i < count; i++){
+            addToFile = addToFile + vendorLabels.get(i).getText() + "\n";
+        }
+        addToFile = addToFile + "Break\n";
+        filer.toFile(addToFile);
+    }
 
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == addButton){
