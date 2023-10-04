@@ -305,15 +305,15 @@ public class Guests extends Page implements ActionListener{
 
     public void removeFromList(String name, ArrayList<JLabel> list, int count){
         int index = indexOf(name, list);
-            if (list.get(index+1) != null)
-            {
-                for (int i = index; i < count; i++)
-                    list.get(i).setText(list.get(i+1).getText());
-            }
-            else
-            {
-                list.get(index).setText("");
-            }
+        if (list.get(index+1) != null)
+        {
+            for (int i = index; i < count; i++)
+                list.get(i).setText(list.get(i+1).getText());
+        }
+        else
+        {
+            list.get(index).setText("");
+        }
     }
     public String remove(String name){
         if (labelContains(name, groomFamilyList)){

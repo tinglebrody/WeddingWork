@@ -11,11 +11,12 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
     static String page = "Home";
     JMenuBar menubar;
     JMenu navigate;
-    JMenuItem home, budget, guests;
+    JMenuItem home, budget, guests, vendors;
     static JFrame frame;
     static Budget budgetPage;
     static Home homePage;
     static Guests guestsPage;
+    static Vendors vendorsPage;
     static JPanel homePanel;
     static CardLayout manager;
     JTabbedPane tabs;
@@ -39,6 +40,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         homePage = new Home();
         budgetPage = new Budget();
         guestsPage = new Guests();
+        vendorsPage = new Vendors();
         homePanel = new JPanel(new CardLayout());
 
         frame.addWindowListener(this);
@@ -55,9 +57,11 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         home = new JMenuItem("Home");
         budget = new JMenuItem("Budget");
         guests = new JMenuItem("Guests");
+        vendors = new JMenuItem("Vendors");
         navigate.add(home);
         navigate.add(budget);
         navigate.add(guests);
+        navigate.add(vendors);
 
         home.setBackground(buttonColor);
         home.setForeground(Color.black);
@@ -66,6 +70,8 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         budget.setOpaque(true);
         guests.setBackground(buttonColor);
         guests.setOpaque(true);
+        vendors.setBackground(buttonColor);
+        vendors.setOpaque(true);
 
         // add menus to menubar
         menubar.add(navigate);
@@ -73,10 +79,12 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         budget.addActionListener(this);
         home.addActionListener(this);
         guests.addActionListener(this);
+        vendors.addActionListener(this);
 
         homePanel.add(homePage.panel);
         homePanel.add(budgetPage.panel);
         homePanel.add(guestsPage.panel);
+        homePanel.add(vendorsPage.panel);
         frame.add(homePanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("WeddingWork");
@@ -104,16 +112,25 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
             homePage.panel.setVisible(true);
             budgetPage.panel.setVisible(false);
             guestsPage.panel.setVisible(false);
+            vendorsPage.panel.setVisible(false);
         }
         if (event.getSource() == budget){
             homePage.panel.setVisible(false);
             budgetPage.panel.setVisible(true);
             guestsPage.panel.setVisible(false);
+            vendorsPage.panel.setVisible(false);
         }
         if (event.getSource() == guests){
             homePage.panel.setVisible(false);
             budgetPage.panel.setVisible(false);
             guestsPage.panel.setVisible(true);
+            vendorsPage.panel.setVisible(false);
+        }
+        if (event.getSource() == vendors){
+            homePage.panel.setVisible(false);
+            budgetPage.panel.setVisible(false);
+            guestsPage.panel.setVisible(false);
+            vendorsPage.panel.setVisible(true);
         }
     }
     public static void main(String[] args) throws InterruptedException, IOException{
