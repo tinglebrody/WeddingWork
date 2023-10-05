@@ -215,7 +215,7 @@ public class Login extends Page implements ActionListener, WindowListener{
         try{filer.toFile(guestsString);}
         catch(IOException e){System.out.println("Error!");}
 
-        String contactsString = "Break\nBreak\nBreak\nBreak\nBreak\nBreak\n";
+        String contactsString = "Break\n";
         filer = new Filer("data/"+username+"Data/"+username+"ContactsData.txt");
         try{filer.toFile(guestsString);}
         catch(IOException e){System.out.println("Error!");}

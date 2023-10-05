@@ -1,7 +1,5 @@
-| Dad |
 | Mom |
 | Jeff |
-| Davis |
 | Madison |
 | Max |
 | Christa |
@@ -30,7 +28,6 @@ Break
 | Gavin |
 Break
 | Salo |
-| William Scurry |
 | Joe Mulligan |
 | Kayla |
 | Pavlo |

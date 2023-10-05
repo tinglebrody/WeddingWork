@@ -12,7 +12,8 @@ public class Contacts extends Page implements ActionListener{
     JLabel titleLabel, nameLabel, jobLabel, phoneLabel, emailLabel;
     JTextField nameInput, jobInput, phoneInput, emailInput;
     JButton addButton, removeButton;
-    ArrayList<JLabel> vendorLabels;
+    ArrayList<JLabel> contactsList;
+    ArrayList<String> names;
     int count;
     Filer filer;
     File data;
@@ -25,12 +26,14 @@ public class Contacts extends Page implements ActionListener{
         } catch (IllegalAccessException ex) {
         } catch (UnsupportedLookAndFeelException ex) {
         }
-        vendorLabels = new ArrayList<JLabel>();
+        contactsList = new ArrayList<JLabel>();
+        names = new ArrayList<String>();
+
         File inputFile = new File("data/"+super.username+"Data/"+super.username+"ContactsData.txt");
         
         try{
             Scanner scan = new Scanner(inputFile);
-            count = loadData(vendorLabels, scan);
+            count = loadData(contactsList, scan);
         }
         catch(FileNotFoundException e){}
         
@@ -56,7 +59,6 @@ public class Contacts extends Page implements ActionListener{
         inputPanel.add(nameLabel);
 
         nameInput = new JTextField("          ");
-        nameInput.setBackground(backgroundColor);
         inputPanel.add(nameInput);
 
         jobLabel = new JLabel("Job:");
@@ -64,15 +66,12 @@ public class Contacts extends Page implements ActionListener{
         inputPanel.add(jobLabel);
 
         jobInput = new JTextField("          ");
-        jobInput.setBackground(backgroundColor);
         inputPanel.add(jobInput);
 
         phoneLabel = new JLabel("Phone:");
-        phoneLabel.setBackground(backgroundColor);
         inputPanel.add(phoneLabel);
 
         phoneInput = new JTextField("          ");
-        phoneInput.setBackground(backgroundColor);
         inputPanel.add(phoneInput);
 
         emailLabel = new JLabel("Email:");
@@ -80,13 +79,17 @@ public class Contacts extends Page implements ActionListener{
         inputPanel.add(emailLabel);
 
         emailInput = new JTextField("          ");
-        emailInput.setBackground(backgroundColor);
         inputPanel.add(emailInput);
 
         addButton = new JButton("+");
         addButton.setBackground(buttonColor);
         addButton.addActionListener(this);
         inputPanel.add(addButton);
+
+        removeButton = new JButton("Remove");
+        removeButton.setBackground(darkButtonColor);
+        removeButton.addActionListener(this);
+        inputPanel.add(removeButton);
 
         nameInput.setText("");
         jobInput.setText("");
@@ -99,8 +102,8 @@ public class Contacts extends Page implements ActionListener{
 
 
         for (int i = 0; i < 40; i++){
-            vendorLabels.add(new JLabel(" "));
-            listPanel.add(vendorLabels.get(i));
+            contactsList.add(new JLabel(" "));
+            listPanel.add(contactsList.get(i));
         }
 
         constraints.gridx = 0;
@@ -114,6 +117,42 @@ public class Contacts extends Page implements ActionListener{
         panel.add(listPanel, constraints);
     }
 
+    public int indexOf(String name, ArrayList<String> list){
+        int index = 0;
+        for (String element : list){
+            if (element.compareTo(name) == 0){
+                return index;
+            }
+            index++;
+        }
+        return index;
+    }
+    public void remove(String name, ArrayList<JLabel> list, int count){
+        int index = indexOf(name, names);
+        if (list.get(index+1) != null)
+        {
+            for (int i = index; i < count; i++)
+                list.get(i).setText(list.get(i+1).getText());
+        }
+        else
+        {
+            list.get(index).setText("");
+        }
+    }
+
+    public String parseName(String label){
+        String name = "";
+        char[] characters = label.toCharArray();
+        for (char c : characters){
+            if (c == ' '){
+                return name;
+            }
+            else{
+                name = name + c;
+            }
+        }
+        return name;
+    }
     public int loadData(ArrayList<JLabel> list, Scanner scan){
         String input = "";
         int numGuests = 0;
@@ -124,6 +163,7 @@ public class Contacts extends Page implements ActionListener{
             }
             else{
                 list.add(new JLabel(input));
+                names.add(parseName(input));
                 numGuests++;
             }
         }
@@ -135,7 +175,7 @@ public class Contacts extends Page implements ActionListener{
         String addToFile = "";
         
         for (int i = 0; i < count; i++){
-            addToFile = addToFile + vendorLabels.get(i).getText() + "\n";
+            addToFile = addToFile + contactsList.get(i).getText() + "\n";
         }
         addToFile = addToFile + "Break\n";
         filer.toFile(addToFile);
@@ -143,9 +183,22 @@ public class Contacts extends Page implements ActionListener{
 
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == addButton){
-            vendorLabels.get(count).setText(nameInput.getText() + "             " + jobInput.getText() + "              " + 
-                phoneInput.getText() + "            " + emailInput.getText());
+            contactsList.get(count).setText(nameInput.getText() + "          " + jobInput.getText() + "          " + 
+                phoneInput.getText() + "          " + emailInput.getText());
+            names.add(nameInput.getText());
+            nameInput.setText("");
+            jobInput.setText("");
+            phoneInput.setText("");
+            emailInput.setText("");
             count++;
+        }
+        if (event.getSource() == removeButton){
+            remove(nameInput.getText(), contactsList, count);
+            nameInput.setText("");
+            jobInput.setText("");
+            phoneInput.setText("");
+            emailInput.setText("");
+            count--;
         }
     }
 }
