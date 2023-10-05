@@ -54,27 +54,27 @@ public class Contacts extends Page implements ActionListener{
         inputPanel.setLayout(new GridLayout(1,10));
         inputPanel.setBackground(backgroundColor);
 
-        nameLabel = new JLabel("Name:");
+        nameLabel = new JLabel("            Name:");
         nameLabel.setBackground(backgroundColor);
         inputPanel.add(nameLabel);
 
         nameInput = new JTextField("          ");
         inputPanel.add(nameInput);
 
-        jobLabel = new JLabel("Job:");
+        jobLabel = new JLabel("               Job:");
         jobLabel.setBackground(backgroundColor);
         inputPanel.add(jobLabel);
 
         jobInput = new JTextField("          ");
         inputPanel.add(jobInput);
 
-        phoneLabel = new JLabel("Phone:");
+        phoneLabel = new JLabel("           Phone:");
         inputPanel.add(phoneLabel);
 
         phoneInput = new JTextField("          ");
         inputPanel.add(phoneInput);
 
-        emailLabel = new JLabel("Email:");
+        emailLabel = new JLabel("            Email:");
         emailLabel.setBackground(backgroundColor);
         inputPanel.add(emailLabel);
 
@@ -101,7 +101,7 @@ public class Contacts extends Page implements ActionListener{
         listPanel.setLayout(new GridLayout(40,1));
 
 
-        for (int i = 0; i < 40; i++){
+        for (int i = 0; i < 40 - contactsList.size(); i++){
             contactsList.add(new JLabel(" "));
             listPanel.add(contactsList.get(i));
         }

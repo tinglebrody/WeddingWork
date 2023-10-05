@@ -202,6 +202,8 @@ public class Login extends Page implements ActionListener, WindowListener{
             Runtime.getRuntime().exec(command);
             command = "touch data/" + username + "Data/" + username + "ContactsData.txt";
             Runtime.getRuntime().exec(command);
+            command = "touch data/" + username + "Data/" + username + "ChecklistData.txt";
+            Runtime.getRuntime().exec(command);
         }
         catch(IOException e){System.out.println("Error!");}
         Filer filer;
@@ -218,6 +220,11 @@ public class Login extends Page implements ActionListener, WindowListener{
         String contactsString = "Break\n";
         filer = new Filer("data/"+username+"Data/"+username+"ContactsData.txt");
         try{filer.toFile(guestsString);}
+        catch(IOException e){System.out.println("Error!");}
+
+        String checklistString = "Break\n";
+        filer = new Filer("data/"+username+"Data/"+username+"ChecklistData.txt");
+        try{filer.toFile(checklistString);}
         catch(IOException e){System.out.println("Error!");}
     }
 

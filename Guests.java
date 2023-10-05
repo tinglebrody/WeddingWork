@@ -315,6 +315,7 @@ public class Guests extends Page implements ActionListener{
             list.get(index).setText("");
         }
     }
+    
     public String remove(String name){
         if (labelContains(name, groomFamilyList)){
             removeFromList(name, groomFamilyList, groomFamilyCount);

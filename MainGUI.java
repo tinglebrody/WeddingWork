@@ -11,12 +11,13 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
     static String page = "Home";
     JMenuBar menubar;
     JMenu navigate;
-    JMenuItem home, budget, guests, contacts;
+    JMenuItem home, budget, guests, contacts, checklist;
     static JFrame frame;
     static Budget budgetPage;
     static Home homePage;
     static Guests guestsPage;
     static Contacts contactsPage;
+    static Checklist checklistPage;
     static JPanel homePanel;
     static CardLayout manager;
     JTabbedPane tabs;
@@ -41,6 +42,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         budgetPage = new Budget();
         guestsPage = new Guests();
         contactsPage = new Contacts();
+        checklistPage = new Checklist();
         homePanel = new JPanel(new CardLayout());
 
         frame.addWindowListener(this);
@@ -58,10 +60,12 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         budget = new JMenuItem("Budget");
         guests = new JMenuItem("Guests");
         contacts = new JMenuItem("Contacts");
+        checklist = new JMenuItem("Checklist");
         navigate.add(home);
         navigate.add(budget);
         navigate.add(guests);
         navigate.add(contacts);
+        navigate.add(checklist);
 
         home.setBackground(buttonColor);
         home.setForeground(Color.black);
@@ -80,11 +84,13 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         home.addActionListener(this);
         guests.addActionListener(this);
         contacts.addActionListener(this);
+        checklist.addActionListener(this);
 
         homePanel.add(homePage.panel);
         homePanel.add(budgetPage.panel);
         homePanel.add(guestsPage.panel);
         homePanel.add(contactsPage.panel);
+        homePanel.add(checklistPage.panel);
         frame.add(homePanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("WeddingWork");
@@ -96,9 +102,10 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
     public void windowClosing(WindowEvent event) {
         try{
             System.out.println("Autosaved!");
-            guestsPage.saveAction();
             budgetPage.saveAction();
+            guestsPage.saveAction();
             contactsPage.saveAction();
+            checklistPage.saveAction();
         }
         catch (IOException e){}
     }
@@ -114,24 +121,35 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
             budgetPage.panel.setVisible(false);
             guestsPage.panel.setVisible(false);
             contactsPage.panel.setVisible(false);
+            checklistPage.panel.setVisible(false);
         }
         if (event.getSource() == budget){
             homePage.panel.setVisible(false);
             budgetPage.panel.setVisible(true);
             guestsPage.panel.setVisible(false);
             contactsPage.panel.setVisible(false);
+            checklistPage.panel.setVisible(false);
         }
         if (event.getSource() == guests){
             homePage.panel.setVisible(false);
             budgetPage.panel.setVisible(false);
             guestsPage.panel.setVisible(true);
             contactsPage.panel.setVisible(false);
+            checklistPage.panel.setVisible(false);
         }
         if (event.getSource() == contacts){
             homePage.panel.setVisible(false);
             budgetPage.panel.setVisible(false);
             guestsPage.panel.setVisible(false);
             contactsPage.panel.setVisible(true);
+            checklistPage.panel.setVisible(false);
+        }
+        if (event.getSource() == checklist){
+            homePage.panel.setVisible(false);
+            budgetPage.panel.setVisible(false);
+            guestsPage.panel.setVisible(false);
+            contactsPage.panel.setVisible(false);
+            checklistPage.panel.setVisible(true);
         }
     }
     public static void main(String[] args) throws InterruptedException, IOException{
