@@ -146,6 +146,7 @@ public class Checklist extends Page implements ActionListener{
         if (event.getSource() == addButton){
             taskList.get(count).setText(taskInput.getText());
             taskInput.setText("");
+            count++;
         }
         if (event.getSource() == removeButton){
             remove(taskInput.getText(), taskList, count);
