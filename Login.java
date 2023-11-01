@@ -215,13 +215,13 @@ public class Login extends Page implements ActionListener, WindowListener{
             try{
                 command = "mkdir data/" + username + "Data";
                 Runtime.getRuntime().exec(command);
-                command = "echo.> " + username + "BudgetData.txt";
+                command = "echo.> data/" + username + "Data" + username + "BudgetData.txt";
                 Runtime.getRuntime().exec(command);
-                command = "echo.> " + username + "GuestsData.txt";
+                command = "echo.> data/" + username + "Data" + username + "GuestsData.txt";
                 Runtime.getRuntime().exec(command);
-                command = "echo.> " + username + "ContactsData.txt";
+                command = "echo.> data/" + username + "Data" + username + "ContactsData.txt";
                 Runtime.getRuntime().exec(command);
-                command = "echo.> " + username + "ChecklistData.txt";
+                command = "echo.> data/" + username + "Data" + username + "ChecklistData.txt";
                 Runtime.getRuntime().exec(command);
             }
             catch(IOException e){System.out.println("Error!");}
