@@ -209,7 +209,7 @@ public class Login extends Page implements ActionListener, WindowListener{
                 command = "touch data/" + username + "Data/" + username + "ChecklistData.txt";
                 Runtime.getRuntime().exec(command);
             }
-            catch(IOException e){System.out.println("Error!");}
+            catch(IOException e){System.out.println("Error when creating files!");}
         }
         if (os.contains("win")){
             try{
@@ -224,14 +224,14 @@ public class Login extends Page implements ActionListener, WindowListener{
                 command = "echo.> data/" + username + "Data" + username + "ChecklistData.txt";
                 Runtime.getRuntime().exec(command);
             }
-            catch(IOException e){System.out.println("Error!");}
+            catch(IOException e){System.out.println("Error when creating files!");}
         }
 
         Filer filer;
         String budgetString = "0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0";
         filer = new Filer("data/"+username+"Data/"+username+"BudgetData.txt");
         try{filer.toFile(budgetString);}
-        catch(IOException e){System.out.println("Error!");}
+        catch(IOException e){System.out.println("Error when adding Data!");}
 
         String guestsString = "Break\nBreak\nBreak\nBreak\nBreak\nBreak\n";
         filer = new Filer("data/"+username+"Data/"+username+"GuestsData.txt");
