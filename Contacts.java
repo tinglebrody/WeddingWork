@@ -132,12 +132,21 @@ public class Contacts extends Page implements ActionListener{
         int index = indexOf(name, names);
         if (list.get(index+1) != null)
         {
-            for (int i = index; i < count; i++)
+            for (int i = index; i < count; i++){
+                try{
+                    names.set(i, names.get(i+1));
+                }
+                catch(IndexOutOfBoundsException e){
+                    names.set(i, "");
+                }
                 list.get(i).setText(list.get(i+1).getText());
+            }
+            names.remove(names.size()-1);
         }
         else
         {
             list.get(index).setText("");
+            names.set(index, "");
         }
     }
 
