@@ -11,6 +11,10 @@ public class Page{
     Color backgroundColor = new Color(255,255,243);
     Color buttonColor = new Color(229,237,226);
     Color darkButtonColor = new Color(115,118,97);
+    Font superFont = new Font("serif", Font.PLAIN, 100);
+    Font bigFont = new Font("serif", Font.PLAIN, 50);
+    Font font = new Font("serif", Font.PLAIN, 20);
+    Font smallFont = new Font("serif", Font.PLAIN, 15);
     GridBagConstraints constraints;
     JPanel panel;
     static String username;

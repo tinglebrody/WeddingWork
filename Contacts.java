@@ -46,7 +46,8 @@ public class Contacts extends Page implements ActionListener{
         titlePanel.setLayout(new GridLayout(1,1));
         titlePanel.setBackground(backgroundColor);
 
-        titleLabel = new JLabel("Contacts Page");
+        titleLabel = new JLabel(username + "'s Contacts");
+        titleLabel.setFont(bigFont);
         titleLabel.setBackground(backgroundColor);
         titlePanel.add(titleLabel);
 
@@ -101,7 +102,7 @@ public class Contacts extends Page implements ActionListener{
         listPanel.setLayout(new GridLayout(40,1));
 
 
-        for (int i = 0; i < 40 - contactsList.size(); i++){
+        for (int i = 0; i < 10 - contactsList.size(); i++){
             contactsList.add(new JLabel(" "));
             listPanel.add(contactsList.get(i));
         }
@@ -183,6 +184,7 @@ public class Contacts extends Page implements ActionListener{
 
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == addButton){
+            contactsList.get(count).setFont(font);
             contactsList.get(count).setText(nameInput.getText() + "          " + jobInput.getText() + "          " + 
                 phoneInput.getText() + "          " + emailInput.getText());
             names.add(nameInput.getText());

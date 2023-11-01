@@ -21,6 +21,9 @@ public class Login extends Page implements ActionListener, WindowListener{
     JSplitPane pane;
     ArrayList<String> database;
 
+    //https://www.baeldung.com/java-detect-os
+    String os = System.getProperty("os.name");
+
     public Login() throws FileNotFoundException{
         try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -193,19 +196,37 @@ public class Login extends Page implements ActionListener, WindowListener{
 
     public void createFiles(String username){
         String command = "";
-        try{
-            command = "mkdir data/" + username + "Data";
-            Runtime.getRuntime().exec(command);
-            command = "touch data/" + username + "Data/" + username + "BudgetData.txt";
-            Runtime.getRuntime().exec(command);
-            command = "touch data/" + username + "Data/" + username + "GuestsData.txt";
-            Runtime.getRuntime().exec(command);
-            command = "touch data/" + username + "Data/" + username + "ContactsData.txt";
-            Runtime.getRuntime().exec(command);
-            command = "touch data/" + username + "Data/" + username + "ChecklistData.txt";
-            Runtime.getRuntime().exec(command);
+        if (os.contains("Mac")){
+            try{
+                command = "mkdir data/" + username + "Data";
+                Runtime.getRuntime().exec(command);
+                command = "touch data/" + username + "Data/" + username + "BudgetData.txt";
+                Runtime.getRuntime().exec(command);
+                command = "touch data/" + username + "Data/" + username + "GuestsData.txt";
+                Runtime.getRuntime().exec(command);
+                command = "touch data/" + username + "Data/" + username + "ContactsData.txt";
+                Runtime.getRuntime().exec(command);
+                command = "touch data/" + username + "Data/" + username + "ChecklistData.txt";
+                Runtime.getRuntime().exec(command);
+            }
+            catch(IOException e){System.out.println("Error!");}
         }
-        catch(IOException e){System.out.println("Error!");}
+        if (os.contains("win")){
+            try{
+                command = "mkdir data/" + username + "Data";
+                Runtime.getRuntime().exec(command);
+                command = "echo.> " + username + "BudgetData.txt";
+                Runtime.getRuntime().exec(command);
+                command = "echo.> " + username + "GuestsData.txt";
+                Runtime.getRuntime().exec(command);
+                command = "echo.> " + username + "ContactsData.txt";
+                Runtime.getRuntime().exec(command);
+                command = "echo.> " + username + "ChecklistData.txt";
+                Runtime.getRuntime().exec(command);
+            }
+            catch(IOException e){System.out.println("Error!");}
+        }
+
         Filer filer;
         String budgetString = "0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0";
         filer = new Filer("data/"+username+"Data/"+username+"BudgetData.txt");
@@ -229,14 +250,17 @@ public class Login extends Page implements ActionListener, WindowListener{
     }
 
     public void deleteFiles(String username){
-        String command = "rm -r data/"+username+"Data";
-        try{
-            Runtime.getRuntime().exec(command);
+        if (os.contains("Mac")){
+            String command = "rm -r data/"+username+"Data";
+            try{
+                Runtime.getRuntime().exec(command);
+            }
+            catch(IOException e){System.out.println("Error!");}
         }
-        catch(IOException e){System.out.println("Error!");}
     }
+
     public void windowClosing(WindowEvent e) {
-        writeData(database);
+            writeData(database);
     }
     public void windowClosed(WindowEvent e) {}
     public void windowOpened(WindowEvent e) {}
@@ -275,6 +299,8 @@ public class Login extends Page implements ActionListener, WindowListener{
                     database.add("Password " + joinPasswordInput.getText());
                     createFiles(joinUsernameInput.getText());
                     joinMessage.setText("User added!");
+                    joinUsernameInput.setText("");
+                    joinPasswordInput.setText("");
                 }
             }
             catch (IOException e){}

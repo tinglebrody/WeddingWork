@@ -73,7 +73,6 @@ public class Checklist extends Page implements ActionListener{
         listPanel.setBackground(backgroundColor);
         listPanel.setLayout(new GridLayout(40,2));
 
-        System.out.println(taskList.size());
         for (int i = 0; i < 40 - taskList.size(); i++){
             taskList.add(new JLabel(" "));
             listPanel.add(taskList.get(i));

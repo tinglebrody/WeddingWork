@@ -8,6 +8,8 @@
 | Pops |
 | Grandaddy |
 | Anna |
+| Dad |
+| Davis |
 Break
 | Papa |
 | Sissy |
@@ -56,11 +58,11 @@ Break
 | Rory |
 Break
 | Aunt Lorraine ? |
-| Garry ? |
 | Sylvia ? (With Noah) |
 | Uncle Louis ? |
 | Aunt Leanne ? |
 | Uncle Mark ? |
 | Ronda ? |
 | Chris ? |
+| Garry ? |
 Break

@@ -68,11 +68,13 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         spacerPanel.setLayout(new GridLayout(1,1));
         spacerPanel.setBackground(backgroundColor);
 
-        title = new JLabel("Budget Page");
+        title = new JLabel(username + "'s Budget");
+        title.setFont(bigFont);
         title.setBackground(backgroundColor);
         titlePanel.add(title);
 
         totalBudgetLabel = new JLabel("Total Budget: $" + totalBudget);
+        totalBudgetLabel.setFont(font);
         topPanel.add(totalBudgetLabel);
 
         totalBudgetInput = new JTextField();
@@ -84,15 +86,18 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         topPanel.add(totalBudgetButton);
 
         totalExpensesLabel = new JLabel("Total Expenses: $" + totalExpenses);
+        totalExpensesLabel.setFont(font);
         middlePanel.add(totalExpensesLabel);
 
         currentBudgetLabel = new JLabel("Current Budget: $" + currentBudget);
+        currentBudgetLabel.setFont(font);
         middlePanel.add(currentBudgetLabel);
 
         spacerLine = new JLabel("--------------------------------------------------------");
         spacerPanel.add(spacerLine);
 
         plannerLabel = new JLabel("Planner: $" + plannerPrice);
+        plannerLabel.setFont(smallFont);
         bottomPanel.add(plannerLabel);
 
         plannerPriceInput = new JTextField();
@@ -104,6 +109,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(plannerButton);
 
         venueLabel = new JLabel("Venue: $" + venuePrice);
+        venueLabel.setFont(smallFont);
         bottomPanel.add(venueLabel);
 
         venuePriceInput = new JTextField();
@@ -115,6 +121,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(venueButton);
 
         cateringLabel = new JLabel("Catering: $" + cateringPrice);
+        cateringLabel.setFont(smallFont);
         bottomPanel.add(cateringLabel);
 
         cateringPriceInput = new JTextField();
@@ -126,6 +133,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(cateringButton);
 
         floralsLabel = new JLabel("Florals: $" + floralsPrice);
+        floralsLabel.setFont(smallFont);
         bottomPanel.add(floralsLabel);
 
         floralsPriceInput = new JTextField();
@@ -137,6 +145,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(floralsButton);
 
         photographerLabel = new JLabel("Photographer: $" + photographerPrice);
+        photographerLabel.setFont(smallFont);
         bottomPanel.add(photographerLabel);
 
         photographerPriceInput = new JTextField();
@@ -148,6 +157,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(photographerButton);
 
         videographerLabel = new JLabel("Videographer: $" + videographerPrice);
+        videographerLabel.setFont(smallFont);
         bottomPanel.add(videographerLabel);
 
         videographerPriceInput = new JTextField();
@@ -159,6 +169,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(videographerButton);
 
         cosmeticsLabel = new JLabel("Cosmetics: $" + cosmeticsPrice);
+        cosmeticsLabel.setFont(smallFont);
         bottomPanel.add(cosmeticsLabel);
 
         cosmeticsPriceInput = new JTextField();
@@ -170,6 +181,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(cosmeticsButton);
 
         dressLabel = new JLabel("Dress: $" + dressPrice);
+        dressLabel.setFont(smallFont);
         bottomPanel.add(dressLabel);
 
         dressPriceInput = new JTextField();
@@ -181,6 +193,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(dressButton);
 
         entertainmentLabel = new JLabel("Entertainment: $" + entertainmentPrice);
+        entertainmentLabel.setFont(smallFont);
         bottomPanel.add(entertainmentLabel);
 
         entertainmentPriceInput = new JTextField();
@@ -192,6 +205,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(entertainmentButton);
 
         decorationsLabel = new JLabel("Decorations: $" + decorationsPrice);
+        decorationsLabel.setFont(smallFont);
         bottomPanel.add(decorationsLabel);
 
         decorationsPriceInput = new JTextField();
@@ -254,6 +268,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         }
         currentBudget = totalBudget - plannerPrice;
         plannerLabel.setText("Planner: $" + plannerPrice);
+        plannerPriceInput.setText("");
         updateBudget();
     }
     void venueButtonAction()
@@ -266,6 +281,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
             venuePriceInput.setText("");
         }
         venueLabel.setText("Venue: $" + venuePrice);
+        venuePriceInput.setText("");
         updateBudget();
     }
     void cateringButtonAction(){
@@ -277,6 +293,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
             cateringPriceInput.setText("");
         }
         cateringLabel.setText("Catering: $" + cateringPrice);
+        cateringPriceInput.setText("");
         updateBudget();
     }
     void floralsButtonAction(){
@@ -288,6 +305,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
             floralsPriceInput.setText("");
         }
         floralsLabel.setText("Florals: $" + floralsPrice);
+        floralsPriceInput.setText("");
         updateBudget();
     }
     void photographerButtonAction(){
@@ -299,6 +317,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
             photographerPriceInput.setText("");
         }
         photographerLabel.setText("Photographer: $" + photographerPrice);
+        photographerPriceInput.setText("");
         updateBudget();
     }
     void videographerButtonAction(){
@@ -310,6 +329,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
             videographerPriceInput.setText("");
         }
         videographerLabel.setText("Videographer: $" + videographerPrice);
+        videographerPriceInput.setText("");
         updateBudget();
     }
     void cosmeticsButtonAction(){
@@ -321,6 +341,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
             cosmeticsPriceInput.setText("");
         }
         cosmeticsLabel.setText("Cosmetics: $" + cosmeticsPrice);
+        cosmeticsPriceInput.setText("");
         updateBudget();
     }
     void dressButtonAction(){
@@ -332,6 +353,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
             dressPriceInput.setText("");
         }
         dressLabel.setText("Dress: $" + dressPrice);
+        dressPriceInput.setText("");
         updateBudget();
     }
 
@@ -344,6 +366,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
             entertainmentPriceInput.setText("");
         }
         entertainmentLabel.setText("Entertainment: $" + entertainmentPrice);
+        entertainmentPriceInput.setText("");
         updateBudget();
     }
 
@@ -356,6 +379,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
             decorationsPriceInput.setText("");
         }
         decorationsLabel.setText("Decorations: $" + decorationsPrice);
+        decorationsPriceInput.setText("");
         updateBudget();
     }
 
