@@ -212,6 +212,7 @@ public class Login extends Page implements ActionListener, WindowListener{
             catch(IOException e){System.out.println("Error when creating files!");}
         }
         if (os.contains("win")){
+            System.out.println("windows");
             try{
                 File folder = new File("data\\" + username + "\\Data");
                 folder.mkdir();
