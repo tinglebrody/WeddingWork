@@ -1,4 +1,2 @@
 Username u
 Password p
-Username newuser
-Password password

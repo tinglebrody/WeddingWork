@@ -213,16 +213,30 @@ public class Login extends Page implements ActionListener, WindowListener{
         }
         if (os.contains("win")){
             try{
-                command = "mkdir data/" + username + "Data";
+                command = "mkdir data\\" + username + "Data";
                 Runtime.getRuntime().exec(command);
-                command = "echo.> data/" + username + "Data" + username + "BudgetData.txt";
+                String relativePath = "data\\" + username + "Data\\" + username + "BudgetData.txt";
+                File budgetFile = new File(relativePath);
+                budgetFile.createNewFile();
+                relativePath = "data\\" + username + "Data\\" + username + "GuestsData.txt";
+                File guestsFile = new File(relativePath);
+                guestsFile.createNewFile();
+                relativePath = "data\\" + username + "Data\\" + username + "ContactsData.txt";
+                File contactsFile = new File(relativePath);
+                contactsFile.createNewFile();
+                relativePath = "data\\" + username + "Data\\" + username + "ChecklistData.txt";
+                File checklistFile = new File(relativePath);
+                checklistFile.createNewFile();
+                /*
+                command = "echo.> data\\" + username + "Data\\" + username + "BudgetData.txt";
                 Runtime.getRuntime().exec(command);
-                command = "echo.> data/" + username + "Data" + username + "GuestsData.txt";
+                command = "echo.> data\\" + username + "Data\\" + username + "GuestsData.txt";
                 Runtime.getRuntime().exec(command);
-                command = "echo.> data/" + username + "Data" + username + "ContactsData.txt";
+                command = "echo.> data\\" + username + "Data\\" + username + "ContactsData.txt";
                 Runtime.getRuntime().exec(command);
-                command = "echo.> data/" + username + "Data" + username + "ChecklistData.txt";
+                command = "echo.> data\\" + username + "Data\\" + username + "ChecklistData.txt";
                 Runtime.getRuntime().exec(command);
+                */
             }
             catch(IOException e){System.out.println("Error when creating files!");}
         }
