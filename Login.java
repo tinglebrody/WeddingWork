@@ -237,8 +237,8 @@ public class Login extends Page implements ActionListener, WindowListener{
             command = "echo.> data\\" + username + "Data\\" + username + "ChecklistData.txt";
             Runtime.getRuntime().exec(command);
             */
-        catch(IOException e){System.out.println("Error when creating files!");}
         }
+        catch(IOException e){System.out.println("Error when creating files!");}
 
         Filer filer;
         String budgetString = "0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0";
