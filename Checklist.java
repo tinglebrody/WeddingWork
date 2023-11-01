@@ -8,8 +8,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Checklist extends Page implements ActionListener{
-    JPanel titlePanel, inputPanel, listPanel;
-    JLabel titleLabel, taskLabel;
+    JPanel titlePanel, inputPanel, listPanel, spacerPanel;
+    JLabel titleLabel, taskLabel, spacerLabel;
     JTextField taskInput;
     JButton addButton, removeButton;
     ArrayList<JLabel> taskList;
@@ -44,8 +44,9 @@ public class Checklist extends Page implements ActionListener{
         titlePanel.setLayout(new GridLayout(1,1));
         titlePanel.setBackground(backgroundColor);
 
-        titleLabel = new JLabel("To-Do List");
+        titleLabel = new JLabel(username + "'s Checklist");
         titleLabel.setBackground(backgroundColor);
+        titleLabel.setFont(bigFont);
         titlePanel.add(titleLabel);
 
         inputPanel = new JPanel();
@@ -53,10 +54,12 @@ public class Checklist extends Page implements ActionListener{
         inputPanel.setBackground(backgroundColor);
 
         taskLabel = new JLabel("          Task: ");
+        taskLabel.setFont(font);
         taskLabel.setBackground(backgroundColor);
         inputPanel.add(taskLabel);
 
         taskInput = new JTextField();
+        taskInput.setFont(font);
         inputPanel.add(taskInput);
 
         addButton = new JButton("+");
@@ -69,11 +72,18 @@ public class Checklist extends Page implements ActionListener{
         removeButton.addActionListener(this);
         inputPanel.add(removeButton);
 
+        spacerPanel = new JPanel();
+        spacerPanel.setBackground(backgroundColor);
+
+        spacerLabel = new JLabel("--------------------------------------------------------------");
+        spacerLabel.setBackground(backgroundColor);
+        spacerPanel.add(spacerLabel);
+
         listPanel = new JPanel();
         listPanel.setBackground(backgroundColor);
-        listPanel.setLayout(new GridLayout(40,2));
+        listPanel.setLayout(new GridLayout(30,2));
 
-        for (int i = 0; i < 40 - taskList.size(); i++){
+        for (int i = 0; i < 30 - taskList.size(); i++){
             taskList.add(new JLabel(" "));
             listPanel.add(taskList.get(i));
         }
@@ -86,9 +96,12 @@ public class Checklist extends Page implements ActionListener{
         panel.add(inputPanel, constraints);
         constraints.gridx = 0;
         constraints.gridy = 2;
-        panel.add(listPanel, constraints);
+        panel.add(spacerPanel, constraints);
         constraints.gridx = 0;
         constraints.gridy = 3;
+        panel.add(listPanel, constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 4;
     }
 
     public int indexOf(String name, ArrayList<JLabel> list){
@@ -124,6 +137,7 @@ public class Checklist extends Page implements ActionListener{
             }
             else{
                 list.add(new JLabel(input));
+                list.get(numGuests).setFont(font);
                 numGuests++;
             }
         }
@@ -143,6 +157,7 @@ public class Checklist extends Page implements ActionListener{
 
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == addButton){
+            taskList.get(count).setFont(font);
             taskList.get(count).setText(taskInput.getText());
             taskInput.setText("");
             count++;

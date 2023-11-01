@@ -8,8 +8,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Contacts extends Page implements ActionListener{
-    JPanel titlePanel, inputPanel, listPanel;
-    JLabel titleLabel, nameLabel, jobLabel, phoneLabel, emailLabel;
+    JPanel titlePanel, inputPanel, spacerPanel, listPanel;
+    JLabel titleLabel, nameLabel, jobLabel, phoneLabel, emailLabel, spacerLabel;
     JTextField nameInput, jobInput, phoneInput, emailInput;
     JButton addButton, removeButton;
     ArrayList<JLabel> contactsList;
@@ -55,27 +55,32 @@ public class Contacts extends Page implements ActionListener{
         inputPanel.setLayout(new GridLayout(1,10));
         inputPanel.setBackground(backgroundColor);
 
-        nameLabel = new JLabel("            Name:");
+        nameLabel = new JLabel("         Name:");
         nameLabel.setBackground(backgroundColor);
+        nameLabel.setFont(font);
         inputPanel.add(nameLabel);
 
-        nameInput = new JTextField("          ");
+        nameInput = new JTextField("");
         inputPanel.add(nameInput);
 
-        jobLabel = new JLabel("               Job:");
+        jobLabel = new JLabel("            Job:");
         jobLabel.setBackground(backgroundColor);
+        jobLabel.setFont(font);
         inputPanel.add(jobLabel);
 
-        jobInput = new JTextField("          ");
+        jobInput = new JTextField("");
         inputPanel.add(jobInput);
 
-        phoneLabel = new JLabel("           Phone:");
+        phoneLabel = new JLabel("        Phone:");
+        phoneLabel.setBackground(backgroundColor);
+        phoneLabel.setFont(font);
         inputPanel.add(phoneLabel);
 
         phoneInput = new JTextField("          ");
         inputPanel.add(phoneInput);
 
-        emailLabel = new JLabel("            Email:");
+        emailLabel = new JLabel("        Email:");
+        emailLabel.setFont(font);
         emailLabel.setBackground(backgroundColor);
         inputPanel.add(emailLabel);
 
@@ -89,6 +94,7 @@ public class Contacts extends Page implements ActionListener{
 
         removeButton = new JButton("Remove");
         removeButton.setBackground(darkButtonColor);
+        removeButton.setFont(font);
         removeButton.addActionListener(this);
         inputPanel.add(removeButton);
 
@@ -97,13 +103,20 @@ public class Contacts extends Page implements ActionListener{
         phoneInput.setText("");
         emailInput.setText("");
 
+        spacerPanel = new JPanel();
+        spacerPanel.setBackground(backgroundColor);
+
+        spacerLabel = new JLabel("-------------------------------------------------------------------------------------------------------------------------------");
+        spacerLabel.setBackground(backgroundColor);
+        spacerPanel.add(spacerLabel);
+
         listPanel = new JPanel();
         listPanel.setBackground(backgroundColor);
-        listPanel.setLayout(new GridLayout(40,1));
+        listPanel.setLayout(new GridLayout(30,1));
 
-
-        for (int i = 0; i < 10 - contactsList.size(); i++){
+        for (int i = 0; i < 30 - contactsList.size(); i++){
             contactsList.add(new JLabel(" "));
+            contactsList.get(i).setFont(smallerFont);
             listPanel.add(contactsList.get(i));
         }
 
@@ -115,6 +128,9 @@ public class Contacts extends Page implements ActionListener{
         panel.add(inputPanel, constraints);
         constraints.gridx = 0;
         constraints.gridy = 2;
+        panel.add(spacerPanel, constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 3;
         panel.add(listPanel, constraints);
     }
 
@@ -193,7 +209,6 @@ public class Contacts extends Page implements ActionListener{
 
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == addButton){
-            contactsList.get(count).setFont(font);
             contactsList.get(count).setText(nameInput.getText() + "          " + jobInput.getText() + "          " + 
                 phoneInput.getText() + "          " + emailInput.getText());
             names.add(nameInput.getText());

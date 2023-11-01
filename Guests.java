@@ -8,16 +8,16 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Guests extends Page implements ActionListener{
-    JPanel inputPanel, groomFamilyPanel, brideFamilyPanel, groomFriendsPanel, brideFriendsPanel, sharedFriendsPanel,
+    JPanel titlePanel, inputPanel, groomFamilyPanel, brideFamilyPanel, groomFriendsPanel, brideFriendsPanel, sharedFriendsPanel,
         otherPanel, spacer1, spacer2, spacer3, spacer4, spacer5, spacer6;
-    JLabel guestNameLabel, groomFamilyLabel, brideFamilyLabel, groomFriendsLabel, brideFriendsLabel, sharedFriendsLabel, otherLabel;
+    JLabel titleLabel, guestNameLabel, groomFamilyLabel, brideFamilyLabel, groomFriendsLabel, brideFriendsLabel, sharedFriendsLabel, otherLabel;
     JTextField guestNameInput, guestCountInput;
     JButton groomFamilyButton, brideFamilyButton, groomFriendsButton, brideFriendsButton, sharedFriendsButton, 
         otherButton, removeButton;
     GridBagConstraints constraints;
     ArrayList<JLabel> groomFamilyList, brideFamilyList, groomFriendsList, brideFriendsList, sharedFriendsList,
         otherList;
-    int guestCount = 50, groomFamilyCount, brideFamilyCount, groomFriendsCount, brideFriendsCount, sharedFriendsCount, otherCount;
+    int guestCount = 40, groomFamilyCount, brideFamilyCount, groomFriendsCount, brideFriendsCount, sharedFriendsCount, otherCount;
 
     public Guests() throws FileNotFoundException
     {
@@ -49,143 +49,169 @@ public class Guests extends Page implements ActionListener{
         panel = new JPanel();
         implementPanel(panel);
         constraints = new GridBagConstraints();
-        
+
         inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(10,2));
+        inputPanel.setLayout(new GridLayout(11,2));
         inputPanel.setBackground(backgroundColor);
 
         groomFamilyPanel = new JPanel();
-        groomFamilyPanel.setLayout(new GridLayout(56,1));
+        groomFamilyPanel.setLayout(new GridLayout(50,1));
         groomFamilyPanel.setBackground(backgroundColor);
 
         brideFamilyPanel = new JPanel();
-        brideFamilyPanel.setLayout(new GridLayout(56,1));
+        brideFamilyPanel.setLayout(new GridLayout(50,1));
         brideFamilyPanel.setBackground(backgroundColor);
 
         groomFriendsPanel = new JPanel();
-        groomFriendsPanel.setLayout(new GridLayout(56,1));
+        groomFriendsPanel.setLayout(new GridLayout(50,1));
         groomFriendsPanel.setBackground(backgroundColor);
 
         brideFriendsPanel = new JPanel();
-        brideFriendsPanel.setLayout(new GridLayout(56,1));
+        brideFriendsPanel.setLayout(new GridLayout(50,1));
         brideFriendsPanel.setBackground(backgroundColor);
 
         sharedFriendsPanel = new JPanel();
-        sharedFriendsPanel.setLayout(new GridLayout(56,1));
+        sharedFriendsPanel.setLayout(new GridLayout(50,1));
         sharedFriendsPanel.setBackground(backgroundColor);
 
         otherPanel = new JPanel();
-        otherPanel.setLayout(new GridLayout(56,1));
+        otherPanel.setLayout(new GridLayout(50,1));
         otherPanel.setBackground(backgroundColor);
 
         spacer1 = new JPanel();
-        spacer1.setLayout(new GridLayout(56,1));
+        spacer1.setLayout(new GridLayout(50,1));
         spacer1.setBackground(backgroundColor);
 
         spacer2 = new JPanel();
-        spacer2.setLayout(new GridLayout(56,1));
+        spacer2.setLayout(new GridLayout(50,1));
         spacer2.setBackground(backgroundColor);
 
         spacer3 = new JPanel();
-        spacer3.setLayout(new GridLayout(56,1));
+        spacer3.setLayout(new GridLayout(50,1));
         spacer3.setBackground(backgroundColor);
 
         spacer4 = new JPanel();
-        spacer4.setLayout(new GridLayout(56,1));
+        spacer4.setLayout(new GridLayout(50,1));
         spacer4.setBackground(backgroundColor);
 
         spacer5 = new JPanel();
-        spacer5.setLayout(new GridLayout(56,1));
+        spacer5.setLayout(new GridLayout(50,1));
         spacer5.setBackground(backgroundColor);
 
         spacer6 = new JPanel();
-        spacer6.setLayout(new GridLayout(56,1));
+        spacer6.setLayout(new GridLayout(50,1));
         spacer6.setBackground(backgroundColor);
-        
+
+        titleLabel = new JLabel(username + "'s Guests");
+        titleLabel.setBackground(backgroundColor);
+        titleLabel.setFont(bigFont);
+        inputPanel.add(titleLabel);
+
         guestNameLabel = new JLabel("Guest Name: ");
+        guestNameLabel.setFont(smallerFont);
         inputPanel.add(guestNameLabel);
 
         guestNameInput = new JTextField();
+        guestNameInput.setFont(smallerFont);
         inputPanel.add(guestNameInput);
 
         groomFamilyButton = new JButton("Groom Family");
         groomFamilyButton.setBackground(buttonColor);
+        groomFamilyButton.setFont(smallerFont);
         groomFamilyButton.addActionListener(this);
         inputPanel.add(groomFamilyButton);
 
         brideFamilyButton = new JButton("Bride Family");
         brideFamilyButton.setBackground(buttonColor);
+        brideFamilyButton.setFont(smallerFont);
         brideFamilyButton.addActionListener(this);
         inputPanel.add(brideFamilyButton);
 
         groomFriendsButton = new JButton("Groom Friends");
         groomFriendsButton.setBackground(buttonColor);
+        groomFriendsButton.setFont(smallerFont);
         groomFriendsButton.addActionListener(this);
         inputPanel.add(groomFriendsButton);
 
         brideFriendsButton = new JButton("Bride Friends");
         brideFriendsButton.setBackground(buttonColor);
+        brideFriendsButton.setFont(smallerFont);
         brideFriendsButton.addActionListener(this);
         inputPanel.add(brideFriendsButton);
 
         sharedFriendsButton = new JButton("Shared Friends");
         sharedFriendsButton.setBackground(buttonColor);
+        sharedFriendsButton.setFont(smallerFont);
         sharedFriendsButton.addActionListener(this);
         inputPanel.add(sharedFriendsButton);
 
         otherButton = new JButton("Other");
         otherButton.setBackground(buttonColor);
+        otherButton.setFont(smallerFont);
         otherButton.addActionListener(this);
         inputPanel.add(otherButton);
 
         removeButton = new JButton("Remove");
         removeButton.setForeground(Color.white);
+        removeButton.setFont(smallerFont);
         removeButton.setBackground(darkButtonColor);
         removeButton.addActionListener(this);
         inputPanel.add(removeButton);
 
         groomFamilyLabel = new JLabel("Groom Family");
         groomFamilyLabel.setBackground(backgroundColor);
+        groomFamilyLabel.setFont(smallerFont);
         groomFamilyPanel.add(groomFamilyLabel);
 
         brideFamilyLabel = new JLabel("Bride Family");
         brideFamilyLabel.setBackground(backgroundColor);
+        brideFamilyLabel.setFont(smallerFont);
         brideFamilyPanel.add(brideFamilyLabel);
 
         groomFriendsLabel = new JLabel("Groom Friends");
         groomFriendsLabel.setBackground(backgroundColor);
+        groomFriendsLabel.setFont(smallerFont);
         groomFriendsPanel.add(groomFriendsLabel);
 
         brideFriendsLabel = new JLabel("Bride Friends");
         brideFriendsLabel.setBackground(backgroundColor);
+        brideFriendsLabel.setFont(smallerFont);
         brideFriendsPanel.add(brideFriendsLabel);
 
         sharedFriendsLabel = new JLabel("Shared Friends");
         sharedFriendsLabel.setBackground(backgroundColor);
+        sharedFriendsLabel.setFont(smallerFont);
         sharedFriendsPanel.add(sharedFriendsLabel);
 
         otherLabel = new JLabel("Other");
         otherLabel.setBackground(backgroundColor);
+        otherLabel.setFont(smallerFont);
         otherPanel.add(otherLabel);
 
         for (int i = 0; i < guestCount; i++)
         {
             groomFamilyList.add(new JLabel("                    "));
+            groomFamilyList.get(i).setFont(smallFont);
             groomFamilyPanel.add(groomFamilyList.get(i));
 
             brideFamilyList.add(new JLabel("                    "));
+            brideFamilyList.get(i).setFont(smallFont);
             brideFamilyPanel.add(brideFamilyList.get(i));
 
             groomFriendsList.add(new JLabel("                    "));
+            groomFriendsList.get(i).setFont(smallFont);
             groomFriendsPanel.add(groomFriendsList.get(i));
 
             brideFriendsList.add(new JLabel("                    "));
+            brideFriendsList.get(i).setFont(smallFont);
             brideFriendsPanel.add(brideFriendsList.get(i));
 
             sharedFriendsList.add(new JLabel("                    "));
+            sharedFriendsList.get(i).setFont(smallFont);
             sharedFriendsPanel.add(sharedFriendsList.get(i));
 
             otherList.add(new JLabel("                    "));
+            otherList.get(i).setFont(smallFont);
             otherPanel.add(otherList.get(i));
 
             spacer1.add(new JLabel("          "));

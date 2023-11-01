@@ -14,7 +14,8 @@ public class Page{
     Font superFont = new Font("serif", Font.PLAIN, 100);
     Font bigFont = new Font("serif", Font.PLAIN, 50);
     Font font = new Font("serif", Font.PLAIN, 20);
-    Font smallFont = new Font("serif", Font.PLAIN, 15);
+    Font smallerFont = new Font("serif", Font.PLAIN, 17);
+    Font smallFont = new Font("serif", Font.PLAIN, 14);
     GridBagConstraints constraints;
     JPanel panel;
     static String username;
