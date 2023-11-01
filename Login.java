@@ -213,8 +213,8 @@ public class Login extends Page implements ActionListener, WindowListener{
         }
         if (os.contains("win")){
             try{
-                command = "mkdir data\\" + username + "Data";
-                Runtime.getRuntime().exec(command);
+                File folder = new File("data\\" + username + "\\Data");
+                folder.mkdir();
                 String relativePath = "data\\" + username + "Data\\" + username + "BudgetData.txt";
                 File budgetFile = new File(relativePath);
                 budgetFile.createNewFile();

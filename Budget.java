@@ -97,7 +97,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         spacerPanel.add(spacerLine);
 
         plannerLabel = new JLabel("Planner: $" + plannerPrice);
-        plannerLabel.setFont(smallFont);
+        plannerLabel.setFont(font);
         bottomPanel.add(plannerLabel);
 
         plannerPriceInput = new JTextField();
@@ -109,7 +109,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(plannerButton);
 
         venueLabel = new JLabel("Venue: $" + venuePrice);
-        venueLabel.setFont(smallFont);
+        venueLabel.setFont(font);
         bottomPanel.add(venueLabel);
 
         venuePriceInput = new JTextField();
@@ -121,7 +121,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(venueButton);
 
         cateringLabel = new JLabel("Catering: $" + cateringPrice);
-        cateringLabel.setFont(smallFont);
+        cateringLabel.setFont(font);
         bottomPanel.add(cateringLabel);
 
         cateringPriceInput = new JTextField();
@@ -133,7 +133,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(cateringButton);
 
         floralsLabel = new JLabel("Florals: $" + floralsPrice);
-        floralsLabel.setFont(smallFont);
+        floralsLabel.setFont(font);
         bottomPanel.add(floralsLabel);
 
         floralsPriceInput = new JTextField();
@@ -145,7 +145,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(floralsButton);
 
         photographerLabel = new JLabel("Photographer: $" + photographerPrice);
-        photographerLabel.setFont(smallFont);
+        photographerLabel.setFont(font);
         bottomPanel.add(photographerLabel);
 
         photographerPriceInput = new JTextField();
@@ -157,7 +157,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(photographerButton);
 
         videographerLabel = new JLabel("Videographer: $" + videographerPrice);
-        videographerLabel.setFont(smallFont);
+        videographerLabel.setFont(font);
         bottomPanel.add(videographerLabel);
 
         videographerPriceInput = new JTextField();
@@ -169,7 +169,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(videographerButton);
 
         cosmeticsLabel = new JLabel("Cosmetics: $" + cosmeticsPrice);
-        cosmeticsLabel.setFont(smallFont);
+        cosmeticsLabel.setFont(font);
         bottomPanel.add(cosmeticsLabel);
 
         cosmeticsPriceInput = new JTextField();
@@ -181,7 +181,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(cosmeticsButton);
 
         dressLabel = new JLabel("Dress: $" + dressPrice);
-        dressLabel.setFont(smallFont);
+        dressLabel.setFont(font);
         bottomPanel.add(dressLabel);
 
         dressPriceInput = new JTextField();
@@ -193,7 +193,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(dressButton);
 
         entertainmentLabel = new JLabel("Entertainment: $" + entertainmentPrice);
-        entertainmentLabel.setFont(smallFont);
+        entertainmentLabel.setFont(font);
         bottomPanel.add(entertainmentLabel);
 
         entertainmentPriceInput = new JTextField();
@@ -205,7 +205,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(entertainmentButton);
 
         decorationsLabel = new JLabel("Decorations: $" + decorationsPrice);
-        decorationsLabel.setFont(smallFont);
+        decorationsLabel.setFont(font);
         bottomPanel.add(decorationsLabel);
 
         decorationsPriceInput = new JTextField();
