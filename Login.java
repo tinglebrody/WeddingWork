@@ -5,6 +5,7 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
+
 public class Login extends Page implements ActionListener, WindowListener{
 
     JFrame frame;
@@ -195,48 +196,14 @@ public class Login extends Page implements ActionListener, WindowListener{
     }
 
     public void createFiles(String username){
-        String command = "";
-        if (os.contains("Mac")){
-            try{
-                command = "mkdir data/" + username + "Data";
-                Runtime.getRuntime().exec(command);
-                command = "touch data/" + username + "Data/" + username + "BudgetData.txt";
-                Runtime.getRuntime().exec(command);
-                command = "touch data/" + username + "Data/" + username + "GuestsData.txt";
-                Runtime.getRuntime().exec(command);
-                command = "touch data/" + username + "Data/" + username + "ContactsData.txt";
-                Runtime.getRuntime().exec(command);
-                command = "touch data/" + username + "Data/" + username + "ChecklistData.txt";
-                Runtime.getRuntime().exec(command);
-            }
-            catch(IOException e){System.out.println("Error when creating files!");}
-        }
-        System.out.println("windows");
+        // https://www.digitalocean.com/community/tutorials/java-create-new-file
+        String slash = System.getProperty("file.separator");
         try{
-            File folder = new File("data\\" + username + "\\Data");
-            folder.mkdir();
-            String relativePath = "data\\" + username + "Data\\" + username + "BudgetData.txt";
-            File budgetFile = new File(relativePath);
-            budgetFile.createNewFile();
-            relativePath = "data\\" + username + "Data\\" + username + "GuestsData.txt";
-            File guestsFile = new File(relativePath);
-            guestsFile.createNewFile();
-            relativePath = "data\\" + username + "Data\\" + username + "ContactsData.txt";
-            File contactsFile = new File(relativePath);
-            contactsFile.createNewFile();
-            relativePath = "data\\" + username + "Data\\" + username + "ChecklistData.txt";
-            File checklistFile = new File(relativePath);
-            checklistFile.createNewFile();
-            /*
-            command = "echo.> data\\" + username + "Data\\" + username + "BudgetData.txt";
-            Runtime.getRuntime().exec(command);
-            command = "echo.> data\\" + username + "Data\\" + username + "GuestsData.txt";
-            Runtime.getRuntime().exec(command);
-            command = "echo.> data\\" + username + "Data\\" + username + "ContactsData.txt";
-            Runtime.getRuntime().exec(command);
-            command = "echo.> data\\" + username + "Data\\" + username + "ChecklistData.txt";
-            Runtime.getRuntime().exec(command);
-            */
+            new File("data" + slash + username + "Data").mkdir();
+            new File("data" + slash + username + "Data" + slash + username + "BudgetData.txt").createNewFile();
+            new File("data" + slash + username + "Data" + slash + username + "GuestsData.txt").createNewFile();
+            new File("data" + slash + username + "Data" + slash + username + "ContactsData.txt").createNewFile();
+            new File("data" + slash + username + "Data" + slash + username + "ChecklistData.txt").createNewFile();
         }
         catch(IOException e){System.out.println("Error when creating files!");}
 
@@ -253,7 +220,7 @@ public class Login extends Page implements ActionListener, WindowListener{
 
         String contactsString = "Break\n";
         filer = new Filer("data/"+username+"Data/"+username+"ContactsData.txt");
-        try{filer.toFile(guestsString);}
+        try{filer.toFile(contactsString);}
         catch(IOException e){System.out.println("Error!");}
 
         String checklistString = "Break\n";
@@ -263,13 +230,12 @@ public class Login extends Page implements ActionListener, WindowListener{
     }
 
     public void deleteFiles(String username){
-        if (os.contains("Mac")){
-            String command = "rm -r data/"+username+"Data";
-            try{
-                Runtime.getRuntime().exec(command);
-            }
-            catch(IOException e){System.out.println("Error!");}
-        }
+        String slash = System.getProperty("file.separator");
+        new File("data" + slash + username + "Data" + slash + username + "BudgetData.txt").delete();
+        new File("data" + slash + username + "Data" + slash + username + "GuestsData.txt").delete();
+        new File("data" + slash + username + "Data" + slash + username + "ContactsData.txt").delete();
+        new File("data" + slash + username + "Data" + slash + username + "ChecklistData.txt").delete();
+        new File("data" + slash + username + "Data").delete();
     }
 
     public void windowClosing(WindowEvent e) {
