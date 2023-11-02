@@ -61,6 +61,7 @@ public class Contacts extends Page implements ActionListener{
         inputPanel.add(nameLabel);
 
         nameInput = new JTextField("");
+        nameInput.setFont(smallerFont);
         inputPanel.add(nameInput);
 
         jobLabel = new JLabel("            Job:");
@@ -69,6 +70,7 @@ public class Contacts extends Page implements ActionListener{
         inputPanel.add(jobLabel);
 
         jobInput = new JTextField("");
+        jobInput.setFont(smallerFont);
         inputPanel.add(jobInput);
 
         phoneLabel = new JLabel("        Phone:");
@@ -77,6 +79,7 @@ public class Contacts extends Page implements ActionListener{
         inputPanel.add(phoneLabel);
 
         phoneInput = new JTextField("          ");
+        phoneInput.setFont(smallerFont);
         inputPanel.add(phoneInput);
 
         emailLabel = new JLabel("        Email:");
@@ -85,6 +88,7 @@ public class Contacts extends Page implements ActionListener{
         inputPanel.add(emailLabel);
 
         emailInput = new JTextField("          ");
+        emailInput.setFont(smallerFont);
         inputPanel.add(emailInput);
 
         addButton = new JButton("+");

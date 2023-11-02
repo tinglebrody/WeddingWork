@@ -78,6 +78,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         topPanel.add(totalBudgetLabel);
 
         totalBudgetInput = new JTextField();
+        totalBudgetInput.setFont(smallerFont);
         topPanel.add(totalBudgetInput);
 
         totalBudgetButton = new JButton("+");
@@ -101,6 +102,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(plannerLabel);
 
         plannerPriceInput = new JTextField();
+        plannerPriceInput.setFont(smallerFont);
         bottomPanel.add(plannerPriceInput);
 
         plannerButton = new JButton("+");
@@ -113,6 +115,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(venueLabel);
 
         venuePriceInput = new JTextField();
+        venuePriceInput.setFont(smallerFont);
         bottomPanel.add(venuePriceInput);
 
         venueButton = new JButton("+");
@@ -125,6 +128,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(cateringLabel);
 
         cateringPriceInput = new JTextField();
+        cateringPriceInput.setFont(smallerFont);
         bottomPanel.add(cateringPriceInput);
 
         cateringButton = new JButton("+");
@@ -137,6 +141,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(floralsLabel);
 
         floralsPriceInput = new JTextField();
+        floralsPriceInput.setFont(smallerFont);
         bottomPanel.add(floralsPriceInput);
 
         floralsButton = new JButton("+");
@@ -149,6 +154,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(photographerLabel);
 
         photographerPriceInput = new JTextField();
+        photographerPriceInput.setFont(smallerFont);
         bottomPanel.add(photographerPriceInput);
 
         photographerButton = new JButton("+");
@@ -161,6 +167,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(videographerLabel);
 
         videographerPriceInput = new JTextField();
+        videographerPriceInput.setFont(smallerFont);
         bottomPanel.add(videographerPriceInput);
 
         videographerButton = new JButton("+");
@@ -173,6 +180,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(cosmeticsLabel);
 
         cosmeticsPriceInput = new JTextField();
+        cosmeticsPriceInput.setFont(smallerFont);
         bottomPanel.add(cosmeticsPriceInput);
 
         cosmeticsButton = new JButton("+");
@@ -185,6 +193,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(dressLabel);
 
         dressPriceInput = new JTextField();
+        dressPriceInput.setFont(smallerFont);
         bottomPanel.add(dressPriceInput);
 
         dressButton = new JButton("+");
@@ -197,6 +206,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(entertainmentLabel);
 
         entertainmentPriceInput = new JTextField();
+        entertainmentPriceInput.setFont(smallerFont);
         bottomPanel.add(entertainmentPriceInput);
 
         entertainmentButton = new JButton("+");
@@ -209,6 +219,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         bottomPanel.add(decorationsLabel);
 
         decorationsPriceInput = new JTextField();
+        decorationsPriceInput.setFont(smallerFont);
         bottomPanel.add(decorationsPriceInput);
 
         decorationsButton = new JButton("+");

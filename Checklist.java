@@ -59,7 +59,7 @@ public class Checklist extends Page implements ActionListener{
         inputPanel.add(taskLabel);
 
         taskInput = new JTextField();
-        taskInput.setFont(font);
+        taskInput.setFont(smallerFont);
         inputPanel.add(taskInput);
 
         addButton = new JButton("+");

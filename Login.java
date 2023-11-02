@@ -53,21 +53,28 @@ public class Login extends Page implements ActionListener, WindowListener{
         constraints = new GridBagConstraints();
 
         loginLabel = new JLabel("LOGIN");
+        loginLabel.setFont(smallerFont);
         loginLabel.setBackground(backgroundColor);
 
         loginInputPanel = new JPanel(new GridLayout(2,2));
         loginInputPanel.setBackground(backgroundColor);
 
         loginButton = new JButton("Login");
+        loginButton.setFont(smallerFont);
         loginButton.setBackground(buttonColor);
         loginButton.addActionListener(this);
 
         loginUsernameLabel = new JLabel("Username");
+        loginUsernameLabel.setFont(smallerFont);
         loginUsernameInput = new JTextField("");
+        loginUsernameInput.setFont(smallerFont);
         loginPasswordLabel = new JLabel("Password");
+        loginPasswordLabel.setFont(smallerFont);
         loginPasswordInput = new JTextField("");
+        loginPasswordInput.setFont(smallerFont);
 
         loginMessage = new JLabel("");
+        loginMessage.setFont(smallerFont);
         loginMessage.setBackground(backgroundColor);
 
         loginInputPanel.add(loginUsernameLabel);
@@ -89,26 +96,33 @@ public class Login extends Page implements ActionListener, WindowListener{
         loginPanel.add(loginMessage, constraints);
 
         joinLabel = new JLabel("JOIN");
+        joinLabel.setFont(smallerFont);
         joinLabel.setBackground(backgroundColor);
 
         joinInputPanel = new JPanel(new GridLayout(2,2));
         joinInputPanel.setBackground(backgroundColor);
 
         joinUsernameLabel = new JLabel("Username");
+        joinUsernameLabel.setFont(smallerFont);
         joinUsernameInput = new JTextField("");
+        joinUsernameInput.setFont(smallerFont);
         joinPasswordLabel = new JLabel("Password");
+        joinPasswordLabel.setFont(smallerFont);
         joinPasswordInput = new JTextField("");
 
         joinButton = new JButton("Join");
         joinButton.setBackground(buttonColor);
+        joinButton.setFont(smallerFont);
         joinButton.addActionListener(this);
 
         deleteButton = new JButton("Delete Account");
+        deleteButton.setFont(smallerFont);
         deleteButton.setBackground(darkButtonColor);
         deleteButton.setForeground(Color.white);
         deleteButton.addActionListener(this);
 
         joinMessage = new JLabel("");
+        joinMessage.setFont(smallerFont);
         joinMessage.setBackground(backgroundColor);
         joinMessage.setVisible(true);
 

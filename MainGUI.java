@@ -54,13 +54,19 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
 
         // menus 
         navigate = new JMenu("Navigate");
+        navigate.setFont(smallerFont);
 
         // items
         home = new JMenuItem("Home");
+        home.setFont(smallerFont);
         budget = new JMenuItem("Budget");
+        budget.setFont(smallerFont);
         guests = new JMenuItem("Guests");
+        guests.setFont(smallerFont);
         contacts = new JMenuItem("Contacts");
+        contacts.setFont(smallerFont);
         checklist = new JMenuItem("Checklist");
+        checklist.setFont(smallerFont);
         navigate.add(home);
         navigate.add(budget);
         navigate.add(guests);
