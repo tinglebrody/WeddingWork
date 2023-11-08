@@ -8,19 +8,19 @@ import java.util.*;
 
 public class Login extends Page implements ActionListener, WindowListener{
 
-    JFrame frame;
-    JPanel loginPanel, joinPanel, loginInputPanel, joinInputPanel;
-    JLabel loginLabel, joinLabel, loginUsernameLabel, loginPasswordLabel, joinUsernameLabel, joinPasswordLabel, loginMessage,
+    private JFrame frame;
+    private JPanel loginPanel, joinPanel, loginInputPanel, joinInputPanel;
+    private JLabel loginLabel, joinLabel, loginUsernameLabel, loginPasswordLabel, joinUsernameLabel, joinPasswordLabel, loginMessage,
         joinMessage;
-    JTextField loginUsernameInput, loginPasswordInput, joinUsernameInput, joinPasswordInput;
-    JButton loginButton, joinButton, deleteButton;
-    String username, password;
-    MainGUI main;
-    File data;
-    Filer filer;
-    Scanner scan;
-    JSplitPane pane;
-    ArrayList<String> database;
+    private JTextField loginUsernameInput, loginPasswordInput, joinUsernameInput, joinPasswordInput;
+    private JButton loginButton, joinButton, deleteButton;
+    private String username, password;
+    private MainGUI main;
+    private File data;
+    private Filer filer;
+    private Scanner scan;
+    private JSplitPane pane;
+    private ArrayList<String> database;
 
     //https://www.baeldung.com/java-detect-os
     String os = System.getProperty("os.name");
@@ -109,6 +109,7 @@ public class Login extends Page implements ActionListener, WindowListener{
         joinPasswordLabel = new JLabel("Password");
         joinPasswordLabel.setFont(smallerFont);
         joinPasswordInput = new JTextField("");
+        joinPasswordInput.setFont(smallerFont);
 
         joinButton = new JButton("Join");
         joinButton.setBackground(buttonColor);
@@ -155,7 +156,7 @@ public class Login extends Page implements ActionListener, WindowListener{
         frame.setVisible(true);
     }
 
-    public void loadData(ArrayList<String> list, Scanner scan){
+    private void loadData(ArrayList<String> list, Scanner scan){
         while (true){
             try{
                 list.add(scan.nextLine());
@@ -166,7 +167,7 @@ public class Login extends Page implements ActionListener, WindowListener{
         }
     }
 
-    public void writeData(ArrayList<String> list){
+    private void writeData(ArrayList<String> list){
         String addToFile = "";
         for (String element : list){
             addToFile = addToFile + element + "\n";
@@ -176,7 +177,7 @@ public class Login extends Page implements ActionListener, WindowListener{
         }
         catch(IOException e){}
     }
-    public boolean exists(String username) throws FileNotFoundException{
+    private boolean exists(String username) throws FileNotFoundException{
         String testUsername;
         scan = new Scanner(data);
         for (String element : database){
@@ -186,7 +187,7 @@ public class Login extends Page implements ActionListener, WindowListener{
         }
         return false;
     }
-    public boolean validate(String username, String password) throws FileNotFoundException{
+    private boolean validate(String username, String password) throws FileNotFoundException{
         String testUsername;
         scan = new Scanner(data);
         for (int i = 0; i < database.size(); i++){
@@ -199,7 +200,7 @@ public class Login extends Page implements ActionListener, WindowListener{
         return false;
     }
 
-    public boolean deleteUser(String username, String password) throws FileNotFoundException{
+    private boolean deleteUser(String username, String password) throws FileNotFoundException{
         if (validate(username, password)){
             int index = database.indexOf(username);
             database.remove(username);
@@ -209,7 +210,7 @@ public class Login extends Page implements ActionListener, WindowListener{
         return false;
     }
 
-    public void createFiles(String username){
+    private void createFiles(String username){
         // https://www.digitalocean.com/community/tutorials/java-create-new-file
         String slash = System.getProperty("file.separator");
         try{
@@ -243,7 +244,7 @@ public class Login extends Page implements ActionListener, WindowListener{
         catch(IOException e){System.out.println("Error!");}
     }
 
-    public void deleteFiles(String username){
+    private void deleteFiles(String username){
         String slash = System.getProperty("file.separator");
         new File("data" + slash + username + "Data" + slash + username + "BudgetData.txt").delete();
         new File("data" + slash + username + "Data" + slash + username + "GuestsData.txt").delete();

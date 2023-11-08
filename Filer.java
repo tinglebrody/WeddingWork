@@ -3,7 +3,7 @@
 import java.io.*;
 
 public class Filer{
-    String filePath;
+    private String filePath;
 
 public Filer(String filePath){
     this.filePath = filePath;

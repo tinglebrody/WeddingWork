@@ -8,14 +8,10 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Checklist extends Page implements ActionListener{
-    JPanel titlePanel, inputPanel, listPanel, spacerPanel;
-    JLabel titleLabel, taskLabel, spacerLabel;
-    JTextField taskInput;
-    JButton addButton, removeButton;
-    ArrayList<JLabel> taskList;
-    int count;
-    Filer filer;
-    File data;
+    private JTextField taskInput;
+    private JButton addButton, removeButton;
+    private ArrayList<JLabel> taskList;
+    private int count;
 
     public Checklist(){
         try {
@@ -25,6 +21,9 @@ public class Checklist extends Page implements ActionListener{
         } catch (IllegalAccessException ex) {
         } catch (UnsupportedLookAndFeelException ex) {
         }
+        JPanel titlePanel, inputPanel, listPanel, spacerPanel;
+        JLabel titleLabel, taskLabel, spacerLabel;
+
         taskList = new ArrayList<JLabel>();
 
         File inputFile = new File("data/"+super.username+"Data/"+super.username+"ChecklistData.txt");
@@ -104,7 +103,7 @@ public class Checklist extends Page implements ActionListener{
         constraints.gridy = 4;
     }
 
-    public int indexOf(String name, ArrayList<JLabel> list){
+    private int indexOf(String name, ArrayList<JLabel> list){
         int index = 0;
         for (JLabel element: list){
             if (element.getText().compareTo(name) == 0){
@@ -114,7 +113,7 @@ public class Checklist extends Page implements ActionListener{
         }
         return index;
     }
-    public void remove(String name, ArrayList<JLabel> list, int count){
+    private void remove(String name, ArrayList<JLabel> list, int count){
         int index = indexOf(name, list);
         if (list.get(index+1) != null)
         {
@@ -127,7 +126,7 @@ public class Checklist extends Page implements ActionListener{
         }
     }
 
-    public int loadData(ArrayList<JLabel> list, Scanner scan){
+    private int loadData(ArrayList<JLabel> list, Scanner scan){
         String input = "";
         int numGuests = 0;
         while (true){

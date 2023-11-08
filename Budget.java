@@ -6,18 +6,17 @@ import java.io.*;
 import java.awt.image.BufferedImage;
 import java.util.Scanner;
 
+
 public class Budget extends Page implements ActionListener{
 
-int totalBudget, totalExpenses, currentBudget, plannerPrice, venuePrice, cateringPrice, floralsPrice, photographerPrice,
-    videographerPrice, cosmeticsPrice, dressPrice, entertainmentPrice, decorationsPrice;
-JLabel title, totalBudgetLabel, totalExpensesLabel, currentBudgetLabel, plannerLabel, venueLabel, cateringLabel, 
-    floralsLabel, photographerLabel, videographerLabel, cosmeticsLabel, dressLabel, entertainmentLabel, decorationsLabel, spacerLine;
-JPanel titlePanel, topPanel, middlePanel, bottomPanel, spacerPanel;
-JTextField totalBudgetInput, plannerPriceInput, venuePriceInput, cateringPriceInput, floralsPriceInput, photographerPriceInput,
-    videographerPriceInput, cosmeticsPriceInput, dressPriceInput, entertainmentPriceInput, decorationsPriceInput;
-JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsButton, photographerButton,
-    videographerButton, cosmeticsButton, dressButton, entertainmentButton, decorationsButton;
-
+    private int totalBudget, totalExpenses, currentBudget, plannerPrice, venuePrice, cateringPrice, floralsPrice, photographerPrice,
+        videographerPrice, cosmeticsPrice, dressPrice, entertainmentPrice, decorationsPrice;
+    private JLabel title, totalBudgetLabel, totalExpensesLabel, currentBudgetLabel, plannerLabel, venueLabel, cateringLabel, 
+        floralsLabel, photographerLabel, videographerLabel, cosmeticsLabel, dressLabel, entertainmentLabel, decorationsLabel;
+    private JTextField totalBudgetInput, plannerPriceInput, venuePriceInput, cateringPriceInput, floralsPriceInput, photographerPriceInput,
+        videographerPriceInput, cosmeticsPriceInput, dressPriceInput, entertainmentPriceInput, decorationsPriceInput;
+    private JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsButton, photographerButton,
+            videographerButton, cosmeticsButton, dressButton, entertainmentButton, decorationsButton;
     public Budget() throws IOException{
         try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -26,7 +25,10 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         } catch (IllegalAccessException ex) {
         } catch (UnsupportedLookAndFeelException ex) {
         }
-        
+
+        JLabel spacerLine;
+        JPanel titlePanel, topPanel, middlePanel, bottomPanel, spacerPanel;
+
         File inputFile = new File("data/"+super.username+"Data/"+super.username+"BudgetData.txt");
         Scanner scan = new Scanner(inputFile);
 
@@ -248,7 +250,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         panel.setVisible(false);
     }
 
-    void updateBudget()
+    private void updateBudget()
     {
         totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
             videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
@@ -256,7 +258,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         currentBudget = totalBudget - totalExpenses;
         currentBudgetLabel.setText("Current Budget: $" + currentBudget);
     }
-    void totalBudgetButtonAction(){
+    private void totalBudgetButtonAction(){
         try {
             totalBudget = Integer.parseInt(totalBudgetInput.getText());
         }
@@ -269,7 +271,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         totalBudgetLabel.setText("Total Budget: $" + totalBudget);
         currentBudgetLabel.setText("Current Budget : $" + currentBudget);
     }
-    void plannerButtonAction(){
+    private void plannerButtonAction(){
         try {
             plannerPrice = Integer.parseInt(plannerPriceInput.getText());
         }
@@ -282,7 +284,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         plannerPriceInput.setText("");
         updateBudget();
     }
-    void venueButtonAction()
+    private void venueButtonAction()
     {
         try {
             venuePrice = Integer.parseInt(venuePriceInput.getText());
@@ -295,7 +297,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         venuePriceInput.setText("");
         updateBudget();
     }
-    void cateringButtonAction(){
+    private void cateringButtonAction(){
         try {
             cateringPrice = Integer.parseInt(cateringPriceInput.getText());
         }
@@ -307,7 +309,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         cateringPriceInput.setText("");
         updateBudget();
     }
-    void floralsButtonAction(){
+    private void floralsButtonAction(){
         try {
             floralsPrice = Integer.parseInt(floralsPriceInput.getText());
         }
@@ -319,7 +321,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         floralsPriceInput.setText("");
         updateBudget();
     }
-    void photographerButtonAction(){
+    private void photographerButtonAction(){
         try {
             photographerPrice = Integer.parseInt(photographerPriceInput.getText());
         }
@@ -331,7 +333,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         photographerPriceInput.setText("");
         updateBudget();
     }
-    void videographerButtonAction(){
+    private void videographerButtonAction(){
         try {
             videographerPrice = Integer.parseInt(videographerPriceInput.getText());
         }
@@ -343,7 +345,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         videographerPriceInput.setText("");
         updateBudget();
     }
-    void cosmeticsButtonAction(){
+    private void cosmeticsButtonAction(){
         try {
             cosmeticsPrice = Integer.parseInt(cosmeticsPriceInput.getText());
         }
@@ -355,7 +357,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         cosmeticsPriceInput.setText("");
         updateBudget();
     }
-    void dressButtonAction(){
+    private void dressButtonAction(){
         try {
             dressPrice = Integer.parseInt(dressPriceInput.getText());
         }
@@ -368,7 +370,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         updateBudget();
     }
 
-    void entertainmentButtonAction(){
+    private void entertainmentButtonAction(){
         try {
             entertainmentPrice = Integer.parseInt(entertainmentPriceInput.getText());
         }
@@ -381,7 +383,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         updateBudget();
     }
 
-    void decorationsButtonAction(){
+    private void decorationsButtonAction(){
         try {
             decorationsPrice = Integer.parseInt(decorationsPriceInput.getText());
         }
@@ -394,7 +396,7 @@ JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsBu
         updateBudget();
     }
 
-    void saveAction() throws IOException{
+    public void saveAction() throws IOException{
         Filer filer = new Filer("data/"+super.username+"Data/"+super.username+"BudgetData.txt");
         filer.toFile(String.valueOf(totalBudget) + "\n" + String.valueOf(totalExpenses) + "\n" + String.valueOf(currentBudget)
          + "\n" + String.valueOf(plannerPrice) + "\n" + String.valueOf(venuePrice) + "\n" + String.valueOf(cateringPrice)

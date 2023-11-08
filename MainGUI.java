@@ -8,19 +8,18 @@ import java.util.ArrayList;
 
 public class MainGUI extends Page implements ActionListener, WindowListener{
 
-    static String page = "Home";
-    JMenuBar menubar;
-    JMenu navigate;
-    JMenuItem home, budget, guests, contacts, checklist;
-    static JFrame frame;
-    static Budget budgetPage;
-    static Home homePage;
-    static Guests guestsPage;
-    static Contacts contactsPage;
-    static Checklist checklistPage;
-    static JPanel homePanel;
-    static CardLayout manager;
-    JTabbedPane tabs;
+    private static String page = "Home";
+    private JMenuBar menubar;
+    private JMenu navigate;
+    private JMenuItem home, budget, guests, contacts, checklist;
+    public static JFrame frame;
+    private static Budget budgetPage;
+    private static Home homePage;
+    private static Guests guestsPage;
+    private static Contacts contactsPage;
+    private static Checklist checklistPage;
+    private static JPanel homePanel;
+    private static CardLayout manager;
 
 
     public MainGUI() throws IOException{
@@ -121,6 +120,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
     public void windowDeiconified(WindowEvent e) {}
     public void windowActivated(WindowEvent e) {}
     public void windowDeactivated(WindowEvent e) {}
+    
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == home){
             homePage.panel.setVisible(true);

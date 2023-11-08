@@ -8,15 +8,11 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Contacts extends Page implements ActionListener{
-    JPanel titlePanel, inputPanel, spacerPanel, listPanel;
-    JLabel titleLabel, nameLabel, jobLabel, phoneLabel, emailLabel, spacerLabel;
-    JTextField nameInput, jobInput, phoneInput, emailInput;
-    JButton addButton, removeButton;
-    ArrayList<JLabel> contactsList;
-    ArrayList<String> names;
-    int count;
-    Filer filer;
-    File data;
+    private JTextField nameInput, jobInput, phoneInput, emailInput;
+    private JButton addButton, removeButton;
+    private ArrayList<JLabel> contactsList;
+    private ArrayList<String> names;
+    private int count;
 
     public Contacts(){
         try {
@@ -26,6 +22,9 @@ public class Contacts extends Page implements ActionListener{
         } catch (IllegalAccessException ex) {
         } catch (UnsupportedLookAndFeelException ex) {
         }
+        JPanel titlePanel, inputPanel, spacerPanel, listPanel;
+        JLabel titleLabel, nameLabel, jobLabel, phoneLabel, emailLabel, spacerLabel;
+
         contactsList = new ArrayList<JLabel>();
         names = new ArrayList<String>();
 
@@ -138,7 +137,7 @@ public class Contacts extends Page implements ActionListener{
         panel.add(listPanel, constraints);
     }
 
-    public int indexOf(String name, ArrayList<String> list){
+    private int indexOf(String name, ArrayList<String> list){
         int index = 0;
         for (String element : list){
             if (element.compareTo(name) == 0){
@@ -148,7 +147,7 @@ public class Contacts extends Page implements ActionListener{
         }
         return index;
     }
-    public void remove(String name, ArrayList<JLabel> list, int count){
+    private void remove(String name, ArrayList<JLabel> list, int count){
         int index = indexOf(name, names);
         if (list.get(index+1) != null)
         {
@@ -170,7 +169,7 @@ public class Contacts extends Page implements ActionListener{
         }
     }
 
-    public String parseName(String label){
+    private String parseName(String label){
         String name = "";
         char[] characters = label.toCharArray();
         for (char c : characters){
@@ -183,7 +182,7 @@ public class Contacts extends Page implements ActionListener{
         }
         return name;
     }
-    public int loadData(ArrayList<JLabel> list, Scanner scan){
+    private int loadData(ArrayList<JLabel> list, Scanner scan){
         String input = "";
         int numGuests = 0;
         while (true){

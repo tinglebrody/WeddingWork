@@ -8,16 +8,13 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Guests extends Page implements ActionListener{
-    JPanel titlePanel, inputPanel, groomFamilyPanel, brideFamilyPanel, groomFriendsPanel, brideFriendsPanel, sharedFriendsPanel,
-        otherPanel, spacer1, spacer2, spacer3, spacer4, spacer5, spacer6;
-    JLabel titleLabel, guestNameLabel, groomFamilyLabel, brideFamilyLabel, groomFriendsLabel, brideFriendsLabel, sharedFriendsLabel, otherLabel;
-    JTextField guestNameInput, guestCountInput;
-    JButton groomFamilyButton, brideFamilyButton, groomFriendsButton, brideFriendsButton, sharedFriendsButton, 
+    private JTextField guestNameInput, guestCountInput;
+    private JButton groomFamilyButton, brideFamilyButton, groomFriendsButton, brideFriendsButton, sharedFriendsButton, 
         otherButton, removeButton;
-    GridBagConstraints constraints;
-    ArrayList<JLabel> groomFamilyList, brideFamilyList, groomFriendsList, brideFriendsList, sharedFriendsList,
+    private GridBagConstraints constraints;
+    private ArrayList<JLabel> groomFamilyList, brideFamilyList, groomFriendsList, brideFriendsList, sharedFriendsList,
         otherList;
-    int guestCount = 40, groomFamilyCount, brideFamilyCount, groomFriendsCount, brideFriendsCount, sharedFriendsCount, otherCount;
+    private int guestCount = 40, groomFamilyCount, brideFamilyCount, groomFriendsCount, brideFriendsCount, sharedFriendsCount, otherCount;
 
     public Guests() throws FileNotFoundException
     {
@@ -28,6 +25,11 @@ public class Guests extends Page implements ActionListener{
         } catch (IllegalAccessException ex) {
         } catch (UnsupportedLookAndFeelException ex) {
         }
+        JPanel titlePanel, inputPanel, groomFamilyPanel, brideFamilyPanel, 
+            groomFriendsPanel, brideFriendsPanel, sharedFriendsPanel,
+            otherPanel, spacer1, spacer2, spacer3, spacer4, spacer5, spacer6;
+        JLabel titleLabel, guestNameLabel, groomFamilyLabel, brideFamilyLabel, 
+            groomFriendsLabel, brideFriendsLabel, sharedFriendsLabel, otherLabel;
 
         groomFamilyList = new ArrayList<JLabel>();
         brideFamilyList = new ArrayList<JLabel>();
@@ -263,7 +265,7 @@ public class Guests extends Page implements ActionListener{
         panel.add(otherPanel, constraints);
     }
 
-    void saveAction() throws IOException{
+    public void saveAction() throws IOException{
         Filer filer = new Filer("data/"+super.username+"Data/"+super.username+"GuestsData.txt");
         String addToFile = "";
         
@@ -294,7 +296,7 @@ public class Guests extends Page implements ActionListener{
         filer.toFile(addToFile);
     }
 
-    public int loadData(ArrayList<JLabel> list, Scanner scan){
+    private int loadData(ArrayList<JLabel> list, Scanner scan){
         String input = "";
         int numGuests = 0;
         while (true){
@@ -310,7 +312,7 @@ public class Guests extends Page implements ActionListener{
         return numGuests;
     }
 
-    public boolean labelContains(String name, ArrayList<JLabel> list){
+    private boolean labelContains(String name, ArrayList<JLabel> list){
         for (JLabel element : list){
             if (element.getText().equals("| " + name + " |")){
                 return true;
@@ -318,7 +320,7 @@ public class Guests extends Page implements ActionListener{
         }
         return false;
     }
-    public int indexOf(String name, ArrayList<JLabel> list){
+    private int indexOf(String name, ArrayList<JLabel> list){
         int index = 0;
         for (JLabel element: list){
             if (element.getText().equals("| " + name + " |")){
@@ -329,7 +331,7 @@ public class Guests extends Page implements ActionListener{
         return index;
     }
 
-    public void removeFromList(String name, ArrayList<JLabel> list, int count){
+    private void removeFromList(String name, ArrayList<JLabel> list, int count){
         int index = indexOf(name, list);
         if (list.get(index+1) != null)
         {
@@ -342,7 +344,7 @@ public class Guests extends Page implements ActionListener{
         }
     }
     
-    public String remove(String name){
+    private String remove(String name){
         if (labelContains(name, groomFamilyList)){
             removeFromList(name, groomFamilyList, groomFamilyCount);
             return "groomFamily";

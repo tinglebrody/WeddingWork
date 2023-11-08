@@ -4,9 +4,9 @@ import java.awt.event.*;
 import javax.imageio.ImageIO;
 import java.io.*;
 import java.awt.image.BufferedImage;
-public class Home extends Page implements ActionListener{
+public class Home extends Page{
 
-JLabel welcomeLabel, usernameLabel;
+private JLabel welcomeLabel, usernameLabel;
 
     public Home() throws IOException{
         panel = new JPanel();
@@ -23,9 +23,5 @@ JLabel welcomeLabel, usernameLabel;
         constraints.gridx = 0;
         constraints.gridy = 1;
         panel.add(usernameLabel, constraints);
-    }
-
-    public void actionPerformed(ActionEvent e){
-        
     }
 }
