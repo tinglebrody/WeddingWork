@@ -11,13 +11,14 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
     private static String page = "Home";
     private JMenuBar menubar;
     private JMenu navigate;
-    private JMenuItem home, budget, guests, contacts, checklist;
+    private JMenuItem home, budget, guests, contacts, checklist, notes;
     public static JFrame frame;
     private static Budget budgetPage;
     private static Home homePage;
     private static Guests guestsPage;
     private static Contacts contactsPage;
     private static Checklist checklistPage;
+    private static Notes notesPage;
     private static JPanel homePanel;
     private static CardLayout manager;
 
@@ -42,6 +43,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         guestsPage = new Guests();
         contactsPage = new Contacts();
         checklistPage = new Checklist();
+        notesPage = new Notes();
         homePanel = new JPanel(new CardLayout());
 
         frame.addWindowListener(this);
@@ -66,11 +68,14 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         contacts.setFont(smallerFont);
         checklist = new JMenuItem("Checklist");
         checklist.setFont(smallerFont);
+        notes = new JMenuItem("Notes");
+        notes.setFont(smallerFont);
         navigate.add(home);
         navigate.add(budget);
         navigate.add(guests);
         navigate.add(contacts);
         navigate.add(checklist);
+        navigate.add(notes);
 
         home.setBackground(buttonColor);
         home.setForeground(Color.black);
@@ -81,6 +86,10 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         guests.setOpaque(true);
         contacts.setBackground(buttonColor);
         contacts.setOpaque(true);
+        checklist.setBackground(buttonColor);
+        checklist.setOpaque(true);
+        notes.setBackground(buttonColor);
+        notes.setOpaque(true);
 
         // add menus to menubar
         menubar.add(navigate);
@@ -90,12 +99,14 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         guests.addActionListener(this);
         contacts.addActionListener(this);
         checklist.addActionListener(this);
+        notes.addActionListener(this);
 
         homePanel.add(homePage.panel);
         homePanel.add(budgetPage.panel);
         homePanel.add(guestsPage.panel);
         homePanel.add(contactsPage.panel);
         homePanel.add(checklistPage.panel);
+        homePanel.add(notesPage.panel);
         frame.add(homePanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("WeddingWork");
@@ -111,6 +122,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
             guestsPage.saveAction();
             contactsPage.saveAction();
             checklistPage.saveAction();
+            notesPage.saveAction();
         }
         catch (IOException e){}
     }
@@ -128,6 +140,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
             guestsPage.panel.setVisible(false);
             contactsPage.panel.setVisible(false);
             checklistPage.panel.setVisible(false);
+            notesPage.panel.setVisible(false);
         }
         if (event.getSource() == budget){
             homePage.panel.setVisible(false);
@@ -135,6 +148,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
             guestsPage.panel.setVisible(false);
             contactsPage.panel.setVisible(false);
             checklistPage.panel.setVisible(false);
+            notesPage.panel.setVisible(false);
         }
         if (event.getSource() == guests){
             homePage.panel.setVisible(false);
@@ -142,6 +156,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
             guestsPage.panel.setVisible(true);
             contactsPage.panel.setVisible(false);
             checklistPage.panel.setVisible(false);
+            notesPage.panel.setVisible(false);
         }
         if (event.getSource() == contacts){
             homePage.panel.setVisible(false);
@@ -149,6 +164,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
             guestsPage.panel.setVisible(false);
             contactsPage.panel.setVisible(true);
             checklistPage.panel.setVisible(false);
+            notesPage.panel.setVisible(false);
         }
         if (event.getSource() == checklist){
             homePage.panel.setVisible(false);
@@ -156,6 +172,15 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
             guestsPage.panel.setVisible(false);
             contactsPage.panel.setVisible(false);
             checklistPage.panel.setVisible(true);
+            notesPage.panel.setVisible(false);
+        }
+        if (event.getSource() == notes){
+            homePage.panel.setVisible(false);
+            budgetPage.panel.setVisible(false);
+            guestsPage.panel.setVisible(false);
+            contactsPage.panel.setVisible(false);
+            checklistPage.panel.setVisible(false);
+            notesPage.panel.setVisible(true);
         }
     }
     public static void main(String[] args) throws InterruptedException, IOException{

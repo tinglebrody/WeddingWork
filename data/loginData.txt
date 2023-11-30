@@ -1,6 +1,2 @@
 Username u
 Password p
-Username jane
-Password p
-Username brody
-Password tingle

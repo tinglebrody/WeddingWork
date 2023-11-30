@@ -219,6 +219,7 @@ public class Login extends Page implements ActionListener, WindowListener{
             new File("data" + slash + username + "Data" + slash + username + "GuestsData.txt").createNewFile();
             new File("data" + slash + username + "Data" + slash + username + "ContactsData.txt").createNewFile();
             new File("data" + slash + username + "Data" + slash + username + "ChecklistData.txt").createNewFile();
+            new File("data" + slash + username + "Data" + slash + username + "NotesData.txt").createNewFile();
         }
         catch(IOException e){System.out.println("Error when creating files!");}
 
@@ -242,6 +243,11 @@ public class Login extends Page implements ActionListener, WindowListener{
         filer = new Filer("data/"+username+"Data/"+username+"ChecklistData.txt");
         try{filer.toFile(checklistString);}
         catch(IOException e){System.out.println("Error!");}
+
+        String notesString = "";
+        filer = new Filer("data/"+username+"Data/"+username+"NotesData.txt");
+        try{filer.toFile(notesString);}
+        catch(IOException e){System.out.println("Error!");}
     }
 
     private void deleteFiles(String username){
@@ -250,6 +256,7 @@ public class Login extends Page implements ActionListener, WindowListener{
         new File("data" + slash + username + "Data" + slash + username + "GuestsData.txt").delete();
         new File("data" + slash + username + "Data" + slash + username + "ContactsData.txt").delete();
         new File("data" + slash + username + "Data" + slash + username + "ChecklistData.txt").delete();
+        new File("data" + slash + username + "Data" + slash + username + "NotesData.txt").delete();
         new File("data" + slash + username + "Data").delete();
     }
 
