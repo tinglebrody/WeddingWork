@@ -60,8 +60,6 @@ public class Notes extends Page{
     }
 
     public String loadData(Scanner scan){
-        System.out.println(notesInput.getColumns());
-        System.out.println(notesInput.getRows());
         String data = "";
         String line = "";
         while (true){
