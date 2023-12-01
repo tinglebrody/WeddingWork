@@ -1,6 +1,2 @@
 Username u
 Password p
-Username m
-Password m
-Username k
-Password k
