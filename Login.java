@@ -313,6 +313,8 @@ public class Login extends Page implements ActionListener, WindowListener{
                 if (worked){
                     joinMessage.setText("Account Deleted");
                     deleteFiles(joinUsernameInput.getText());
+                    joinUsernameInput.setText("");
+                    joinPasswordInput.setText("");
                 }
                 else{
                     joinMessage.setText("Invalid username/password");
