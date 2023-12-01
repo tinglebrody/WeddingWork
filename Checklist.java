@@ -74,7 +74,8 @@ public class Checklist extends Page implements ActionListener{
         spacerPanel = new JPanel();
         spacerPanel.setBackground(backgroundColor);
 
-        spacerLabel = new JLabel("--------------------------------------------------------------");
+        spacerLabel = new JLabel("--------------------------------------------" + 
+            "------------------------------------------------------------------------------------");
         spacerLabel.setBackground(backgroundColor);
         spacerPanel.add(spacerLabel);
 

@@ -63,7 +63,7 @@ public class Notes extends Page{
                     data = data + line;
                 }
                 else{
-                    data = data + line;
+                    data = data + line + "\n";
                 }
             }
             catch (NoSuchElementException e){
