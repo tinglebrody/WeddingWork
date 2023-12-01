@@ -34,9 +34,16 @@ public class Notes extends Page{
         titleLabel.setFont(bigFont);
         titlePanel.add(titleLabel);
 
-        notesInput = new JTextArea(33, 80);
+        notesPanel = new JPanel();
+        notesPanel.setLayout(new GridLayout(1,1));
+        notesPanel.setBackground(backgroundColor);
+
+        notesInput = new JTextArea(27,80);
         notesInput.setFont(font);
         notesInput.setBackground(buttonColor);
+        notesInput.setOpaque(true);
+        JScrollPane scroll = new JScrollPane(notesInput);
+        notesPanel.add(scroll);
 
         try{
             Scanner scan = new Scanner(inputFile);
@@ -49,10 +56,12 @@ public class Notes extends Page{
         panel.add(titlePanel, constraints);
         constraints.gridx = 0;
         constraints.gridy = 1;
-        panel.add(notesInput, constraints);
+        panel.add(notesPanel, constraints);
     }
 
     public String loadData(Scanner scan){
+        System.out.println(notesInput.getColumns());
+        System.out.println(notesInput.getRows());
         String data = "";
         String line = "";
         while (true){
