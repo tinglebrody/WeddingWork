@@ -1,13 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.imageio.ImageIO;
 import java.io.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class MainGUI extends Page implements ActionListener, WindowListener{
 
+    // variable declarations
     private static String page = "Home";
     private JMenuBar menubar;
     private JMenu navigate;
@@ -24,6 +22,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
 
 
     public MainGUI() throws IOException{
+        // use the UIManager to set the look
         try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         UIManager.put("MenuItem.selectionBackground", darkButtonColor);
@@ -36,28 +35,31 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         } catch (UnsupportedLookAndFeelException ex) {
         }
 
-        // initializing variables
+        // initialize the frame that will hold everything
         frame = new JFrame("Wedding Work");
+        // create an object for every page
         homePage = new Home();
         budgetPage = new Budget();
         guestsPage = new Guests();
         contactsPage = new Contacts();
         checklistPage = new Checklist();
         notesPage = new Notes();
+        // create the panel that will hold the other panels
+        // cardlayout makes it easy to switch between panels
         homePanel = new JPanel(new CardLayout());
-
+        // add a window listener to detect window closing
         frame.addWindowListener(this);
 
-        // menu bar
+        // create the menu bar
         menubar = new JMenuBar();
         menubar.setBackground(buttonColor);
         menubar.setOpaque(true);
 
-        // menus 
+        // create the navigate dropdown
         navigate = new JMenu("Navigate");
         navigate.setFont(smallerFont);
 
-        // items
+        // create the items that will be held in the navigate dropdown
         home = new JMenuItem("Home");
         home.setFont(smallerFont);
         budget = new JMenuItem("Budget");
@@ -70,6 +72,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         checklist.setFont(smallerFont);
         notes = new JMenuItem("Notes");
         notes.setFont(smallerFont);
+        // add the items to the navigate dropdown
         navigate.add(home);
         navigate.add(budget);
         navigate.add(guests);
@@ -77,6 +80,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         navigate.add(checklist);
         navigate.add(notes);
 
+        // set the color scheme for the menu items
         home.setBackground(buttonColor);
         home.setForeground(Color.black);
         home.setOpaque(true);
@@ -91,9 +95,10 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         notes.setBackground(buttonColor);
         notes.setOpaque(true);
 
-        // add menus to menubar
+        // add the naviagate dropdown to the menubar
         menubar.add(navigate);
 
+        // add action listeners to each menu item
         budget.addActionListener(this);
         home.addActionListener(this);
         guests.addActionListener(this);
@@ -101,23 +106,30 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         checklist.addActionListener(this);
         notes.addActionListener(this);
 
+        // add each page's panel to the homepanel (cardlayout)
         homePanel.add(homePage.panel);
         homePanel.add(budgetPage.panel);
         homePanel.add(guestsPage.panel);
         homePanel.add(contactsPage.panel);
         homePanel.add(checklistPage.panel);
         homePanel.add(notesPage.panel);
+        // add the homepanel to the main frame
         frame.add(homePanel);
+        // configure frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("WeddingWork");
         frame.setJMenuBar(menubar);
         frame.setSize(new Dimension(1300,1000));
+        // set the frame to invisible
+        // will be set visible if login is successful
         frame.setVisible(false);
     }
 
+    // function that is ran when the window closes
     public void windowClosing(WindowEvent event) {
+        // when the window closes...
         try{
-            System.out.println("Autosaved!");
+            // call the saveAction methods from each page object
             budgetPage.saveAction();
             guestsPage.saveAction();
             contactsPage.saveAction();
@@ -126,6 +138,7 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
         }
         catch (IOException e){}
     }
+    // other methods from the WindowListener interface
     public void windowClosed(WindowEvent e) {}
     public void windowOpened(WindowEvent e) {}
     public void windowIconified(WindowEvent e) {}
@@ -133,7 +146,13 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
     public void windowActivated(WindowEvent e) {}
     public void windowDeactivated(WindowEvent e) {}
     
+    // listener for button clicks
     public void actionPerformed(ActionEvent event){
+        // all of these are the menu items
+        // when a menu item is clicked, it sends an event
+        // this event contains a source (the name of the menu item)
+        // whichever menu item is clicked, set every other panel to invisible
+        // only the clicked menu item's panel will remain visible
         if (event.getSource() == home){
             homePage.panel.setVisible(true);
             budgetPage.panel.setVisible(false);
@@ -182,7 +201,5 @@ public class MainGUI extends Page implements ActionListener, WindowListener{
             checklistPage.panel.setVisible(false);
             notesPage.panel.setVisible(true);
         }
-    }
-    public static void main(String[] args) throws InterruptedException, IOException{
     }
 }
