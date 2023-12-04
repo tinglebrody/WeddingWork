@@ -9,9 +9,6 @@
 | Grandaddy |
 | Anna |
 | Dad |
-| Davis |
-| Dad |
-| Davis |
 Break
 | Papa |
 | Sissy |
@@ -34,7 +31,6 @@ Break
 | Salo |
 | Joe Mulligan |
 | Kayla |
-| Pavlo |
 Break
 | Cassie |
 | Brooke |

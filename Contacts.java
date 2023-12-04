@@ -132,7 +132,8 @@ public class Contacts extends Page implements ActionListener{
         spacerPanel.setBackground(backgroundColor);
 
         // add a long line to the spacer panel to separate the panels
-        spacerLabel = new JLabel("-------------------------------------------------------------------------------------------------------------------------------");
+        spacerLabel = new JLabel("-----------------------------------------------------" 
+            + "--------------------------------------------------------------------------");
         spacerLabel.setBackground(backgroundColor);
         spacerPanel.add(spacerLabel);
 
@@ -142,9 +143,11 @@ public class Contacts extends Page implements ActionListener{
         listPanel.setLayout(new GridLayout(30,1));
 
         // loop through the empty labels
-        for (int i = 0; i < 30 - contactsList.size(); i++){
+        for (int i = 0; i < 30; i++){
             // add empty strings to each contact
-            contactsList.add(new JLabel(" "));
+            if (i >= count){
+                contactsList.add(new JLabel(" "));
+            }
             contactsList.get(i).setFont(smallerFont);
             // add the contacts to the list
             listPanel.add(contactsList.get(i));
@@ -197,13 +200,14 @@ public class Contacts extends Page implements ActionListener{
                 try{
                     // set the current index to the next one
                     names.set(i, names.get(i+1));
+                    // set the text of the current label to the text of the next label
+                    list.get(i).setText(list.get(i+1).getText());
                 }
                 catch(IndexOutOfBoundsException e){
                     // when it goes too far, set the current index to an empty string
                     names.set(i, "");
+                    list.get(i).setText("");
                 }
-                // set the text of the current label to the text of the next label
-                list.get(i).setText(list.get(i+1).getText());
             }
             // remove the name from the arraylist
             names.remove(names.size()-1);
@@ -243,7 +247,7 @@ public class Contacts extends Page implements ActionListener{
     // method to load data from a text file to the array list
     private int loadData(ArrayList<JLabel> list, Scanner scan){
         String input = "";
-        int numGuests = 0;
+        int numContacts = 0;
         // infinite loop
         while (true){
             // get the line
@@ -260,11 +264,11 @@ public class Contacts extends Page implements ActionListener{
                 // add a new name to the list, parsing the name from input
                 names.add(parseName(input));
                 // increment the number of guests
-                numGuests++;
+                numContacts++;
             }
         }
         // return an integer holding the number of guests that were in the file
-        return numGuests;
+        return numContacts;
     }
 
     // method to save data 
@@ -288,19 +292,27 @@ public class Contacts extends Page implements ActionListener{
     public void actionPerformed(ActionEvent event){
         // if the source of the event is the add button
         if (event.getSource() == addButton){
-            // get the label at the current count and set it's text to a string made up
-            // of the four inputs
-            contactsList.get(count).setText(nameInput.getText() + "          " + jobInput.getText() + "          " + 
-                phoneInput.getText() + "          " + emailInput.getText());
-            // add just the name to the list of names
-            names.add(nameInput.getText());
-            // reset all the text inputs
-            nameInput.setText("");
-            jobInput.setText("");
-            phoneInput.setText("");
-            emailInput.setText("");
-            // increment the count
-            count++;
+            try{
+                // get the label at the current count and set it's text to a string made up
+                // of the four inputs
+                contactsList.get(count).setText(nameInput.getText() + "          " + jobInput.getText() + "          " + 
+                    phoneInput.getText() + "          " + emailInput.getText());
+                // add just the name to the list of names
+                names.add(nameInput.getText());
+                // reset all the text inputs
+                nameInput.setText("");
+                jobInput.setText("");
+                phoneInput.setText("");
+                emailInput.setText("");
+                // increment the count
+                count++;
+            }
+            catch (IndexOutOfBoundsException e){
+                nameInput.setText("");
+                jobInput.setText("");
+                phoneInput.setText("");
+                emailInput.setText("");
+            }
         }
         // if the source of the event is the remove button
         if (event.getSource() == removeButton){
