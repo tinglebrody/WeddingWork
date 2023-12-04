@@ -5,6 +5,9 @@ import java.io.*;
 
 // class that holds information every page will use
 public class Page{
+    // https://www.digitalocean.com/community/tutorials/java-create-new-file
+    // windows and mac have different slashes, need to make a slash variable
+    String slash = System.getProperty("file.separator");
     // different colors
     // used to keep a simple and consistent color scheme
     Color backgroundColor = new Color(255,255,243);

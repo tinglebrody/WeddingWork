@@ -29,7 +29,7 @@ public class Budget extends Page implements ActionListener{
         JLabel spacerLine;
         JPanel titlePanel, topPanel, middlePanel, bottomPanel, spacerPanel;
 
-        File inputFile = new File("data/"+super.username+"Data/"+super.username+"BudgetData.txt");
+        File inputFile = new File("data" + slash + username + "Data" + slash + username + "BudgetData.txt");
         Scanner scan = new Scanner(inputFile);
 
         totalBudget = Integer.parseInt(scan.nextLine());
@@ -397,7 +397,7 @@ public class Budget extends Page implements ActionListener{
     }
 
     public void saveAction() throws IOException{
-        Filer filer = new Filer("data/"+super.username+"Data/"+super.username+"BudgetData.txt");
+        Filer filer = new Filer("data" + slash + username + "Data" + slash + username + "BudgetData.txt");
         filer.toFile(String.valueOf(totalBudget) + "\n" + String.valueOf(totalExpenses) + "\n" + String.valueOf(currentBudget)
          + "\n" + String.valueOf(plannerPrice) + "\n" + String.valueOf(venuePrice) + "\n" + String.valueOf(cateringPrice)
           + "\n" + String.valueOf(floralsPrice) + "\n" + String.valueOf(photographerPrice) + "\n" + String.valueOf(videographerPrice)

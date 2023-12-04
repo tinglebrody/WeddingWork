@@ -26,7 +26,7 @@ public class Checklist extends Page implements ActionListener{
 
         taskList = new ArrayList<JLabel>();
 
-        File inputFile = new File("data/"+super.username+"Data/"+super.username+"ChecklistData.txt");
+        File inputFile = new File("data" + slash + username + "Data" + slash + username + "ChecklistData.txt");
         
         try{
             Scanner scan = new Scanner(inputFile);
@@ -145,7 +145,7 @@ public class Checklist extends Page implements ActionListener{
     }
 
     public void saveAction() throws IOException{
-        Filer filer = new Filer("data/"+super.username+"Data/"+super.username+"ChecklistData.txt");
+        Filer filer = new Filer("data" + slash + username + "Data" + slash + username + "ChecklistData.txt");
         String addToFile = "";
         
         for (int i = 0; i < count; i++){

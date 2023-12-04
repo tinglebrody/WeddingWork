@@ -270,9 +270,6 @@ public class Login extends Page implements ActionListener, WindowListener{
     // method to create a user's files in the local system
     // called when a user is created
     private void createFiles(String username){
-        // https://www.digitalocean.com/community/tutorials/java-create-new-file
-        // windows and mac have different slashes, need to make a slash variable
-        String slash = System.getProperty("file.separator");
         try{
             // create the user's folder
             new File("data" + slash + username + "Data").mkdir();
@@ -327,8 +324,6 @@ public class Login extends Page implements ActionListener, WindowListener{
     // method to delete a user's files
     // called when they delete their account
     private void deleteFiles(String username){
-        // get the slash based on the user's operating system
-        String slash = System.getProperty("file.separator");
         // delete the individual files
         new File("data" + slash + username + "Data" + slash + username + "BudgetData.txt").delete();
         new File("data" + slash + username + "Data" + slash + username + "GuestsData.txt").delete();
