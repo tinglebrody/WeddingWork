@@ -557,6 +557,8 @@ public class Guests extends Page implements ActionListener{
             if (removedFrom == "other"){
                 otherCount--;
             }
+            // reset the guest name input text field
+            guestNameInput.setText("");
         }
     }
 }
