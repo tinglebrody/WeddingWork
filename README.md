@@ -16,10 +16,11 @@
     HOW TO USE:
         The program starts on the login/signup page
         Create a username and password
-        To delete your account, enter your username and password (exactly) and hit the delete button
         Once your account has been created, log in using your username and password
         Once logged in, you will land on the home page
         Use the navigate button at the top left to flip between pages
+
+        To delete your account, enter your username and password (exactly) and hit the delete button
 
         Instructions for each page:
             Budget:
