@@ -375,51 +375,63 @@ public class Guests extends Page implements ActionListener{
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == groomFamilyButton) {
             try{
-                groomFamilyList.get(groomFamilyCount).setText("| " + guestNameInput.getText() + " |");
+                if (groomFamilyCount <= 39){
+                    groomFamilyList.get(groomFamilyCount).setText("| " + guestNameInput.getText() + " |");
+                    guestNameInput.setText("");
+                    groomFamilyCount++;
+                }
             }
             catch(IndexOutOfBoundsException e){}
-            guestNameInput.setText("");
-            groomFamilyCount++;
         }
         if (event.getSource() == brideFamilyButton) {
             try{
-                brideFamilyList.get(brideFamilyCount).setText("| " + guestNameInput.getText() + " |");
+                if (brideFamilyCount <= 39){
+                    brideFamilyList.get(brideFamilyCount).setText("| " + guestNameInput.getText() + " |");
+                    guestNameInput.setText("");
+                    brideFamilyCount++;
+                }
             }
             catch(IndexOutOfBoundsException e){}
-            guestNameInput.setText("");
-            brideFamilyCount++;
         }
         if (event.getSource() == groomFriendsButton) {
             try{
-                groomFriendsList.get(groomFriendsCount).setText("| " + guestNameInput.getText() + " |");
+                if (groomFriendsCount <= 39){
+                    groomFriendsList.get(groomFriendsCount).setText("| " + guestNameInput.getText() + " |");
+                    guestNameInput.setText("");
+                    groomFriendsCount++;
+                }
             }
             catch(IndexOutOfBoundsException e){}
-            guestNameInput.setText("");
-            groomFriendsCount++;
         }
         if (event.getSource() == brideFriendsButton) {
             try{
-                brideFriendsList.get(brideFriendsCount).setText("| " + guestNameInput.getText() + " |");
+                if (brideFriendsCount <= 39){
+                    brideFriendsList.get(brideFriendsCount).setText("| " + guestNameInput.getText() + " |");
+                    guestNameInput.setText("");
+                    brideFriendsCount++;
+                }
             }
             catch(IndexOutOfBoundsException e){}
-            guestNameInput.setText("");
-            brideFriendsCount++;
         }
         if (event.getSource() == sharedFriendsButton) {
             try{
-                sharedFriendsList.get(sharedFriendsCount).setText("| " + guestNameInput.getText() + " |");
+                if (sharedFriendsCount <= 39){
+                    sharedFriendsList.get(sharedFriendsCount).setText("| " + guestNameInput.getText() + " |");
+                    guestNameInput.setText("");
+                    sharedFriendsCount++;
+                }
             }
             catch(IndexOutOfBoundsException e){}
-            guestNameInput.setText("");
-            sharedFriendsCount++;
         }
         if (event.getSource() == otherButton) {
             try{
-                otherList.get(otherCount).setText("| " + guestNameInput.getText() + " |");
+                if (otherCount <= 39){
+                    otherList.get(otherCount).setText("| " + guestNameInput.getText() + " |");
+                    guestNameInput.setText("");
+                    otherCount++;
+                }
             }
             catch(IndexOutOfBoundsException e){}
-            guestNameInput.setText("");
-            otherCount++;
         }
         if (event.getSource() == removeButton) {
             String removedFrom = remove(guestNameInput.getText());
