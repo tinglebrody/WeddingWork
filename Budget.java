@@ -1,14 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.imageio.ImageIO;
 import java.io.*;
-import java.awt.image.BufferedImage;
 import java.util.Scanner;
 
-
+/**
+Budget page
+used to hold budget data for the user's wedding
+common wedding expenses are coded in 
+*/
 public class Budget extends Page implements ActionListener{
-
+    // declare variables
     private int totalBudget, totalExpenses, currentBudget, plannerPrice, venuePrice, cateringPrice, floralsPrice, photographerPrice,
         videographerPrice, cosmeticsPrice, dressPrice, entertainmentPrice, decorationsPrice;
     private JLabel title, totalBudgetLabel, totalExpensesLabel, currentBudgetLabel, plannerLabel, venueLabel, cateringLabel, 
@@ -17,7 +19,9 @@ public class Budget extends Page implements ActionListener{
         videographerPriceInput, cosmeticsPriceInput, dressPriceInput, entertainmentPriceInput, decorationsPriceInput;
     private JButton totalBudgetButton, plannerButton, venueButton, cateringButton, floralsButton, photographerButton,
             videographerButton, cosmeticsButton, dressButton, entertainmentButton, decorationsButton;
+    // Budget constructor
     public Budget() throws IOException{
+        // use the UI Manager to set the theme
         try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
@@ -26,12 +30,16 @@ public class Budget extends Page implements ActionListener{
         } catch (UnsupportedLookAndFeelException ex) {
         }
 
+        // create labels and panels that don't need to be global
         JLabel spacerLine;
         JPanel titlePanel, topPanel, middlePanel, bottomPanel, spacerPanel;
 
+        // create the file and scanner that will read data from the user's text file
         File inputFile = new File("data" + slash + username + "Data" + slash + username + "BudgetData.txt");
         Scanner scan = new Scanner(inputFile);
 
+        // load the data into declared variables
+        // each line holds a number in the correct order
         totalBudget = Integer.parseInt(scan.nextLine());
         totalExpenses = Integer.parseInt(scan.nextLine());
         currentBudget = Integer.parseInt(scan.nextLine());
@@ -46,59 +54,81 @@ public class Budget extends Page implements ActionListener{
         entertainmentPrice = Integer.parseInt(scan.nextLine());
         decorationsPrice = Integer.parseInt(scan.nextLine());
 
+        // create and implement the main panel
         panel = new JPanel();
         implementPanel(panel);
+        // constraints for layout
         constraints = new GridBagConstraints();
 
+        // create the title panel
         titlePanel = new JPanel();
         titlePanel.setLayout(new GridLayout(1,1));
         titlePanel.setBackground(backgroundColor);
 
+        // splitting the page into three panels
+        // create the top panel
         topPanel = new JPanel();
         topPanel.setLayout(new GridLayout(1,4));
         topPanel.setBackground(backgroundColor);
 
+        // create the middle panel
         middlePanel = new JPanel();
         middlePanel.setLayout(new GridLayout(2,1));
         middlePanel.setBackground(backgroundColor);
 
+        // create the bottom panel
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridLayout(10,3));
         bottomPanel.setBackground(backgroundColor);
 
+        // spacer panel for nice formatting
         spacerPanel = new JPanel();
         spacerPanel.setLayout(new GridLayout(1,1));
         spacerPanel.setBackground(backgroundColor);
 
+        // create the title label
         title = new JLabel(username + "'s Budget");
         title.setFont(bigFont);
         title.setBackground(backgroundColor);
         titlePanel.add(title);
 
+        // create the total budget label, add to top panel
         totalBudgetLabel = new JLabel("Total Budget: $" + totalBudget);
         totalBudgetLabel.setFont(font);
         topPanel.add(totalBudgetLabel);
 
+        // create the total budget input, add to top panel
         totalBudgetInput = new JTextField();
         totalBudgetInput.setFont(smallerFont);
         topPanel.add(totalBudgetInput);
 
+        // create the total budget button, add to top panel
         totalBudgetButton = new JButton("+");
         totalBudgetButton.addActionListener(this);
         totalBudgetButton.setBackground(buttonColor);
         topPanel.add(totalBudgetButton);
 
+        // create the total expenses label, add to middle panel
         totalExpensesLabel = new JLabel("Total Expenses: $" + totalExpenses);
         totalExpensesLabel.setFont(font);
         middlePanel.add(totalExpensesLabel);
 
+        // create the current budget label, add to middle panel
         currentBudgetLabel = new JLabel("Current Budget: $" + currentBudget);
         currentBudgetLabel.setFont(font);
         middlePanel.add(currentBudgetLabel);
 
+        // create a spacer line, add it to the spacer panel
         spacerLine = new JLabel("--------------------------------------------------------");
         spacerPanel.add(spacerLine);
 
+        /**
+        For each expense (planner, venue, photographer, etc...):
+        create a label that displays the name of the expense
+        create a price input text box
+        create an add button
+        add all three to the bottom panel 
+        */
         plannerLabel = new JLabel("Planner: $" + plannerPrice);
         plannerLabel.setFont(font);
         bottomPanel.add(plannerLabel);
@@ -229,6 +259,7 @@ public class Budget extends Page implements ActionListener{
         decorationsButton.setBackground(buttonColor);
         bottomPanel.add(decorationsButton);
 
+        // add all the panels to the main panel
         constraints.gridx = 0;
         constraints.gridy = 0;
         panel.add(titlePanel, constraints);
@@ -250,27 +281,53 @@ public class Budget extends Page implements ActionListener{
         panel.setVisible(false);
     }
 
+    // method to update the budget
     private void updateBudget()
     {
+        // update the totalExpenses variable
         totalExpenses = plannerPrice + venuePrice + cateringPrice + floralsPrice + photographerPrice + 
             videographerPrice + cosmeticsPrice + dressPrice + entertainmentPrice + decorationsPrice;
+        // set the text of the totalExpenses label
         totalExpensesLabel.setText("Total Expenses: $" + totalExpenses);
+        // update the currentBudget label
         currentBudget = totalBudget - totalExpenses;
+        // set the text of the currentBudget label
         currentBudgetLabel.setText("Current Budget: $" + currentBudget);
     }
+
+    // action for the total budget button
     private void totalBudgetButtonAction(){
         try {
+            // create an integer from the text input
             totalBudget = Integer.parseInt(totalBudgetInput.getText());
         }
         catch (NumberFormatException e) {
+            // if this fails, set the total budget to 0
             totalBudget = 0;
             totalBudgetInput.setText("");
         }
+        // update the current budget variable
         currentBudget = totalBudget - totalExpenses;
+        // reset the text input
         totalBudgetInput.setText("");
+        // update the total budget label text
         totalBudgetLabel.setText("Total Budget: $" + totalBudget);
+        // update the current budget label text
         currentBudgetLabel.setText("Current Budget : $" + currentBudget);
     }
+
+    /**
+    Button actions for every expense (planner, venue, photographer, etc...)
+    for each expense:
+
+    get the integer input from the text box
+    if that fails, set the expense to 0 and reset the text box
+    update the variable that holds the expense's price
+    update the current budget variable, subtracting the inputted expense from the total budget
+    update the text of the expense's label
+    reset the text input
+    call the updateBudget() method to update the total budget
+    */
     private void plannerButtonAction(){
         try {
             plannerPrice = Integer.parseInt(plannerPriceInput.getText());
@@ -396,8 +453,12 @@ public class Budget extends Page implements ActionListener{
         updateBudget();
     }
 
+    // method to save the user's data to their text file
     public void saveAction() throws IOException{
+        // create a filer with the path to this user's data
         Filer filer = new Filer("data" + slash + username + "Data" + slash + username + "BudgetData.txt");
+        // write their budget + expenses to the file in a consistent order
+        // add newline characters after every entry to create line separation
         filer.toFile(String.valueOf(totalBudget) + "\n" + String.valueOf(totalExpenses) + "\n" + String.valueOf(currentBudget)
          + "\n" + String.valueOf(plannerPrice) + "\n" + String.valueOf(venuePrice) + "\n" + String.valueOf(cateringPrice)
           + "\n" + String.valueOf(floralsPrice) + "\n" + String.valueOf(photographerPrice) + "\n" + String.valueOf(videographerPrice)
@@ -405,7 +466,10 @@ public class Budget extends Page implements ActionListener{
             + "\n" + String.valueOf(decorationsPrice));
     }
 
+    // method to handle button clicks
     public void actionPerformed(ActionEvent event) {
+        // get the source of the button click
+        // for each source, run the respectice ...ButtonAction() method
         if (event.getSource() == totalBudgetButton) {
             totalBudgetButtonAction();
         }
@@ -440,6 +504,4 @@ public class Budget extends Page implements ActionListener{
             decorationsButtonAction();
         }
     }
-
-    public static void main(String[] args){}
 }
