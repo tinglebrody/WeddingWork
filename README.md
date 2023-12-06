@@ -22,6 +22,11 @@
 
         To delete your account, enter your username and password (exactly) and hit the delete button
 
+        * if you want to use an account that already has data *
+            Log in with:
+                username: u
+                password p
+                
         Instructions for each page:
             Budget:
                 Enter your total budget first

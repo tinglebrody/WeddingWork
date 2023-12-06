@@ -1,1 +1,4 @@
+Jordan          Photographer          1234567890          photographer@gmail.com
+Kelly          Venue Manager          9876543210          venue@gmail.com
+Hibachi          Catering          1231231230          hibachi@gmail.com
 Break
