@@ -524,7 +524,7 @@ public class Guests extends Page implements ActionListener{
         }
         if (event.getSource() == otherButton) {
             try{
-                if (otherCount < guestCount){
+                if (otherCount < guestCount-1){
                     otherList.get(otherCount).setText("| " + guestNameInput.getText() + " |");
                     guestNameInput.setText("");
                     otherCount++;
