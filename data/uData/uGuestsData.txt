@@ -9,35 +9,6 @@
 | Grandaddy |
 | Anna |
 | Dad |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
-|  |
 Break
 | Papa |
 | Sissy |
@@ -52,9 +23,6 @@ Break
 | Lilly |
 | Uncle Al |
 | Nick |
-|  |
-|  |
-|  |
 Break
 | Hudson |
 | Warren |
