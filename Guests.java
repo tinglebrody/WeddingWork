@@ -477,7 +477,6 @@ public class Guests extends Page implements ActionListener{
                     groomFamilyList.get(groomFamilyCount).setText("| " + guestNameInput.getText() + " |");
                     guestNameInput.setText("");
                     groomFamilyCount++;
-                    System.out.println(groomFamilyCount);
                 }
             }
             catch(IndexOutOfBoundsException e){}
