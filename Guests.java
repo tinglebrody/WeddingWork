@@ -372,7 +372,6 @@ public class Guests extends Page implements ActionListener{
                 numGuests++;
             }
         }
-        // return the count
         return numGuests;
     }
 
@@ -474,17 +473,18 @@ public class Guests extends Page implements ActionListener{
 
         if (event.getSource() == groomFamilyButton) {
             try{
-                if (groomFamilyCount < guestCount){
+                if (groomFamilyCount < guestCount-1){
                     groomFamilyList.get(groomFamilyCount).setText("| " + guestNameInput.getText() + " |");
                     guestNameInput.setText("");
                     groomFamilyCount++;
+                    System.out.println(groomFamilyCount);
                 }
             }
             catch(IndexOutOfBoundsException e){}
         }
         if (event.getSource() == brideFamilyButton) {
             try{
-                if (brideFamilyCount < guestCount){
+                if (brideFamilyCount < guestCount-1){
                     brideFamilyList.get(brideFamilyCount).setText("| " + guestNameInput.getText() + " |");
                     guestNameInput.setText("");
                     brideFamilyCount++;
@@ -494,7 +494,7 @@ public class Guests extends Page implements ActionListener{
         }
         if (event.getSource() == groomFriendsButton) {
             try{
-                if (groomFriendsCount < guestCount){
+                if (groomFriendsCount < guestCount-1){
                     groomFriendsList.get(groomFriendsCount).setText("| " + guestNameInput.getText() + " |");
                     guestNameInput.setText("");
                     groomFriendsCount++;
@@ -504,7 +504,7 @@ public class Guests extends Page implements ActionListener{
         }
         if (event.getSource() == brideFriendsButton) {
             try{
-                if (brideFriendsCount < guestCount){
+                if (brideFriendsCount < guestCount-1){
                     brideFriendsList.get(brideFriendsCount).setText("| " + guestNameInput.getText() + " |");
                     guestNameInput.setText("");
                     brideFriendsCount++;
@@ -514,7 +514,7 @@ public class Guests extends Page implements ActionListener{
         }
         if (event.getSource() == sharedFriendsButton) {
             try{
-                if (sharedFriendsCount < guestCount){
+                if (sharedFriendsCount < guestCount-1){
                     sharedFriendsList.get(sharedFriendsCount).setText("| " + guestNameInput.getText() + " |");
                     guestNameInput.setText("");
                     sharedFriendsCount++;
