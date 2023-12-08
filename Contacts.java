@@ -293,19 +293,21 @@ public class Contacts extends Page implements ActionListener{
         // if the source of the event is the add button
         if (event.getSource() == addButton){
             try{
-                // get the label at the current count and set it's text to a string made up
-                // of the four inputs
-                contactsList.get(count).setText(nameInput.getText() + "          " + jobInput.getText() + "          " + 
-                    phoneInput.getText() + "          " + emailInput.getText());
-                // add just the name to the list of names
-                names.add(nameInput.getText());
-                // reset all the text inputs
-                nameInput.setText("");
-                jobInput.setText("");
-                phoneInput.setText("");
-                emailInput.setText("");
-                // increment the count
-                count++;
+                if (count < 29){
+                    // get the label at the current count and set it's text to a string made up
+                    // of the four inputs
+                    contactsList.get(count).setText(nameInput.getText() + "          " + jobInput.getText() + "          " + 
+                        phoneInput.getText() + "          " + emailInput.getText());
+                    // add just the name to the list of names
+                    names.add(nameInput.getText());
+                    // reset all the text inputs
+                    nameInput.setText("");
+                    jobInput.setText("");
+                    phoneInput.setText("");
+                    emailInput.setText("");
+                    // increment the count
+                    count++;
+                }
             }
             catch (IndexOutOfBoundsException e){
                 nameInput.setText("");

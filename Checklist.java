@@ -228,12 +228,14 @@ public class Checklist extends Page implements ActionListener{
         // if the source was the add button
         if (event.getSource() == addButton){
             try{
-                // set the current label text to the text of the taskInput text field
-                taskList.get(count).setText(taskInput.getText());
-                // reset the task input box
-                taskInput.setText("");
-                // increment the count
-                count++;
+                if (count < 29){
+                    // set the current label text to the text of the taskInput text field
+                    taskList.get(count).setText(taskInput.getText());
+                    // reset the task input box
+                    taskInput.setText("");
+                    // increment the count
+                    count++;
+                }
             }
             catch (IndexOutOfBoundsException e){
                 taskInput.setText("");
